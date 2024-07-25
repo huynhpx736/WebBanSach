@@ -69,12 +69,16 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './Pages/Home/Home';
 import ProductDetail from './Pages/Product/ProductDetail';
 import Search from './Pages/Search/SearchProduct';
+import Register from './Pages/Auth/SignUp';
+import Login from './Pages/Auth/Login';
 const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/search" element={<Search />} />
       <Route path="/product/:id" element={<ProductDetail />} />
+      <Route path="/register" element={<Register/>} />
+      <Route path="/login" element={<Login/>} />
     </Routes>
   );
 };
