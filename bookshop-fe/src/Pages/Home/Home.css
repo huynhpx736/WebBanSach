@@ -1,4 +1,4 @@
-/* Tổng quan trang */
+/* Tổng quan trang 
 .home-container {
     display: flex;
     padding: 20px;
@@ -39,7 +39,7 @@
     text-decoration: underline;
   }
   
-  /* Nội dung chính */
+  /* Nội dung chính 
   .main-content {
     flex: 1;
     display: flex;
@@ -95,7 +95,7 @@
     text-decoration: underline;
   }
   
-  /* Phân trang */
+  /* Phân trang 
   .pagination {
     display: flex;
     justify-content: center;
@@ -120,10 +120,197 @@
     background: #025aa5;
   }
   
-  /* Thông báo lỗi và tải dữ liệu */
+  /* Thông báo lỗi và tải dữ liệu 
   p {
     text-align: center;
     font-size: 1rem;
     color: #555;
   }
+  */
+
+
+
+
+
+
+
+
+/*   
+  .home-container {
+    display: flex;
+    margin: 20px;
+  }
   
+  .main-content {
+    flex: 1;
+    margin-left: 20px;
+  }
+  
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  
+  .book-card {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .book-card img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+  }
+  
+  .book-card h3 {
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .book-card p {
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .book-card a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #0275d8;
+    color: #fff;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  .book-card a:hover {
+    background-color: #025aa5;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .pagination a {
+    margin: 0 5px;
+    padding: 8px 12px;
+    border: 1px solid #0275d8;
+    border-radius: 4px;
+    color: #0275d8;
+    text-decoration: none;
+  }
+  
+  .pagination a.active {
+    background-color: #0275d8;
+    color: #fff;
+  }
+   */
+
+/* 
+   .home-container {
+    display: flex;
+    margin: 20px;
+  }
+  
+  .main-content {
+    flex: 1;
+    margin-left: 20px;
+  }
+  
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .pagination a {
+    margin: 0 5px;
+    padding: 8px 12px;
+    border: 1px solid #0275d8;
+    border-radius: 4px;
+    color: #0275d8;
+    text-decoration: none;
+  }
+  
+  .pagination a.active {
+    background-color: #0275d8;
+    color: #fff;
+  }
+   */
+
+  /* Tổng quan trang */
+.home-container {
+  display: flex;
+  margin: 20px;
+}
+
+/* Nội dung chính */
+.main-content {
+  flex: 1;
+  margin-left: 20px;
+}
+
+/* Lưới sách */
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* Phân trang */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Phần tử phân trang */
+.pagination a {
+  margin: 0 5px;
+  padding: 8px 12px;
+  border: 1px solid #0275d8;
+  border-radius: 4px;
+  color: #0275d8;
+  text-decoration: none;
+  font-weight: bold;
+  background-color: #ffffff;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Phần tử phân trang khi hover */
+.pagination a:hover {
+  background-color: #0275d8;
+  color: #ffffff;
+}
+
+/* Phần tử phân trang đang active */
+.pagination a.active {
+  background-color: #0275d8;
+  color: #ffffff;
+  border: 1px solid #0275d8;
+}
+
+/* Dấu chấm phân trang */
+.pagination .break {
+  margin: 0 5px;
+  padding: 8px 12px;
+  color: #0275d8; /* Đảm bảo màu chữ dấu chấm đúng */
+  font-weight: bold;
+  text-align: center;
+  line-height: 1;
+  display: inline-flex; /* Đảm bảo dấu chấm hiển thị đúng */
+  align-items: center; /* Căn giữa dấu chấm theo chiều dọc */
+  background-color: transparent; /* Đảm bảo nền trong suốt */
+}
