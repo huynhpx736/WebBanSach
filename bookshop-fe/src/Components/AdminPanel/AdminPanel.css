@@ -1,0 +1,35 @@
+.pannel-admin {
+    width: 200px;
+    background-color: #051526;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    height: 100vh;
+  }
+  
+  .pannel-admin h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #b58989;
+  }
+  
+  .pannel-admin ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .pannel-admin ul li {
+    margin-bottom: 10px;
+  }
+  
+  .pannel-admin ul li a {
+    text-decoration: none;
+    color: #dfe6ec;
+    font-size: 16px;
+  }
+  
+  .pannel-admin ul li a:hover,
+  .pannel-admin ul li a.active {
+    color: #025aa5;
+    font-weight: bold;
+  }
+  

@@ -22,6 +22,7 @@ const Register = () => {
   };
 
   return (
+    <div className='wrapper'>
     <div className="auth-container">
       <div className="auth-header">
         <h2>Đăng kí</h2>
@@ -57,6 +58,7 @@ const Register = () => {
         <button type="submit">Register</button>
       </form>
       {message && <p className="auth-message">{message}</p>}
+    </div>
     </div>
   );
 };

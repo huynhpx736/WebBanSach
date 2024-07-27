@@ -1,0 +1,73 @@
+.manage-product {
+    padding: 20px;
+  }
+  
+  .search-add {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .search-add input {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .search-add .btn {
+    padding: 10px 20px;
+    background-color: #0275d8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .search-add .btn:hover {
+    background-color: #025aa5;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f4f4f4;
+  }
+  
+  .btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .btn-warning {
+    background-color: #f0ad4e;
+    color: white;
+  }
+  
+  .btn-warning:hover {
+    background-color: #ec971f;
+  }
+  
+  .btn-danger {
+    background-color: #d9534f;
+    color: white;
+  }
+  
+  .btn-danger:hover {
+    background-color: #c9302c;
+  }
+  

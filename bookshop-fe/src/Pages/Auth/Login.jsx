@@ -23,15 +23,23 @@ const Login = () => {
         } else {
           navigate('/');
         }
+
+         //Nếu không tìm thấy tài khoản thì thông báo lỗi
+        setMessage("Tài khoản không tồn tại");
+
+
+
         // navigate('/');
       },
       (error) => {
-        setMessage("Error: " + error.response.data.desc);
+        setMessage("Error: " + (error.response ? error.response.data.message : error.message));
       }
     );
   };
 
   return (
+    <div className='wrapper'>
+
     <div className="auth-container">
       <div className="auth-header">
         <h2>Đăng nhập</h2>
@@ -55,9 +63,10 @@ const Login = () => {
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit">Đăng nhập</button>
       </form>
       {message && <p className="auth-message">{message}</p>}
+    </div>
     </div>
   );
 };

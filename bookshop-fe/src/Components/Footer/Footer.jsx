@@ -13,7 +13,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-section" style={{marginLeft:'50px'}}>
-          <img  src="/logoPtit.png" style={{width:'100px'}} alt="" />
+          <img  src="/logoweb.jpg" style={{width:'100px'}} alt="" />
           <h4>Sách chất lượng cao</h4>
         </div>
         <div className="footer-section" >

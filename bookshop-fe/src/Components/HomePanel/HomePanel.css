@@ -1,4 +1,4 @@
-.side-panel {
+/* .side-panel {
     width: 200px;
     background-color: #f8f9fa;
     padding: 20px;
@@ -28,5 +28,53 @@
   
   .side-panel ul li a:hover {
     color: #025aa5;
+  }
+   */
+
+   /* src/Components/HomePanel/HomePanel.css */
+.side-panel {
+    width: 250px;
+    background-color: #c197d1e3;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .side-panel:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  .side-panel h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #d72020;
+  }
+  
+  .side-panel ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .side-panel ul li {
+    margin-bottom: 15px;
+  }
+  
+  .side-panel ul li a {
+    text-decoration: none;
+    color: #111213;
+    font-size: 18px;
+    font-weight: 500;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .side-panel ul li a:hover {
+    background-color: #0275d8;
+    color: #fff;
   }
   
