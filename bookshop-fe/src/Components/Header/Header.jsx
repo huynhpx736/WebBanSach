@@ -106,7 +106,8 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
-import AuthContext from './AuthContext';
+// import AuthContext from './AuthContext';
+import  AuthContext  from '../../Pages/Auth/AuthContext';
 
 const Header = () => {
   const { isLoggedIn, logout } = useContext(AuthContext);
@@ -147,8 +148,8 @@ const Header = () => {
             </div>
           ) : (
             <div className="auth-links">
-              <Link to="/login">Login</Link>
-              <Link to="/register">Register</Link>
+              <Link to="/register">Đăng kí</Link>
+              <Link to="/login">Đăng nhập</Link>
             </div>
           )}
         </div>

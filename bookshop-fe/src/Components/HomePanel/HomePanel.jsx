@@ -159,6 +159,8 @@ const HomePanel = () => {
           </li>
         )) : <p>Hiện không có thể loại nào</p>}
       </ul>
+      <Link to="/search" className="link-search">Tìm kiếm nâng cao</Link>
+
     </div>
   );
 };

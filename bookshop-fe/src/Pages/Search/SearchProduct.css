@@ -151,6 +151,7 @@ form {
   align-items: center;
   gap: 10px;
   flex: 1;
+  white-space: nowrap;
 }
 
 input[type="text"],

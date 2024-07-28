@@ -48,7 +48,7 @@ const CategoryPage = () => {
         <div className="books-grid">
           {displayBooks.length > 0 ? displayBooks.map(book => (
             <BookCard key={book.id} book={book} />
-          )) : <p>No books available</p>}
+          )) : <p>Hiện không có sản phẩm</p>}
         </div>
         <ReactPaginate
           previousLabel={'Trước'}

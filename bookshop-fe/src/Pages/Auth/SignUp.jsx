@@ -55,7 +55,7 @@ const Register = () => {
             required
           />
         </div>
-        <button type="submit">Register</button>
+        <button type="submit">Đăng kí</button>
       </form>
       {message && <p className="auth-message">{message}</p>}
     </div>

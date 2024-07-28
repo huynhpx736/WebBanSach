@@ -63,7 +63,7 @@
 // };
 
 // export default App;
-
+import './App.css';
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from './Pages/Home/Home';
@@ -83,15 +83,17 @@ import ManageCategory from './Pages/Admin/Category/ManageCategory';
 import AddCategory from './Pages/Admin/Category/AddCateory';
 import EditCategory from './Pages/Admin/Category/EditCategory';
 import Shop from './Pages/Shop/Shop';
+import { AuthProvider } from './Pages/Auth/AuthContext';
 
 
 const App = () => {
   return (
+    <AuthProvider>
     <Routes>
+
       <Route path="/" element={<Home />} />
       <Route path="/shop" element={<Shop/>} />
       <Route path="/search" element={<Search />} />
-
       <Route path="/product/:id" element={<ProductDetail />} />
       <Route path="/register" element={<Register/>} />
       <Route path="/login" element={<Login/>} />
@@ -99,7 +101,7 @@ const App = () => {
 
       
       <Route path="/admin" element={<AdminLayout />}>
-        {/* <Route path="dashboard" element={<Dashboard />} /> */}
+        <Route path="dashboard" element={<Dashboard />} />
         {/* <Route path="orders" element={<Orders />} /> */}
         <Route path="products" element={<ManageProduct />} />
         <Route path="products/add" element={<AddProduct />} />
@@ -112,6 +114,7 @@ const App = () => {
         {/* <Route path="tags" element={<Tags />} /> */}
       </Route>      
     </Routes>
+    </AuthProvider>
   );
 };
 

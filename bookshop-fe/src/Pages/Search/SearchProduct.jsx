@@ -1247,11 +1247,11 @@ const Search = () => {
             <Link to={`/product/${book.id}`} target='blank'>
 
                 {/* <img src={'Cover'} alt={book.title} /> */}
-                <img src='biasach.jpg' alt={book.title} />
+                {/* <img src='biasach.jpg' alt={book.title} /> */}
 
 
                 {/* <img src={'../../images/biasach.jpg'} alt={book.title} /> */}
-                {/* <img src={book.image}  /> */}
+                <img src={book.image}  />
                 </Link>
 
               <div>
@@ -1261,7 +1261,7 @@ const Search = () => {
                 Nhà xuất bản: {book.publisher.name}<br />
                 Năm xuất bản: {book.publicationYear}<br />
                 Tag: {book.tags.map(tag => tag.name).join(', ')}<br />
-                Đánh giá: {book.starRating}<br />
+                Đánh giá: {book.starRating} sao<br />
                 Giá: {book.price.toLocaleString()} VNĐ
               </div>
             </li>
