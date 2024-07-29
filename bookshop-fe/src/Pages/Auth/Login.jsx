@@ -1,7 +1,7 @@
-// Login.js
+// Login.jsx
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '../../api';
+import { login as apiLogin } from '../../api';
 import './Auth.css';
 import AuthContext from './AuthContext';
 
@@ -12,23 +12,21 @@ const Login = () => {
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-
-    api.login(username, password).then(
-      (response) => {
-        setMessage("Login successful");
-        login(); // Update the login state
-        if (response.data.data.role === 1) {
-          navigate('/admin');
-        } else {
-          navigate('/');
-        }
-      },
-      (error) => {
-        setMessage("Error: " + (error.response ? error.response.data.message : error.message));
+    try {
+      const response = await apiLogin(username, password);
+      setMessage("Login successful");
+      login(response.data.id); // Pass the user ID to the login function
+      if (response.data.role === 1) {
+        navigate('/admin');
+      } else {
+        navigate('/');
       }
-    );
+    } catch (error) {
+      // setMessage(error.message);
+      setMessage("Đăng nhập thất bại");
+    }
   };
 
   return (

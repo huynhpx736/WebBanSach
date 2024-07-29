@@ -1,18 +1,8 @@
-/* .slider-banner {
-    width: 100%;
-    margin: 20px 0;
-  }
-  
-  .slider-banner img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-  }
-   */
+
 
    .slider-banner {
     width: 100%;
-    /* margin: 20px 0; */
+    margin: 1px 0;
   }
   
   .slider-banner .slide {
@@ -24,7 +14,7 @@
   
   .slider-banner img {
     width: 100%;
-    height: 100%;
+    height: 300px;
     object-fit: cover; /* Ensure the image covers the container without distortion */
     border-radius: 10px;
   }

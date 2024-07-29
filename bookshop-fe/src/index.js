@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-
+import '@fortawesome/fontawesome-free/css/all.min.css'; // Import FontAwesome
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -1,0 +1,68 @@
+/* FindProduct.css */
+
+.find-product {
+    padding: 20px;
+  }
+  
+  .search-form {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .search-form input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .search-form button {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+  
+  .search-form button i {
+    font-size: 1rem;
+  }
+  
+  .search-form button:hover {
+    background: #0056b3;
+  }
+  
+  .results {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .result-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    width: 200px;
+  }
+  
+  .result-item img {
+    max-width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+  }
+  
+  .result-item h3 {
+    font-size: 1rem;
+    margin: 10px 0;
+  }
+  
+  .result-item p {
+    font-size: 0.9rem;
+    color: #555;
+  }
+  

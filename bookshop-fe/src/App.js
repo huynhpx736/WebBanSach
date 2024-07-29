@@ -84,6 +84,8 @@ import AddCategory from './Pages/Admin/Category/AddCateory';
 import EditCategory from './Pages/Admin/Category/EditCategory';
 import Shop from './Pages/Shop/Shop';
 import { AuthProvider } from './Pages/Auth/AuthContext';
+import Profile from './Pages/User/Profile/Profile';
+import Cart from './Pages/User/Cart/Cart';
 
 
 const App = () => {
@@ -97,6 +99,8 @@ const App = () => {
       <Route path="/product/:id" element={<ProductDetail />} />
       <Route path="/register" element={<Register/>} />
       <Route path="/login" element={<Login/>} />
+      <Route path='/profile' element ={<Profile/>} />
+      <Route path='cart' element ={<Cart />} />
       <Route path="/category/:categoryId" element={<CategoryPage/>} />
 
       

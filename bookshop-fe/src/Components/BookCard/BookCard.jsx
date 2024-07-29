@@ -8,6 +8,7 @@ const BookCard = ({ book }) => {
     return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
   };
 
+  
   return (
     <div className="book-card">
       <img src={book.image} alt={book.title} />

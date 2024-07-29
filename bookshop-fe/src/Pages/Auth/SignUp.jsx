@@ -1,5 +1,6 @@
+// SignUp.jsx
 import React, { useState } from 'react';
-import api from '../../api';
+import { register as apiRegister } from '../../api';
 import './Auth.css';
 
 const Register = () => {
@@ -11,54 +12,54 @@ const Register = () => {
   const handleRegister = (e) => {
     e.preventDefault();
 
-    api.register(username, password, email).then(
+    apiRegister(username, password, email).then(
       (response) => {
         setMessage("User registered successfully");
       },
       (error) => {
-        setMessage("Error: " + error.response.data.desc);
+        setMessage("Error: " + (error.response ? error.response.data.desc : error.message));
       }
     );
   };
 
   return (
     <div className='wrapper'>
-    <div className="auth-container">
-      <div className="auth-header">
-        <h2>Đăng kí</h2>
+      <div className="auth-container">
+        <div className="auth-header">
+          <h2>Đăng kí</h2>
+        </div>
+        <form className="auth-form" onSubmit={handleRegister}>
+          <div>
+            <label>Tài khoản</label>
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label>Mật khẩu</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label>Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit">Đăng kí</button>
+        </form>
+        {message && <p className="auth-message">{message}</p>}
       </div>
-      <form className="auth-form" onSubmit={handleRegister}>
-        <div>
-          <label>Tài khoản</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Mật khẩu</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Đăng kí</button>
-      </form>
-      {message && <p className="auth-message">{message}</p>}
-    </div>
     </div>
   );
 };
