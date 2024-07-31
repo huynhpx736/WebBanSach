@@ -34,11 +34,24 @@ const Header = () => {
             <i className="fas fa-search"></i>
           </button>
         </div>
-        <div className="cart-icon">
+        {/* <div style ={{width:200}}></div> <div></div> <div></div> */}
+
+       
+        {isLoggedIn ? (
+          <div className="cart-icon">
+            <Link to="/cart">
+              <i className="fas fa-shopping-cart"></i>
+            </Link>
+          </div>
+        ) : (
+          <div></div>
+        )}
+        
+        {/* <div className="cart-icon">
           <Link to="/cart">
             <i className="fas fa-shopping-cart"></i>
           </Link>
-        </div>
+        </div> */}
         <div className="user-actions">
           {isLoggedIn ? (
             <div className="user-icon">
@@ -47,9 +60,9 @@ const Header = () => {
                   <i className="fas fa-user"></i>
                 </button>
                 <div className="dropdown-content">
-                  <Link to="/profile">Profile</Link>
-                  <Link to="/orders">Orders</Link>
-                  <button onClick={handleLogout}>Logout</button>
+                  <Link to="/profile">Thông tin cá nhân</Link>
+                  <Link to="/orders">Đơn hàng</Link>
+                  <button onClick={handleLogout}>Đăng xuất</button>
                 </div>
               </div>
             </div>

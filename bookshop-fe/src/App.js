@@ -86,6 +86,9 @@ import Shop from './Pages/Shop/Shop';
 import { AuthProvider } from './Pages/Auth/AuthContext';
 import Profile from './Pages/User/Profile/Profile';
 import Cart from './Pages/User/Cart/Cart';
+import Order from './Pages/User/Order/Order';
+import ManagePublisher from './Pages/Admin/Publisher/ManagePublisher';
+import ManageAuthor from './Pages/Admin/Author/ManageAuthor';
 
 
 const App = () => {
@@ -100,7 +103,9 @@ const App = () => {
       <Route path="/register" element={<Register/>} />
       <Route path="/login" element={<Login/>} />
       <Route path='/profile' element ={<Profile/>} />
-      <Route path='cart' element ={<Cart />} />
+      <Route path='/cart' element ={<Cart />} />
+      <Route path='/orders' element={<Order />} />
+      
       <Route path="/category/:categoryId" element={<CategoryPage/>} />
 
       
@@ -113,8 +118,8 @@ const App = () => {
         <Route path="categories" element={<ManageCategory />} />
         <Route path="categories/add" element={<AddCategory />} />
         <Route path="categories/edit/:id" element={<EditCategory />} />
-        {/* <Route path="authors" element={<Authors />} /> */}
-        {/* <Route path="publishers" element={<Publishers />} /> */}
+        <Route path="authors" element={ <ManageAuthor/>} />
+        <Route path="publishers" element={<ManagePublisher/>} />
         {/* <Route path="tags" element={<Tags />} /> */}
       </Route>      
     </Routes>

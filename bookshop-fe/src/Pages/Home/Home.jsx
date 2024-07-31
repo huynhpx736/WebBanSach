@@ -140,6 +140,7 @@ const Home = () => {
   const [allBooks, setAllBooks] = useState([]);
   const [newBooks, setNewBooks] = useState([]);
   const [books, setBooks] = useState([]);
+  const [bestSellerBooks, setBestSellerBooks] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -149,7 +150,9 @@ const Home = () => {
     // Fetch new products
     fetchNewestProducts()
       .then(data => {
-        setNewBooks(data);
+        // setNewBooks(data);
+        setNewBooks(data.slice(0, 4)); // Initialize new books for the first page
+        setBestSellerBooks(data.slice(4, 8)); // Initialize best seller books for the first page
         setLoading(false);
       })
       .catch(err => {
@@ -195,23 +198,23 @@ const Home = () => {
       <div className="home-container">
         {/* <HomePanel /> */}
         <div className="main-content">
-          {/* <div className="new-product">
+          <div className="new-product">
             <h2>Sản phẩm mới</h2>
             <div className="books-grid">
-              {books.length > 0 ? books.map(book => (
+              {books.length > 0 ? newBooks.map(book => (
                 <BookCard key={book.id} book={book} />
               )) : <p>Hiện không có sản phẩm nào</p>}
             </div>
-          </div> */}
+          </div>
 
-          {/* <div className='best-seller'>
+          <div className='best-seller'>
             <h2>Sản phẩm bán chạy</h2>
             <div className="books-grid">
-              {books.length > 0 ? books.map(book => (
+              {books.length > 0 ? bestSellerBooks.map(book => (
                 <BookCard key={book.id} book={book} />
               )) : <p>Hiện không có sản phẩm nào</p>}
             </div>
-          </div> */}
+          </div>
 
           <h2>Tất cả sản phẩm</h2>
           <div className="books-grid">

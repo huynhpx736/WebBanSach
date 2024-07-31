@@ -1,0 +1,81 @@
+.manage-author-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+.search-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  width: 300px;
+}
+
+.add-author-button {
+  background-color: #1890ff;
+  border-color: #1890ff;
+}
+
+.add-author-button:hover {
+  background-color: #40a9ff;
+  border-color: #40a9ff;
+}
+
+.author-table {
+  background-color: #ffffff;
+  border-radius: 4px;
+}
+
+.actions-container {
+  display: flex;
+  align-items: center;
+}
+
+.edit-button {
+  margin-right: 8px;
+  background-color: #52c41a;
+  border-color: #52c41a;
+}
+
+.edit-button:hover {
+  background-color: #73d13d;
+  border-color: #73d13d;
+}
+
+.delete-button {
+  background-color: #ff4d4f;
+  border-color: #ff4d4f;
+}
+
+.delete-button:hover {
+  background-color: #ff7875;
+  border-color: #ff7875;
+}
+
+.author-modal .ant-modal-header {
+  background-color: #fafafa;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.author-modal .ant-modal-body {
+  padding: 24px;
+}
+
+.author-modal .ant-form-item-label > label {
+  font-weight: bold;
+}
+
+.author-modal .ant-form-item-control-input {
+  border-radius: 4px;
+  border: 1px solid #d9d9d9;
+}
+
+.author-modal .ant-form-item-control-input:hover,
+.author-modal .ant-form-item-control-input:focus {
+  border-color: #40a9ff;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}

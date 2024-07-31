@@ -1,19 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { FaTachometerAlt, FaClipboardList, FaBox, FaTags, FaUserEdit, FaBuilding, FaTag, FaSignOutAlt, FaUsers, FaChevronDown, FaShoppingCart, FaShippingFast, FaCheckCircle, FaBan } from 'react-icons/fa';
 import './AdminPanel.css';
 
 const AdminPanel = () => {
+  const [showProductSubmenu, setShowProductSubmenu] = useState(false);
+  const [showOrderSubmenu, setShowOrderSubmenu] = useState(false);
+
+  const toggleProductSubmenu = () => {
+    setShowProductSubmenu(!showProductSubmenu);
+  };
+
+  const toggleOrderSubmenu = () => {
+    setShowOrderSubmenu(!showOrderSubmenu);
+  };
+
   return (
     <div className="pannel-admin">
       <h2>Admin Bookshop</h2>
       <ul>
-        <li><NavLink to="/admin/dashboard">Dashboard</NavLink></li>
-        <li><NavLink to="/admin/orders">Quản lý đơn hàng</NavLink></li>
-        <li><NavLink to="/admin/products">Quản lý sản phẩm</NavLink></li>
-        <li><NavLink to="/admin/categories">Quản lý thể loại</NavLink></li>
-        <li><NavLink to="/admin/authors">Quản lý tác giả</NavLink></li>
-        <li><NavLink to="/admin/publishers">Quản lý nhà xuất bản</NavLink></li>
-        <li><NavLink to="/admin/tags">Quản lý tag</NavLink></li>
+        <li><NavLink to="/admin/dashboard"><FaTachometerAlt className="icon" />Dashboard</NavLink></li>
+        <li>
+          <div onClick={toggleOrderSubmenu} className="submenu-toggle">
+            <FaClipboardList className="icon" />Quản lý đơn hàng <FaChevronDown className="dropdown-icon" />
+          </div>
+          {showOrderSubmenu && (
+            <ul className="submenu">
+              <li><NavLink to="/admin/orders/pending"><FaShoppingCart className="icon" />Đơn hàng đã đặt</NavLink></li>
+              <li><NavLink to="/admin/orders/shipping"><FaShippingFast className="icon" />Đơn hàng đang giao</NavLink></li>
+              <li><NavLink to="/admin/orders/cancelled"><FaBan className="icon" />Đơn hàng đã hủy</NavLink></li>
+              <li><NavLink to="/admin/orders/completed"><FaCheckCircle className="icon" />Đơn hàng đã giao</NavLink></li>
+            </ul>
+          )}
+        </li>
+        <li>
+          <div onClick={toggleProductSubmenu} className="submenu-toggle">
+            <FaBox className="icon" />Quản lý sản phẩm <FaChevronDown className="dropdown-icon" />
+          </div>
+          {showProductSubmenu && (
+            <ul className="submenu">
+              <li><NavLink to="/admin/products"><FaBox className="icon" />Quản lý sản phẩm</NavLink></li>
+              <li><NavLink to="/admin/categories"><FaTags className="icon" />Quản lý thể loại</NavLink></li>
+              <li><NavLink to="/admin/authors"><FaUserEdit className="icon" />Quản lý tác giả</NavLink></li>
+              <li><NavLink to="/admin/publishers"><FaBuilding className="icon" />Quản lý nhà xuất bản</NavLink></li>
+              <li><NavLink to="/admin/tags"><FaTag className="icon" />Quản lý tag</NavLink></li>
+            </ul>
+          )}
+        </li>
+        <li><NavLink to="/admin/customers"><FaUsers className="icon" />Quản lý khách hàng</NavLink></li>
+        <li><NavLink to="/logout"><FaSignOutAlt className="icon" />Đăng xuất</NavLink></li>
       </ul>
     </div>
   );

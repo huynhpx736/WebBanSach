@@ -10,7 +10,7 @@
 
 }
 .auth-container {
-    max-width: 400px;
+    max-width: 600px;
     margin: 50px auto;
     padding: 20px;
     background-color: #a09a9a;
@@ -71,3 +71,9 @@
     color: #d9534f;
   }
   
+  .line-input{
+    display: flex;
+    justify-content: left;
+
+
+  }

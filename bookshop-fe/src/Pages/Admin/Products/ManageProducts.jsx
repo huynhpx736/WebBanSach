@@ -148,7 +148,8 @@ const ManageProduct = () => {
       <table>
         <thead>
           <tr>
-            <th>ID</th>
+            <th>Mã</th>
+            <th>Ảnh</th>
             <th>Tiêu đề</th>
             <th>Giá</th>
             <th>Hành động</th>
@@ -158,6 +159,9 @@ const ManageProduct = () => {
           {filteredProducts.map(product => (
             <tr key={product.id}>
               <td>{product.id}</td>
+              <td>
+                <img src={product.image} alt={product.title} />
+              </td>
               <td>{product.title}</td>
               <td>{product.price}</td>
               <td>

@@ -296,7 +296,9 @@ const Profile = () => {
               </div>
               <div className="profile-field">
                 <label>Loại:</label>
-                <p>{user.classification=='normal'?"thường":"vip"}</p>
+                {/* //nếu NORMAL thì hiện thường, nếu VIP thì hiện vip, khác thì hiện Thân thiết */}
+                <p>{user.classification==='NORMAL'?"Thường":user.classification==='VIP'?"VIP":"Thân thiết"}</p>
+                {/* <p>{user.classification=='NORMAL'?"Thường":"vip"}</p> */}
                 {/* <p>({user.classification}==='normal')?:"thường":"vip"</p> */}
               </div>
               <button onClick={() => setIsEditing(true)} className="update-btn">Cập nhật thông tin</button>

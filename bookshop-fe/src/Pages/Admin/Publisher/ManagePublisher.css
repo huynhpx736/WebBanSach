@@ -1,0 +1,85 @@
+.manage-publisher-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  padding: 10px;
+  width: 300px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.publisher-form {
+  margin-bottom: 20px;
+}
+
+.publisher-form h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.publisher-form input {
+  display: block;
+  width: 300px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.publisher-form button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+}
+
+.publisher-form button:hover {
+  background-color: #45a049;
+}
+
+.publisher-list {
+  margin-top: 20px;
+}
+
+.publisher-list h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.publisher-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.publisher-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.publisher-list button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #f44336;
+  color: white;
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+.publisher-list button:hover {
+  background-color: #e53935;
+}

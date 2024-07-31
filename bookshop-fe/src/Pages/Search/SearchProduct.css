@@ -147,10 +147,10 @@ form {
 
 /* Ô nhập liệu cùng hàng với độ ưu tiên */
 .form-group div {
-  display: flex;
+  /* display: flex; */
   align-items: center;
   gap: 10px;
-  flex: 1;
+  /* flex: 1; */
   white-space: nowrap;
 }
 
@@ -161,13 +161,13 @@ input[type="number"] {
   border-radius: 5px;
   font-size: 1rem;
   box-sizing: border-box;
-  flex: 1;
+  /* flex: 1; */
 }
 
 /* Nhãn tiêu chí và độ ưu tiên */
 label {
   font-size: 1.1rem;
-  color: #444;
+  color: #ac0e0e;
 }
 
 /* Nút OK */
@@ -258,4 +258,10 @@ button[type="submit"]:disabled {
   #searchResults img {
     max-width: 100px;
   }
+}
+
+.criteria-line{
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }

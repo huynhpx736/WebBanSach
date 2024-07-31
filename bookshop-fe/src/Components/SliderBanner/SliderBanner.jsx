@@ -1,7 +1,7 @@
 import React from 'react';
 import Slider from 'react-slick';
 import './SliderBanner.css';
-import Banner1 from '../../images/banner4.png';
+import Banner1 from '../../images/ban1.jpg';
 import Banner2 from '../../images/banner6.png';
 import Banner3 from '../../images/banner3.jpg';
 

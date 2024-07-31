@@ -46,7 +46,7 @@ const Login = () => {
             />
           </div>
           <div>
-            <label>Mật khẩu</label>
+            <label>Mật khẩu&nbsp;</label>
             <input
               type="password"
               value={password}
