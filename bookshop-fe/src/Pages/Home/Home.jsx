@@ -137,6 +137,8 @@ import BookCard from '../../Components/BookCard/BookCard';
 import SliderBanner from '../../Components/SliderBanner/SliderBanner';
 
 const Home = () => {
+  // const [User, setUser] = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : {};
+  // const user = JSON.parse(localStorage.getItem('user'));
   const [allBooks, setAllBooks] = useState([]);
   const [newBooks, setNewBooks] = useState([]);
   const [books, setBooks] = useState([]);
@@ -194,7 +196,6 @@ const Home = () => {
     <div>
       <Header />
       <SliderBanner />
-
       <div className="home-container">
         {/* <HomePanel /> */}
         <div className="main-content">

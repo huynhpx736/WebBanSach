@@ -8,39 +8,108 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [fullname, setFullname] = useState('');
   const [message, setMessage] = useState('');
 
   const handleRegister = (e) => {
-     //bat loi khi mat khau khong trung nhau
-     
-    
-
     e.preventDefault();
-    if (password !== passwordConfirm) {
-      setMessage("Mật khẩu không trùng khớp.");
+
+     
+      //bat cac loi co the xay ra
+      if (username === '' || password === '' || email === '' || phone === '' || fullname === '') {
+        setMessage("Vui lòng điền đầy đủ thông tin.");
+        return;
+      }
+
+      //bat loi khi nhap ten khong hop le (khong chua ky tu dac biet)
+    if (!/^[a-zA-Z0-9]*$/.test(username)) {
+      setMessage("Tên đăng nhập không được chứa ký tự đặc biệt.");
       return;
     }
-    //bat cac loi co the xay ra
-    if (username === '' || password === '' || email === '') {
-      setMessage("Vui lòng điền đầy đủ thông tin.");
+   
+ 
+   
+    //bat loi khi nhap mat khau khong dung
+    if (password.length < 6) {
+      setMessage("Mật khẩu phải có ít nhất 6 ký tự.");
+      return;
+    }
+       //bat loi khi mat khau khong trung nhau
+       if (password !== passwordConfirm) {
+        setMessage("Mật khẩu không trùng khớp.");
+        return;
+      }
+ 
+       //bat loi khi nhap email khong dung
+    if (!email.includes('@') || !email.includes('.')) {
+      setMessage("Email không hợp lệ.");
       return;
     }
 
-    apiRegister(username, password, email).then(
+     //Ho ten không chứa số
+      if (fullname.match(/\d+/g)) {
+        setMessage("Họ tên không được chứa số.");
+        return;
+      }
+ 
+    //bat loi khi nhap so dien thoai khong dung
+    if (phone.length < 9 || phone.length >= 13) {
+      setMessage("Số điện thoại không hợp lệ.");
+      return;
+    }
+
+
+    apiRegister(username, password, email, fullname, phone).then(
       (response) => {
-        setMessage("Đăng kí thành công.");
+        
+        // if (response.data.desc === "User registered successfully") {
+        //   setMessage("Đăng kí thành công.");
+        //   return;
+        // }
+        //neu null thi tra ve thong bao
+        // if (response.data.desc === null) {
+        //   setMessage("Đăng kí thất bại null.");
+        //   return;
+        // }
+        // if (response.data.desc  === "User already exists") {
+        //   setMessage("Tên tài khoản đã tồn tại.");
+        //   return;
+        // }
+        // if (response.data.desc  === "Email already exists") {
+        //   setMessage("Email đã tồn tại.");
+        //   return;
+        // }
+
+        // setMessage("Đăng kí thành công.");
+        
+        // setMessage(response.desc==="Username already exists"?"Tên tài khoản đã tồn tại.":(response.desc==="Email already exists"?"Email đã tồn tại.":response.desc==="User registered successfully"?"Đăng kí thành công.":"Đăng kí thất bại."));
+        // setMessage(response.desc);
+        if (response.desc === "User registered successfully") {
+          setMessage("Đăng kí thành công.");
+          return;
+        }
+
+        if (response.desc === "Username already exists") {
+          setMessage("Tên đăng nhập đã tồn tại.");
+          return;
+        }
+
+        if (response.desc === "Email already exists") {
+          setMessage("Email đã tồn tại.");
+          return;
+        }
+
+        setMessage("Đăng kí thất bại.");
       },
       (error) => {
-        // setMessage( (error.response ? error.response.data.desc : error.message));
-        setMessage("Đăng kí thất bại.");
+        // setMessage( (error.response ? error.response.desc : error.message));
+        // setMessage("Tên đăng nhập hoặc email đã tồn tại.");
+        // setMessage("Đăng kí thất bại.");
       }
     );
 
-    //bat loi khi mat khau khong trung nhau
-    if (password !== passwordConfirm) {
-      setMessage("Mật khẩu không trùng khớp.");
-      return;
-    }
+   
   };
 
   return (
@@ -51,7 +120,7 @@ const Register = () => {
         </div>
         <form className="auth-form" onSubmit={handleRegister}>
           <div className='line-input'>
-            <label>Tài khoản</label>            
+            <label>Tên đăng nhập</label>    
             <input
               type="text"
               value={username}
@@ -69,7 +138,7 @@ const Register = () => {
             />
           </div>
           <div className='line-input'>
-            <label>Nhập lại&nbsp;</label>
+            <label>Nhập lại mật khẩu&nbsp;</label>
             <input
               type="password"
               value={passwordConfirm}
@@ -85,9 +154,40 @@ const Register = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
+          </div>         
+          <div className='line-input'>
+            <label>Họ tên&nbsp;</label>
+            <input
+              type="text"
+              value={fullname}
+              onChange={(e) => setFullname(e.target.value)}
+              required
+            />
+          </div>
+          {/* <div className='line-input'>
+            <label>Số điện thoại&nbsp;</label>
+            <input
+              type="text"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              required
+            />
+          </div> */}
+          <div className='line-input'>
+            <label>Số điện thoại&nbsp;</label>
+            <input
+              type="text"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              required
+              pattern="[0-9]*"
+            />
           </div>
           <button type="submit">Đăng kí</button>
         </form>
+        {/* <div className="auth-link"> */}
+          <a className="auth-link"  href="/login">Đã có tài khoản? Đăng nhập</a>
+        {/* </div> */}
         {message && <p className="auth-message">{message}</p>}
       </div>
     </div>

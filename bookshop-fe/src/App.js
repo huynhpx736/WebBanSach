@@ -78,7 +78,8 @@ import Dashboard from './Pages/Admin/Dashboard/Dashboard';
 // import ManageProduct from './Pages/Admin/ManageProducts/ManageProducts';
 import AddProduct from './Pages/Admin/Products/AddProduct';
 import EditProduct from './Pages/Admin/Products/EditProduct';
-import ManageProduct from './Pages/Admin/Products/ManageProducts';
+// import ManageProduct from './Pages/Admin/Products/ManageProducts';
+import ManageProduct from './Pages/Admin/Products/ManaProduct';
 import ManageCategory from './Pages/Admin/Category/ManageCategory';
 import AddCategory from './Pages/Admin/Category/AddCateory';
 import EditCategory from './Pages/Admin/Category/EditCategory';
@@ -89,6 +90,7 @@ import Cart from './Pages/User/Cart/Cart';
 import Order from './Pages/User/Order/Order';
 import ManagePublisher from './Pages/Admin/Publisher/ManagePublisher';
 import ManageAuthor from './Pages/Admin/Author/ManageAuthor';
+import ManageTag from './Pages/Admin/Tag/ManageTag';
 
 
 const App = () => {
@@ -120,7 +122,7 @@ const App = () => {
         <Route path="categories/edit/:id" element={<EditCategory />} />
         <Route path="authors" element={ <ManageAuthor/>} />
         <Route path="publishers" element={<ManagePublisher/>} />
-        {/* <Route path="tags" element={<Tags />} /> */}
+        <Route path="tags" element={<ManageTag />} />
       </Route>      
     </Routes>
     </AuthProvider>

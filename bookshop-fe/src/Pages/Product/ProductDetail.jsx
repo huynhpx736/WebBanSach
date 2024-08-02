@@ -308,6 +308,7 @@ import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
 import SliderProduct from '../../Components/SliderProduct/SliderProduct';
 import AuthContext from '../Auth/AuthContext';
+import { toast } from 'react-toastify';
 const ProductDetail = () => {
   const { id } = useParams();
   const { userId } = useContext(AuthContext); // Get the logged-in user information
@@ -356,6 +357,7 @@ const ProductDetail = () => {
     addProductToCart(userId, product.id, quantity)
       .then(() => {
         alert(`${product.title} đã được thêm vào giỏ hàng!`);
+        // toast.success(`${product.title} đã được thêm vào giỏ hàng!`);
       })
       .catch(err => {
         console.error('Failed to add product to cart.', err);
@@ -440,11 +442,29 @@ const ProductDetail = () => {
               <div className="quantity-input">
                 <label htmlFor="quantity">Số lượng:</label>
                 <input
+                  // type="number"
+                  // id="quantity"
+                  // min="1" max={product.salesVolume}
+                  
+                  // value={quantity}
+                  // onChange={(e) => setQuantity(Number(e.target.value))}
+                                    //khong cho nhap so < 1 va > so luong con lai
                   type="number"
                   id="quantity"
                   min="1"
+                  max={product.salesVolume}
                   value={quantity}
-                  onChange={(e) => setQuantity(Number(e.target.value))}
+                  onChange={(e) => {
+                    if (e.target.value < 1) {
+                      setQuantity(1);
+                    } else if (e.target.value > product.salesVolume) {
+                      setQuantity(product.salesVolume);
+                    } else {
+                      setQuantity(Number(e.target.value));
+                    }
+                  }}
+
+                  
                 />
               </div>
 

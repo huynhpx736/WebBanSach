@@ -18,7 +18,9 @@ const Login = () => {
       const response = await apiLogin(username, password);
       setMessage("Login successful");
       login(response.data.id); // Pass the user ID to the login function
-      if (response.data.role === 1) {
+      // localStorage.setUser(response.data.data);
+      localStorage.setItem('user', JSON.stringify(response.data));
+      if (response.data.role === 2) {
         navigate('/admin');
       } else {
         navigate('/');
@@ -36,8 +38,8 @@ const Login = () => {
           <h2>Đăng nhập</h2>
         </div>
         <form className="auth-form" onSubmit={handleLogin}>
-          <div>
-            <label>Tài khoản</label>
+          <div className='line-input'>
+            <label>Tên đăng nhập</label>
             <input
               type="text"
               value={username}
@@ -45,7 +47,7 @@ const Login = () => {
               required
             />
           </div>
-          <div>
+          <div className='line-input'>
             <label>Mật khẩu&nbsp;</label>
             <input
               type="password"
@@ -56,7 +58,11 @@ const Login = () => {
           </div>
           <button type="submit">Đăng nhập</button>
         </form>
+        {/* <div > */}
+          <a className ="auth-link" href="/register">Chưa có tài khoản? Đăng kí</a>
+        {/* </div> */}
         {message && <p className="auth-message">{message}</p>}
+
       </div>
     </div>
   );

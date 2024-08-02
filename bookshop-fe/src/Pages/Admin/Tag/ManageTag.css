@@ -1,0 +1,131 @@
+/* ManageTag.css */
+.manage-tag {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .manage-tag h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  .add-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .add-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .add-button svg {
+    margin-right: 5px;
+  }
+  
+  .form-container {
+    margin-bottom: 20px;
+  }
+  
+  .form-container input {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .form-container button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .form-container button:hover {
+    background-color: #0056b3;
+  }
+  
+  .tag-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .tag-table th, .tag-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .tag-table th {
+    background-color: #f4f4f4;
+  }
+  
+  .tag-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .tag-table button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #28a745;
+    color: #fff;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+  
+  .tag-table button:hover {
+    background-color: #218838;
+  }
+  
+  .tag-table button:nth-of-type(2) {
+    background-color: #dc3545;
+  }
+  
+  .tag-table button:nth-of-type(2):hover {
+    background-color: #c82333;
+  }
+  
+  /* Modal styles */
+  .modal {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 4px;
+    max-width: 500px;
+    margin: auto;
+  }
+  
+  .modal input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+  }
+  
+  .modal button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .modal button:hover {
+    background-color: #0056b3;
+  }
+  
+  .overlay {
+    background: rgba(0, 0, 0, 0.5);
+  }
+  

@@ -102,7 +102,7 @@ const ManageCategory = () => {
       <table>
         <thead>
           <tr>
-            <th>ID</th>
+            {/* <th>ID</th> */}
             <th>Tên thể loại</th>
             <th>Hành động</th>
           </tr>
@@ -110,7 +110,7 @@ const ManageCategory = () => {
         <tbody>
           {filteredCategories.map(category => (
             <tr key={category.id}>
-              <td>{category.id}</td>
+              {/* <td>{category.id}</td> */}
               <td>{category.name}</td>
               <td>
                 <button className="btn btn-warning" onClick={() => handleEdit(category)}>
@@ -160,3 +160,122 @@ const ManageCategory = () => {
 };
 
 export default ManageCategory;
+
+
+
+// // ManageCategory.jsx
+// import React, { useEffect, useState } from 'react';
+// import { fetchAllCategories, createCategory, updateCategory, deleteCategory } from '../../../api';
+// import { FaEdit, FaTrashAlt, FaPlus } from 'react-icons/fa';
+// import './ManageCategory.css';
+
+// const ManageCategory = () => {
+//   const [categories, setCategories] = useState([]);
+//   const [showForm, setShowForm] = useState(false);
+//   const [categoryForm, setCategoryForm] = useState({ name: '' });
+//   const [editingCategory, setEditingCategory] = useState(null);
+
+//   useEffect(() => {
+//     const loadCategories = async () => {
+//       try {
+//         const data = await fetchAllCategories();
+//         setCategories(data);
+//       } catch (error) {
+//         console.error('Failed to load categories', error);
+//       }
+//     };
+//     loadCategories();
+//   }, []);
+
+//   const handleAddCategory = async () => {
+//     try {
+//       await createCategory(categoryForm);
+//       setShowForm(false);
+//       setCategoryForm({ name: '' });
+//       const data = await fetchAllCategories();
+//       setCategories(data);
+//     } catch (error) {
+//       console.error('Failed to add category', error);
+//     }
+//   };
+
+//   const handleUpdateCategory = async () => {
+//     try {
+//       await updateCategory(editingCategory.id, categoryForm);
+//       setShowForm(false);
+//       setEditingCategory(null);
+//       setCategoryForm({ name: '' });
+//       const data = await fetchAllCategories();
+//       setCategories(data);
+//     } catch (error) {
+//       console.error('Failed to update category', error);
+//     }
+//   };
+
+//   const handleDeleteCategory = async (id) => {
+//     try {
+//       await deleteCategory(id);
+//       const data = await fetchAllCategories();
+//       setCategories(data);
+//     } catch (error) {
+//       console.error('Failed to delete category', error);
+//     }
+//   };
+
+//   const handleEditCategory = (category) => {
+//     setEditingCategory(category);
+//     setCategoryForm({ name: category.name });
+//     setShowForm(true);
+//   };
+
+//   return (
+//     <div className="manage-category">
+//       <button onClick={() => { setShowForm(true); setEditingCategory(null); }} className="btn btn-primary">
+//         <FaPlus /> Add Category
+//       </button>
+//       {showForm && (
+//         <div className="form-container">
+//           <h2>{editingCategory ? 'Edit Category' : 'Add Category'}</h2>
+//           <input
+//             type="text"
+//             value={categoryForm.name}
+//             onChange={(e) => setCategoryForm({ name: e.target.value })}
+//             placeholder="Category Name"
+//           />
+//           <button onClick={editingCategory ? handleUpdateCategory : handleAddCategory} className="btn btn-save">
+//             Save
+//           </button>
+//           <button onClick={() => setShowForm(false)} className="btn btn-cancel">
+//             Cancel
+//           </button>
+//         </div>
+//       )}
+//       <table className="category-table">
+//         <thead>
+//           <tr>
+//             <th>Name</th>
+//             <th>Actions</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {categories.map((category) => (
+//             <tr key={category.id}>
+//               <td>{category.name}</td>
+//               <td>
+//                 <button onClick={() => handleEditCategory(category)} className="btn btn-edit">
+//                   <FaEdit /> Edit
+//                 </button>
+//                 <button onClick={() => handleDeleteCategory(category.id)} className="btn btn-delete">
+//                   <FaTrashAlt /> Delete
+//                 </button>
+//               </td>
+//             </tr>
+//           ))}
+//         </tbody>
+//       </table>
+//     </div>
+//   );
+// };
+
+// export default ManageCategory;
+

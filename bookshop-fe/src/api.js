@@ -4,12 +4,14 @@ import axios from 'axios';
 axios.defaults.baseURL = 'http://localhost:8080';
 
 // Auth APIs
-export const register = async (username, password, email) => {
+export const register = async (username, password, email, fullname, phone) => {
   try {
     const response = await axios.post('/api/auth/register', {
-      username,
-      password,
-      email
+      username: username,
+      password: password,
+      email: email,
+      fullname: fullname,
+      phone: phone
     });
     return response.data;
   } catch (error) {
@@ -431,4 +433,278 @@ export const deletePublisher = async (id) => {
   } catch (error) {
     throw new Error('Failed to delete publisher.');
   }
+};
+
+
+// Tag APIs
+export const fetchAllTags = async () => {
+  try {
+    const response = await axios.get('/api/tags/get-all');
+    return response.data.data;
+  } catch (error) {
+    throw new Error('Failed to fetch tags.');
+  }
+};
+
+export const fetchTagById = async (id) => {
+  try {
+    const response = await axios.get(`/api/tags/${id}`);
+    return response.data.data;
+  } catch (error) {
+    throw new Error('Failed to fetch tag by ID.');
+  }
+};
+
+export const createTag = async (tagDTO) => {
+  try {
+    const response = await axios.post('/api/tags/create', tagDTO);
+    return response.data.data;
+  } catch (error) {
+    throw new Error('Failed to create tag.');
+  }
+};
+
+export const updateTag = async (id, tagDTO) => {
+  try {
+    const response = await axios.put(`/api/tags/update/${id}`, tagDTO);
+    return response.data.data;
+  } catch (error) {
+    throw new Error('Failed to update tag.');
+  }
+};
+
+export const deleteTag = async (id) => {
+  try {
+    await axios.delete(`/api/tags/delete/${id}`);
+  } catch (error) {
+    throw new Error('Failed to delete tag.');
+  }
+};
+
+
+
+
+// ProductCategory APIs
+export const fetchAllProductCategories = async () => {
+  try {
+    const response = await axios.get('/api/products-categories/get-all');
+    return response.data.data;
+  } catch (error) {
+    console.error('Failed to fetch product categories:', error);
+    throw error;
+  }
+};
+
+export const fetchProductCategoryById = async (id) => {
+  try {
+    const response = await axios.get(`/api/products-categories/${id}`);
+    return response.data.data;
+  } catch (error) {
+    console.error('Failed to fetch product category by ID:', error);
+    throw error;
+  }
+};
+
+export const createProductCategory = async (productCategory) => {
+  try {
+    const response = await axios.post('/api/products-categories/create', productCategory);
+    return response.data.data;
+  } catch (error) {
+    console.error('Failed to create product category:', error);
+    throw error;
+  }
+};
+
+export const updateProductCategory = async (id, productCategory) => {
+  try {
+    const response = await axios.put(`/api/products-categories/update/${id}`, productCategory);
+    return response.data.data;
+  } catch (error) {
+    console.error('Failed to update product category:', error);
+    throw error;
+  }
+};
+
+export const deleteProductCategory = async (id) => {
+  try {
+    await axios.delete(`/api/products-categories/delete/${id}`);
+  } catch (error) {
+    console.error('Failed to delete product category:', error);
+    throw error;
+  }
+};
+
+
+
+// AuthorProduct APIs
+export const fetchAllAuthorProducts = async () => {
+  try {
+    const response = await axios.get('/api/authors-products/get-all');
+    return response.data.data;
+  } catch (error) {
+    console.error('Failed to fetch author products:', error);
+    throw error;
+  }
+};
+
+export const fetchAuthorProductById = async (id) => {
+  try {
+    const response = await axios.get(`/api/authors-products/${id}`);
+    return response.data.data;
+  } catch (error) {
+    console.error('Failed to fetch author product by ID:', error);
+    throw error;
+  }
+};
+
+export const createAuthorProduct = async (authorProduct) => {
+  try {
+    const response = await axios.post('/api/authors-products/create', authorProduct);
+    return response.data.data;
+  } catch (error) {
+    console.error('Failed to create author product:', error);
+    throw error;
+  }
+};
+
+export const updateAuthorProduct = async (id, authorProduct) => {
+  try {
+    const response = await axios.put(`/api/authors-products/update/${id}`, authorProduct);
+    return response.data.data;
+  } catch (error) {
+    console.error('Failed to update author product:', error);
+    throw error;
+  }
+};
+
+export const deleteAuthorProduct = async (id) => {
+  try {
+    await axios.delete(`/api/authors-products/delete/${id}`);
+  } catch (error) {
+    console.error('Failed to delete author product:', error);
+    throw error;
+  }
+};
+
+// ProductTag APIs
+export const fetchAllProductTags = async () => {
+  try {
+    const response = await axios.get('/api/products-tags/get-all');
+    return response.data.data;
+  } catch (error) {
+    console.error('Failed to fetch product tags:', error);
+    throw error;
+  }
+};
+
+export const fetchProductTagById = async (id) => {
+  try {
+    const response = await axios.get(`/api/products-tags/${id}`);
+    return response.data.data;
+  } catch (error) {
+    console.error('Failed to fetch product tag by ID:', error);
+    throw error;
+  }
+};
+
+export const createProductTag = async (productTag) => {
+  try {
+    const response = await axios.post('/api/products-tags/create', productTag);
+    return response.data.data;
+  } catch (error) {
+    console.error('Failed to create product tag:', error);
+    throw error;
+  }
+};
+
+export const updateProductTag = async (id, productTag) => {
+  try {
+    const response = await axios.put(`/api/products-tags/update/${id}`, productTag);
+    return response.data.data;
+  } catch (error) {
+    console.error('Failed to update product tag:', error);
+    throw error;
+  }
+};
+
+export const deleteProductTag = async (id) => {
+  try {
+    await axios.delete(`/api/products-tags/delete/${id}`);
+  } catch (error) {
+    console.error('Failed to delete product tag:', error);
+    throw error;
+  }
+};
+
+
+
+
+
+
+
+// api.js
+
+// ... Other imports
+
+// Product APIs
+// export const fetchAllProducts = async () => {
+//   const response = await axios.get('/api/products/get-all');
+//   return response.data.data;
+// };
+
+// export const fetchProductById = async (id) => {
+//   const response = await axios.get(`/api/products/${id}`);
+//   return response.data;
+// };
+
+export const createProduct = async (product) => {
+  const formData = new FormData();
+  Object.keys(product).forEach(key => {
+    formData.append(key, product[key]);
+  });
+  const response = await axios.post('/api/products/create', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    }
+  });
+  return response.data.data;
+};
+
+export const updateProduct = async (id, product) => {
+  const formData = new FormData();
+  Object.keys(product).forEach(key => {
+    formData.append(key, product[key]);
+  });
+  const response = await axios.put(`/api/products/update/${id}`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    }
+  });
+  return response.data.data;
+};
+
+export const deleteProduct = async (id) => {
+  const response = await axios.delete(`/api/products/delete/${id}`);
+  return response.data;
+};
+
+// Fetch categories, publishers, authors, and tags
+export const fetchCategories = async () => {
+  const response = await axios.get('/api/categories/get-all');
+  return response.data.data;
+};
+
+export const fetchPublishers = async () => {
+  const response = await axios.get('/api/publishers/get-all');
+  return response.data.data;
+};
+
+export const fetchAuthors = async () => {
+  const response = await axios.get('/api/authors/get-all');
+  return response.data.data;
+};
+
+export const fetchTags = async () => {
+  const response = await axios.get('/api/tags/get-all');
+  return response.data.data;
 };
