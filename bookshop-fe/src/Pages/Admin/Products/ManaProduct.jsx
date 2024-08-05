@@ -1,129 +1,114 @@
 // ManageProduct.jsx
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import { fetchAllProducts, fetchProductById, createProduct, updateProduct, deleteProduct, fetchCategories, fetchPublishers, fetchAuthors, fetchTags } from '../../../api'; // Import API functions
-import { FaEdit, FaTrash, FaPlus, FaSearch, FaCheckCircle, FaTimesCircle } from 'react-icons/fa'; // Import icons
+import { fetchAllProducts, fetchProductById, createProduct, updateProduct, deleteProduct, uploadProductImage, fetchCategories, fetchAuthors, fetchTags, fetchPublishers } from '../../../api';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './ManaProduct.css';
-// Component for managing products
+import { Link } from 'react-router-dom';
+
 const ManageProduct = () => {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [authors, setAuthors] = useState([]);
+  const [tags, setTags] = useState([]);
+  const [publishers, setPublishers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(10);
+  const [showModal, setShowModal] = useState(false);
+  const [editingProduct, setEditingProduct] = useState(null);
   const [productForm, setProductForm] = useState({
-    id: '',
     title: '',
     description: '',
     price: '',
-    publicationYear: '',
-    publisherId: '',
     salesVolume: '',
-    starRating: '',
-    image: null,
     weight: '',
+    publicationYear: '',
+    publisher: '',
     categories: [],
     authors: [],
     tags: [],
-    status: 1
+    status: 1,
+    prioity: 0,
+    image: ''
   });
-  const [categories, setCategories] = useState([]);
-  const [publishers, setPublishers] = useState([]);
-  const [authors, setAuthors] = useState([]);
-  const [tags, setTags] = useState([]);
-  const [imagePreview, setImagePreview] = useState('');
-  const [isEditing, setIsEditing] = useState(false);
-  const [showForm, setShowForm] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(10); // Number of items per page
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
-    // Fetch all products and categories
-    const fetchData = async () => {
-      try {
-        const [productsResponse, categoriesResponse, publishersResponse, authorsResponse, tagsResponse] = await Promise.all([
-          fetchAllProducts(),
-          fetchCategories(),
-          fetchPublishers(),
-          fetchAuthors(),
-          fetchTags()
-        ]);
-        setProducts(productsResponse);
-        setCategories(categoriesResponse);
-        setPublishers(publishersResponse);
-        setAuthors(authorsResponse);
-        setTags(tagsResponse);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-    fetchData();
+    loadProducts();
+    loadCategories();
+    loadAuthors();
+    loadTags();
+    loadPublishers();
   }, []);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setProductForm({ ...productForm, [name]: value });
-  };
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setProductForm({ ...productForm, image: file });
-    setImagePreview(URL.createObjectURL(file));
-  };
-
-  const handleCategoryChange = (e) => {
-    const selectedCategories = Array.from(e.target.selectedOptions, option => option.value);
-    setProductForm({ ...productForm, categories: selectedCategories });
-  };
-
-  const handleTagChange = (e) => {
-    const selectedTags = Array.from(e.target.selectedOptions, option => option.value);
-    setProductForm({ ...productForm, tags: selectedTags });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const loadProducts = async () => {
     try {
-      if (isEditing) {
-        await updateProduct(productForm.id, productForm);
-        toast.success('Cập nhật sản phẩm thành công');
-      } else {
-        await createProduct(productForm);
-        toast.success('Thêm sản phẩm thành công');
-      }
-      setShowForm(false);
-      setProductForm({
-        id: '',
-        title: '',
-        description: '',
-        price: '',
-        publicationYear: '',
-        publisherId: '',
-        salesVolume: '',
-        starRating: '',
-        image: null,
-        weight: '',
-        categories: [],
-        authors: [],
-        tags: [],
-        status: 1
-      });
-      setImagePreview('');
-      setIsEditing(false);
-      const updatedProducts = await fetchAllProducts();
-      setProducts(updatedProducts);
+      const products = await fetchAllProducts();
+      setProducts(products);
     } catch (error) {
-      toast.error('Lỗi khi lưu sản phẩm');
+      console.log(error);
+      toast.error('Không thể tải sản phẩm.');
+    }
+  };
+
+  const loadCategories = async () => {
+    try {
+      const categories = await fetchCategories();
+      setCategories(categories);
+    } catch (error) {
+      toast.error('Không thể tải thể loại.');
+    }
+  };
+
+  const loadAuthors = async () => {
+    try {
+      const authors = await fetchAuthors();
+      setAuthors(authors);
+    } catch (error) {
+      toast.error('Không thể tải tác giả.');
+    }
+  };
+
+  const loadTags = async () => {
+    try {
+      const tags = await fetchTags();
+      setTags(tags);
+    } catch (error) {
+      toast.error('Không thể tải tag.');
+    }
+  };
+
+  const loadPublishers = async () => {
+    try {
+      const publishers = await fetchPublishers();
+      setPublishers(publishers);
+    } catch (error) {
+      toast.error('Không thể tải nhà xuất bản.');
     }
   };
 
   const handleEdit = async (id) => {
     try {
-      const { data } = await fetchProductById(id);
-      setProductForm(data);
-      setImagePreview(data.image ? `http://localhost:8080${data.image}` : '');
-      setIsEditing(true);
-      setShowForm(true);
+      const product = await fetchProductById(id);
+      setEditingProduct(product);
+      setProductForm({
+        title: product.title,
+        description: product.description,
+        price: product.price,
+        salesVolume: product.salesVolume,
+        weight: product.weight,
+        publicationYear: product.publicationYear,
+        publisher: product.publisher ? product.publisher.id : '',
+        categories: product.categories.map(category => category.id),
+        authors: product.authors.map(author => author.id),
+        tags: product.tags.map(tag => tag.id),
+        status: product.status,
+      });
+      setShowModal(true);
     } catch (error) {
-      toast.error('Lỗi khi lấy thông tin sản phẩm');
+      console.log(error);
+      toast.error('Không thể tải sản phẩm.');
     }
   };
 
@@ -131,114 +116,122 @@ const ManageProduct = () => {
     if (window.confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')) {
       try {
         await deleteProduct(id);
-        toast.success('Xóa sản phẩm thành công');
-        const updatedProducts = await fetchAllProducts();
-        setProducts(updatedProducts);
+        loadProducts();
+        toast.success('Xóa sản phẩm thành công.');
       } catch (error) {
-        toast.error('Lỗi khi xóa sản phẩm');
+        toast.error('Không thể xóa sản phẩm.');
       }
     }
   };
 
-  const handleStatusChange = async (id, status) => {
+  const handleStatusChange = async (id, newStatus) => {
     try {
-      await updateProduct(id, { ...productForm, status });
-      toast.success('Cập nhật trạng thái sản phẩm thành công');
-      const updatedProducts = await fetchAllProducts();
-      setProducts(updatedProducts);
+      const product = await fetchProductById(id);
+      product.status = newStatus;
+      await updateProduct(id, product);
+      loadProducts();
+      toast.success('Cập nhật trạng thái sản phẩm thành công.');
     } catch (error) {
-      toast.error('Lỗi khi cập nhật trạng thái sản phẩm');
+      toast.error('Không thể cập nhật trạng thái sản phẩm.');
     }
   };
 
-  const handleSearch = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const response = await axios.get(`/api/products/search?query=${searchTerm}`);
-      setProducts(response.data.data);
+      const productData = {
+        ...productForm,
+        publisher: productForm.publisher ? { id: productForm.publisher } : null,
+        categories: productForm.categories.map(id => ({ id })),
+        authors: productForm.authors.map(id => ({ id })),
+        tags: productForm.tags.map(id => ({ id })),
+      };
+      
+      if (editingProduct) {
+        await updateProduct(editingProduct.id, productData);
+        if (selectedImage) {
+          await uploadProductImage(editingProduct.id, selectedImage);
+        }
+        toast.success('Cập nhật sản phẩm thành công.');
+      } else {
+        const newProduct = await createProduct(productData);
+        if (selectedImage) {
+          await uploadProductImage(newProduct.id, selectedImage);
+        }
+        toast.success('Tạo sản phẩm thành công.');
+      }
+      setShowModal(false);
+      loadProducts();
     } catch (error) {
-      toast.error('Lỗi khi tìm kiếm sản phẩm');
+      toast.error('Không thể lưu sản phẩm.');
     }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setProductForm(prevForm => ({
+      ...prevForm,
+      [name]: value,
+    }));
+  };
+
+  const handleSelectChange = (e) => {
+    const { name, value, options } = e.target;
+
+    if (name === 'categories' || name === 'authors' || name === 'tags') {
+      const values = Array.from(options)
+        .filter(option => option.selected)
+        .map(option => option.value);
+      setProductForm(prevForm => ({
+        ...prevForm,
+        [name]: values,
+      }));
+    } else if (name === 'publisher') {
+      setProductForm(prevForm => ({
+        ...prevForm,
+        [name]: value,
+      }));
+    }
+  };
+
+  const handleImageChange = (e) => {
+    setSelectedImage(e.target.files[0]);
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
   };
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  // Pagination
-  const indexOfLastProduct = currentPage * itemsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
-  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
-  const totalPages = Math.ceil(products.length / itemsPerPage);
+  const filteredProducts = products.filter(product => product.title.toLowerCase().includes(searchTerm.toLowerCase()));
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
   return (
-    <div>
+    <div className="manage-product">
+      <h1>Quản lý sản phẩm</h1>
       <div className="search-bar">
         <input
           type="text"
           placeholder="Tìm kiếm sản phẩm..."
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={handleSearchChange}
         />
-        <button onClick={handleSearch} className="btn btn-search"><FaSearch /></button>
-        <button onClick={() => setShowForm(true)} className="btn btn-add"><FaPlus /> Thêm sản phẩm</button>
       </div>
-      {showForm && (
-        <div className="form-container">
-          <h3>{isEditing ? 'Chỉnh sửa sản phẩm' : 'Thêm sản phẩm'}</h3>
-          <form onSubmit={handleSubmit}>
-            <label>Tiêu đề</label>
-            <input type="text" name="title" value={productForm.title} onChange={handleChange} required />
-            <label>Mô tả</label>
-            <textarea name="description" value={productForm.description} onChange={handleChange} required />
-            <label>Giá</label>
-            <input type="number" name="price" value={productForm.price} onChange={handleChange} required />
-            <label>Năm xuất bản</label>
-            <input type="number" name="publicationYear" value={productForm.publicationYear} onChange={handleChange} required />
-            <label>Nhà xuất bản</label>
-            <select name="publisherId" value={productForm.publisherId} onChange={handleChange} required>
-              {publishers.map(publisher => (
-                <option key={publisher.id} value={publisher.id}>{publisher.name}</option>
-              ))}
-            </select>
-            <label>Khối lượng</label>
-            <input type="number" name="weight" value={productForm.weight} onChange={handleChange} />
-            <label>Danh mục</label>
-            <select multiple name="categories" onChange={handleCategoryChange} value={productForm.categories}>
-              {categories.map(category => (
-                <option key={category.id} value={category.id}>{category.name}</option>
-              ))}
-            </select>
-            <label>Tags</label>
-            <select multiple name="tags" onChange={handleTagChange} value={productForm.tags}>
-              {tags.map(tag => (
-                <option key={tag.id} value={tag.id}>{tag.name}</option>
-              ))}
-            </select>
-            <label>Tác giả</label>
-            <select multiple name="authors" value={productForm.authors} onChange={(e) => {
-              const selectedAuthors = Array.from(e.target.selectedOptions, option => option.value);
-              setProductForm({ ...productForm, authors: selectedAuthors });
-            }}>
-              {authors.map(author => (
-                <option key={author.id} value={author.id}>{author.name}</option>
-              ))}
-            </select>
-            <label>Hình ảnh</label>
-            <input type="file" accept="image/*" onChange={handleFileChange} />
-            {imagePreview && <img src={imagePreview} alt="Preview" className="image-preview" />}
-            {imagePreview && <img src={imagePreview} alt="Preview" className="image-preview" />}
-            <button type="submit" className="btn btn-save">Lưu</button>
-            <button type="button" onClick={() => setShowForm(false)} className="btn btn-cancel">Hủy</button>
-          </form>
-        </div>
-      )}
+      <button onClick={() => setShowModal(true)} className="btn btn-add">
+        <i className="fas fa-plus"></i> Thêm sản phẩm
+      </button>
       <table className="product-table">
         <thead>
           <tr>
             <th>ID</th>
             <th>Hình ảnh</th>
             <th>Tiêu đề</th>
-            {/* <th>Trạng thái</th> */}
+            <th>Trạng thái</th>
             <th>Hành động</th>
           </tr>
         </thead>
@@ -246,32 +239,160 @@ const ManageProduct = () => {
           {currentProducts.map(product => (
             <tr key={product.id}>
               <td>{product.id}</td>
-              {/* <td><img src={`http://localhost:8080${product.image}`} alt={product.title} style={{ maxWidth: '100px' }} /></td> */}
-              <td><img src={product.image} alt={product.title} style={{ maxWidth: '100px' }} /></td>
+              {/* <td><img src={product.image} alt={product.title} className="image-preview" /></td> */}
+               <td> <Link to={`/product/${product.id}`} ><img src={product.image} alt={product.title} className="image-preview" /> </Link></td>
               <td>{product.title}</td>
-              {/* <td>{product.status === 1 ? 'Kích hoạt' : 'Vô hiệu hóa'}</td> */}
+              <td>{product.status === 1 ? 'Đang bán' : 'Không còn bán'}</td>
               <td>
-                <button onClick={() => handleEdit(product.id)} className="btn btn-edit"><FaEdit /> Sửa</button>
-                <button onClick={() => handleDelete(product.id)} className="btn btn-delete"><FaTrash /> Xóa</button>
-                {/* <button onClick={() => handleStatusChange(product.id, product.status === 1 ? 0 : 1)} className="btn btn-status">
-                  {product.status === 1 ? <FaTimesCircle /> : <FaCheckCircle />} {product.status === 1 ? 'Vô hiệu hóa' : 'Kích hoạt'}
-                </button> */}
+                <button onClick={() => handleEdit(product.id)} className="btn btn-edit">
+                  <i className="fas fa-edit"></i> Sửa
+                </button>
+                <button onClick={() => handleDelete(product.id)} className="btn btn-delete">
+                  <i className="fas fa-trash-alt"></i> Xóa
+                </button>
+                <button onClick={() => handleStatusChange(product.id, product.status === 1 ? 0 : 1)} className="btn btn-status">
+                  {product.status === 1 ? 'Ngừng bán' : 'Bán lại'}
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
       <div className="pagination">
-        {Array.from({ length: totalPages }, (_, index) => (
+        {Array.from({ length: Math.ceil(filteredProducts.length / productsPerPage) }, (_, index) => (
           <button
             key={index + 1}
             onClick={() => handlePageChange(index + 1)}
-            className={`page-btn ${currentPage === index + 1 ? 'active' : ''}`}
+            className={currentPage === index + 1 ? 'active' : ''}
           >
             {index + 1}
           </button>
         ))}
       </div>
+      {showModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>{editingProduct ? 'Sửa sản phẩm' : 'Thêm sản phẩm'}</h2>
+            <form onSubmit={handleSubmit}>
+              <label>Tiêu đề</label>
+              <input
+                type="text"
+                name="title"
+                value={productForm.title}
+                onChange={handleInputChange}
+                required
+              />
+              <label>Mô tả</label>
+              <textarea
+                name="description"
+                value={productForm.description}
+                onChange={handleInputChange}
+                required
+              ></textarea>
+              <label>Giá</label>
+              <input
+                type="number"
+                name="price"
+                value={productForm.price}
+                onChange={handleInputChange}
+                required
+              />
+              <label>Khối lượng</label>
+              <input
+                type="number"
+                name="weight"
+                value={productForm.weight}
+                onChange={handleInputChange}
+              />
+              <label>Số lượng tồn</label>
+              <input
+                type="number"
+                name="salesVolume"
+                value={productForm.salesVolume}
+                onChange={handleInputChange}
+              />
+     
+              <label>Năm xuất bản</label>
+              <input
+                type="number"
+                name="publicationYear"
+                value={productForm.publicationYear}
+                onChange={handleInputChange}
+                required
+              />
+              <label>Nhà xuất bản</label>
+              <select
+                name="publisher"
+                value={productForm.publisher || ''}
+                onChange={handleSelectChange}
+                required
+              >
+                <option value="">Chọn nhà xuất bản</option>
+                {publishers.map(publisher => (
+                  <option key={publisher.id} value={publisher.id}>
+                    {publisher.name}
+                  </option>
+                ))}
+              </select>
+              <label>Thể loại</label>
+              <select
+                name="categories"
+                value={productForm.categories}
+                onChange={handleSelectChange}
+                multiple
+                required
+              >
+                {categories.map(category => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
+              <label>Tác giả</label>
+              <select
+                name="authors"
+                value={productForm.authors}
+                onChange={handleSelectChange}
+                multiple
+                required
+              >
+                {authors.map(author => (
+                  <option key={author.id} value={author.id}>
+                    {author.name}
+                  </option>
+                ))}
+              </select>
+              <label>Tag</label>
+              <select
+                name="tags"
+                value={productForm.tags}
+                onChange={handleSelectChange}
+                multiple
+                required
+              >
+                {tags.map(tag => (
+                  <option key={tag.id} value={tag.id}>
+                    {tag.name}
+                  </option>
+                ))}
+              </select>
+              <label>Hình ảnh</label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+              />
+              <button type="submit" className="btn btn-submit">
+                {editingProduct ? 'Cập nhật' : 'Tạo mới'}
+              </button>
+              <button type="button" onClick={() => setShowModal(false)} className="btn btn-cancel">
+                Hủy
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+      <ToastContainer />
     </div>
   );
 };

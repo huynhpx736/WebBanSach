@@ -31,52 +31,6 @@ export const login = async (username, password) => {
   }
 };
 
-// Product APIs
-export const fetchNewestProducts = async () => {
-  try {
-    const response = await axios.get('/api/products/newest');
-    return response.data.data;
-  } catch (error) {
-    throw new Error('Failed to fetch new books.');
-  }
-};
-
-export const fetchAllProducts = async () => {
-  try {
-    const response = await axios.get('/api/products/get-all');
-    return response.data.data;
-  } catch (error) {
-    throw new Error('Failed to fetch books.');
-  }
-};
-
-// export const fetchAllCategories = async () => {
-//   try {
-//     const response = await axios.get('/api/categories/get-all');
-//     return response.data.data;
-//   } catch (error) {
-//     throw new Error('Failed to fetch categories.');
-//   }
-// };
-
-export const fetchProductsByCategory = async (categoryId) => {
-  try {
-    const response = await axios.get(`/api/products/category/${categoryId}`);
-    return response.data.data;
-  } catch (error) {
-    throw new Error('Failed to fetch products by category.');
-  }
-};
-
-export const fetchProductById = async (productId) => {
-  try {
-    const response = await axios.get(`/api/products/${productId}`);
-    return response.data.data;
-  } catch (error) {
-    throw new Error('Failed to fetch product by ID.');
-  }
-};
-
 // User APIs
 export const fetchAllUsers = async () => {
   try {
@@ -638,54 +592,87 @@ export const deleteProductTag = async (id) => {
 
 
 
+// Product APIs
 
-
-
-
-// api.js
-
-// ... Other imports
 
 // Product APIs
-// export const fetchAllProducts = async () => {
-//   const response = await axios.get('/api/products/get-all');
-//   return response.data.data;
+export const fetchNewestProducts = async () => {
+  try {
+    const response = await axios.get('/api/products/newest');
+    return response.data.data;
+  } catch (error) {
+    throw new Error('Failed to fetch new books.');
+  }
+};
+
+export const fetchAllProducts = async () => {
+  try {
+    const response = await axios.get('/api/products/get-all');
+    return response.data.data;
+  } catch (error) {
+    throw new Error('Failed to fetch books.');
+  }
+};
+
+// export const fetchAllCategories = async () => {
+//   try {
+//     const response = await axios.get('/api/categories/get-all');
+//     return response.data.data;
+//   } catch (error) {
+//     throw new Error('Failed to fetch categories.');
+//   }
 // };
 
-// export const fetchProductById = async (id) => {
-//   const response = await axios.get(`/api/products/${id}`);
-//   return response.data;
-// };
+export const fetchProductsByCategory = async (categoryId) => {
+  try {
+    const response = await axios.get(`/api/products/category/${categoryId}`);
+    return response.data.data;
+  } catch (error) {
+    throw new Error('Failed to fetch products by category.');
+  }
+};
 
-export const createProduct = async (product) => {
-  const formData = new FormData();
-  Object.keys(product).forEach(key => {
-    formData.append(key, product[key]);
-  });
-  const response = await axios.post('/api/products/create', formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    }
-  });
-  return response.data.data;
+export const fetchProductById = async (productId) => {
+  try {
+    const response = await axios.get(`/api/products/${productId}`);
+    return response.data.data;
+  } catch (error) {
+    throw new Error('Failed to fetch product by ID.');
+  }
+};
+
+export const createProduct = async (formData) => {
+  try {
+    const response = await axios.post('/api/products/create', formData);
+    return response.data.data;
+  } catch (error) {
+    throw new Error('Failed to create product.');
+  }
 };
 
 export const updateProduct = async (id, product) => {
-  const formData = new FormData();
-  Object.keys(product).forEach(key => {
-    formData.append(key, product[key]);
-  });
-  const response = await axios.put(`/api/products/update/${id}`, formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    }
-  });
-  return response.data.data;
+  try {
+    const response = await axios.put(`/api/products/update/${id}`, product);
+    return response.data.data;
+  } catch (error) {
+    throw new Error('Failed to update product.');
+  }
 };
 
 export const deleteProduct = async (id) => {
   const response = await axios.delete(`/api/products/delete/${id}`);
   return response.data;
+};
+
+
+export const uploadProductImage = (productId, file) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  return axios.post(`api/products/update-image/${productId}`, formData, {
+      headers: {
+          'Content-Type': 'multipart/form-data'
+      }
+  });
 };
 
 // Fetch categories, publishers, authors, and tags

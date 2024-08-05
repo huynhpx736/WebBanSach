@@ -56,7 +56,7 @@ const Login = () => {
               required
             />
           </div>
-          <button type="submit">Đăng nhập</button>
+          <button className ="auth-button" type="submit">Đăng nhập</button>
         </form>
         {/* <div > */}
           <a className ="auth-link" href="/register">Chưa có tài khoản? Đăng kí</a>

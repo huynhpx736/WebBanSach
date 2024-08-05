@@ -183,7 +183,7 @@ const Register = () => {
               pattern="[0-9]*"
             />
           </div>
-          <button type="submit">Đăng kí</button>
+          <button className='auth-button' type="submit">Đăng kí</button>
         </form>
         {/* <div className="auth-link"> */}
           <a className="auth-link"  href="/login">Đã có tài khoản? Đăng nhập</a>

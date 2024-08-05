@@ -1,83 +1,4 @@
-/* .wrapper{
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url('/public/images/cover-auth.jpg');
 
-}
-.auth-container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #a09a9a;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .auth-header {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .auth-header h2 {
-    font-size: 24px;
-    color: #333;
-  }
-  
-  .auth-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .auth-form label {
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #0a0000;
-    font-family: monospace;
-  }
-  
-  .auth-form input {
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    margin-left: 10px;
-  }
-  
-  .auth-form button {
-    padding: 10px;
-    background-color: #d9534f;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .auth-form button:hover {
-    background-color: #025aa5;
-  }
-  
-  .auth-message {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 14px;
-    color: #d9534f;
-  }
-  
-  .line-input{
-    display: flex;
-    justify-content: left;
-
-
-  } */
-
-/* Reset some default browser styles */
 * {
   margin: 0;
   padding: 0;
@@ -155,7 +76,7 @@ body {
   outline: none;
 }
 
-button[type="submit"] {
+.auth-button[type="submit"] {
   background: #ff2900;
   color: #fff;
   padding: 10px;
@@ -166,7 +87,7 @@ button[type="submit"] {
   transition: background-color 0.3s ease;
 }
 
-button[type="submit"]:hover {
+.auth-button[type="submit"]:hover {
   background: #b3007d;
 }
 
