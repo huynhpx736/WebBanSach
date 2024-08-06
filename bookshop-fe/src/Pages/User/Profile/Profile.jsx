@@ -181,7 +181,7 @@ const Profile = () => {
         setFullname(userData.fullname);
         setEmail(userData.email);
         setPhone(userData.phone);
-        setOldPassword(userData.password);
+        // setOldPassword(userData.password);
       } catch (error) {
         console.error('Failed to fetch user data:', error);
       }
@@ -316,6 +316,13 @@ const Profile = () => {
                 value={oldPassword}
                 onChange={(e) => setOldPassword(e.target.value)}
               />
+
+
+              {/* <input
+                type="password"
+                value={oldPassword}
+                onChange={(e) => setOldPassword(e.target.value)}
+              /> */}
             </div>
             <div className="profile-field">
               <label>Mật khẩu mới:</label>

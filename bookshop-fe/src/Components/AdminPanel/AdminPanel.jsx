@@ -2,8 +2,15 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FaTachometerAlt, FaClipboardList, FaBox, FaTags, FaUserEdit, FaBuilding, FaTag, FaSignOutAlt, FaUsers, FaChevronDown, FaShoppingCart, FaShippingFast, FaCheckCircle, FaBan } from 'react-icons/fa';
 import './AdminPanel.css';
-
+import { useContext } from 'react';
+import AuthContext from '../../Pages/Auth/AuthContext';
 const AdminPanel = () => {
+  const { isLoggedIn, logout } = useContext(AuthContext);
+  const handleLogout = () => {
+    logout();
+    window.location.href = '/';
+
+  };
   const [showProductSubmenu, setShowProductSubmenu] = useState(false);
   const [showOrderSubmenu, setShowOrderSubmenu] = useState(false);
 
@@ -48,7 +55,12 @@ const AdminPanel = () => {
           )}
         </li>
         <li><NavLink to="/admin/customers"><FaUsers className="icon" />Quản lý khách hàng</NavLink></li>
-        <li><NavLink to="/logout"><FaSignOutAlt className="icon" />Đăng xuất</NavLink></li>
+         {/* <li><NavLink to="/logout"><FaSignOutAlt className="icon" />Đăng xuất</NavLink></li> */}
+         
+        <li className='li-logout' onClick={handleLogout}><FaSignOutAlt className="icon" />&ensp;Đăng xuất</li>
+       
+
+
       </ul>
     </div>
   );

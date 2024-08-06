@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons-svg": "^4.4.2",
+    "@ckeditor/ckeditor5-build-classic": "^42.0.2",
+    "@ckeditor/ckeditor5-react": "^8.0.0",
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
     "@fortawesome/fontawesome-free": "^6.6.0",

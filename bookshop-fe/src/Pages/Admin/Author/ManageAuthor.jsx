@@ -79,17 +79,17 @@ const ManageAuthor = () => {
         style={{ marginBottom: 16, width: '300px' }}
       />
       <Button type="primary" icon={<PlusOutlined />} onClick={() => showModal()}>
-        Add Author
+        Thêm
       </Button>
       <Table
         dataSource={filteredAuthors}
         rowKey="id"
         style={{ marginTop: 16 }}
       >
-        <Table.Column title="Name" dataIndex="name" key="name" />
-        <Table.Column title="Biography" dataIndex="biography" key="biography" />
+        <Table.Column title="Tên" dataIndex="name" key="name" />
+        <Table.Column title="Tiểu sử" dataIndex="biography" key="biography" />
         <Table.Column
-          title="Actions"
+          title="Hành động"
           key="actions"
           render={(text, record) => (
             <span>
@@ -111,7 +111,7 @@ const ManageAuthor = () => {
         />
       </Table>
       <Modal
-        title={currentAuthor ? "Edit Author" : "Add Author"}
+        title={currentAuthor ? "Sửa" : "Thêm mới"}
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={() => setIsModalVisible(false)}
@@ -120,15 +120,15 @@ const ManageAuthor = () => {
         <Form form={form} layout="vertical">
           <Form.Item
             name="name"
-            label="Name"
-            rules={[{ required: true, message: 'Please input author name!' }]}
+            label="Tên"
+            rules={[{ required: true, message: 'Vui lòng nhập tên tác giả!' }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
             name="biography"
-            label="Biography"
-            rules={[{ required: true, message: 'Please input author biography!' }]}
+            label="Tiểu sử"
+            rules={[{ required: true, message: 'Vui lòng nhập tiểu sử!' }]}
           >
             <Input.TextArea rows={6} />
           </Form.Item>

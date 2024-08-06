@@ -112,6 +112,7 @@ import React, { useState, useEffect } from 'react';
 import CartItem from '../../../Components/CartItem/CartItem';
 import Footer from '../../../Components/Footer/Footer';
 import Header from '../../../Components/Header/Header';
+// import {emptyCartImg} from  ;
 import { fetchCartItems, updateCartItemQuantity, removeProductFromCart } from '../../../api'; // Import API functions
 import './Cart.css';
 
@@ -161,7 +162,11 @@ const Cart = () => {
       }
     }
   };
+  const handleCheckout = async () => {
+    //tới link tạo đơn hàng là /createOrder
+    window.location.href = '/createOrder';
 
+  }
   const handleRemove = async (id) => {
     if (!window.confirm('Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?')) {
       return;
@@ -181,11 +186,18 @@ const Cart = () => {
     <div>
       <Header />
       <div className="cart">
-        <h2>Giỏ hàng</h2>
+       
         {cartItems.length === 0 ? (
-          <p>Trống.</p>
+       
+          <div className="empty-cart">
+            <img src="/empty-cart.png" alt="Empty cart" />
+            <p>Giỏ hàng trống</p>
+          </div>
+
         ) : (
+          
           <div>
+          <h2>Giỏ hàng</h2>
             <div className="cart-header">
               <span>Sản phẩm</span>
               <span>Đơn giá</span>
@@ -209,7 +221,7 @@ const Cart = () => {
               {/* <h3>Tổng: {totalPrice} đ</h3>
                */}
               <h3>Tổng: {formatPrice.format(totalPrice)}</h3>
-              <button className="checkout-button">Tạo đơn hàng</button>
+              <button className="checkout-button" onClick={handleCheckout}>Tạo đơn hàng</button>
             </div>
           </div>
         )}

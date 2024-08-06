@@ -28,7 +28,7 @@ const Header = () => {
             <li><Link to="/about">About</Link></li>
           </ul>
         </nav>
-        <div className="search-bar">
+        <div className="search-bar-header">
           <input type="text" placeholder="Search for books..." />
           <button className="search-btn">
             <i className="fas fa-search"></i>

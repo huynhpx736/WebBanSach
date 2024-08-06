@@ -106,14 +106,17 @@ export const addProductToCart = async (userId, productId, quantity) => {
   }
 };
 
-export const placeOrder = async (userId, receiverPhone, receiverAddress, receiverName) => {
+export const placeOrder = async (userId, receiverPhone, receiverAddress, receiverName, shippingFee, discount, total) => {
   try {
-    const response = await axios.post('/api/orderdetails/place-order', null, {
+    const response = await axios.post('/api/orders/place-order', null, {
       params: {
         userId,
         receiverPhone,
         receiverAddress,
-        receiverName
+        receiverName,
+        shippingFee,
+        discount,
+        total
       }
     });
     return response.data;

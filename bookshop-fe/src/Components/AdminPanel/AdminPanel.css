@@ -4,6 +4,7 @@
   border-right: 1px solid #333;
   padding: 20px;
   font-family: Arial, sans-serif;
+  min-height: 1300px;
 }
 
 .pannel-admin h2 {
@@ -34,19 +35,27 @@
   transition: background-color 0.3s, color 0.3s;
   cursor: pointer;
 }
-
+.pannel-admin .li-logout{
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: 18px;
+  color: #bbb;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+  cursor: pointer;
+}
 .pannel-admin ul li a .icon,
 .pannel-admin .submenu-toggle .icon {
   margin-right: 10px;
   font-size: 20px;
 }
-
 .pannel-admin ul li a:hover,
 .pannel-admin .submenu-toggle:hover {
   background-color: #333;
   color: #fff;
 }
-
 .pannel-admin ul li a.active,
 .pannel-admin .submenu-toggle.active {
   background-color: #333;
@@ -83,3 +92,4 @@
 .submenu-toggle {
   justify-content: space-between;
 }
+

@@ -21,7 +21,7 @@ const Login = () => {
       // localStorage.setUser(response.data.data);
       localStorage.setItem('user', JSON.stringify(response.data));
       if (response.data.role === 2) {
-        navigate('/admin');
+        navigate('/admin/dashboard');
       } else {
         navigate('/');
       }
@@ -32,6 +32,7 @@ const Login = () => {
   };
 
   return (
+    <div className = "auth">
     <div className='wrapper'>
       <div className="auth-container">
         <div className="auth-header">
@@ -64,6 +65,7 @@ const Login = () => {
         {message && <p className="auth-message">{message}</p>}
 
       </div>
+    </div>
     </div>
   );
 };

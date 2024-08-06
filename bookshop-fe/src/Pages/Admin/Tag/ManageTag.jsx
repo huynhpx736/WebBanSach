@@ -125,7 +125,7 @@ const ManageTag = () => {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="Tag Modal"
-        className="modal"
+        className="modal-category"
         overlayClassName="overlay"
       >
         <h2>{modalMode === 'create' ? 'Thêm tag Mới' : 'Sửa tag'}</h2>

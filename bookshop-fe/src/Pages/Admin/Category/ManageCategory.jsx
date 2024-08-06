@@ -129,7 +129,7 @@ const ManageCategory = () => {
         isOpen={isModalOpen}
         onRequestClose={() => setIsModalOpen(false)}
         contentLabel="Category Modal"
-        className="modal"
+        className="modal-category"
         overlayClassName="overlay"
       >
         <h2>{isEditing ? 'Sửa thể loại' : 'Thêm thể loại'}</h2>

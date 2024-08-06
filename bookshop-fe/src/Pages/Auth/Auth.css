@@ -1,14 +1,14 @@
 
-* {
-  margin: 0;
-  padding: 0;
+.auth * {
+  margin: 2px;
+  padding: 1px;
   box-sizing: border-box;
   font-family: Arial, sans-serif;
 }
 
-body {
+/* body {
   background: #f4f4f9;
-}
+} */
 
 .wrapper {
   display: flex;

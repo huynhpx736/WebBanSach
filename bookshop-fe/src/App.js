@@ -91,6 +91,7 @@ import Order from './Pages/User/Order/Order';
 import ManagePublisher from './Pages/Admin/Publisher/ManagePublisher';
 import ManageAuthor from './Pages/Admin/Author/ManageAuthor';
 import ManageTag from './Pages/Admin/Tag/ManageTag';
+import CreateOrder from './Pages/User/CreateOrder/CreateOrder';
 
 
 const App = () => {
@@ -107,7 +108,8 @@ const App = () => {
       <Route path='/profile' element ={<Profile/>} />
       <Route path='/cart' element ={<Cart />} />
       <Route path='/orders' element={<Order />} />
-      
+      {/* <Route path='/orderDetail/:id' element={<Order />} /> */}
+      <Route path='createOrder' element={<CreateOrder />} />
       <Route path="/category/:categoryId" element={<CategoryPage/>} />
 
       

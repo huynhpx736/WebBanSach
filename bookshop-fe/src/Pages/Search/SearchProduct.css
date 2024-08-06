@@ -20,7 +20,7 @@
     flex-direction: column;
   }
   
-  .form-group {
+  .form-group-booleanSearch {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 20px;
@@ -29,19 +29,19 @@
     padding-bottom: 10px;
   }
   
-  .form-group:last-child {
+  .form-group-booleanSearch:last-child {
     border-bottom: none;
   }
   
-  .form-group label {
+  .form-group-booleanSearch label {
     flex: 1 0 180px;
     font-weight: bold;
     color: #555;
     margin-right: 10px;
   }
   
-  .form-group input[type="text"],
-  .form-group input[type="number"] {
+  .form-group-booleanSearch input[type="text"],
+  .form-group-booleanSearch input[type="number"] {
     flex: 2 0 160px;
     padding: 10px;
     margin-right: 10px;
@@ -50,11 +50,11 @@
     font-size: 16px;
   }
   
-  .form-group input[type="number"] {
+  .form-group-booleanSearch input[type="number"] {
     max-width: 80px;
   }
   
-  .form-group .priority-label {
+  .form-group-booleanSearch .priority-label {
     margin-left: 5px;
     font-size: 14px;
     color: #666;
@@ -131,14 +131,14 @@
 }
 
 /* Form chọn tiêu chí */
-form {
+.search-container form {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* Form-group để căn chỉnh theo cột */
-.form-group {
+/* form-group-booleanSearch để căn chỉnh theo cột */
+.form-group-booleanSearch {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
@@ -146,7 +146,7 @@ form {
 }
 
 /* Ô nhập liệu cùng hàng với độ ưu tiên */
-.form-group div {
+.form-group-booleanSearch div {
   /* display: flex; */
   align-items: center;
   gap: 10px;
@@ -154,7 +154,7 @@ form {
   white-space: nowrap;
 }
 
-input[type="text"],
+.search-container input[type="text"],
 input[type="number"] {
   padding: 10px;
   border: 1px solid #ddd;
@@ -165,13 +165,13 @@ input[type="number"] {
 }
 
 /* Nhãn tiêu chí và độ ưu tiên */
-label {
+.search-container label {
   font-size: 1.1rem;
   color: #ac0e0e;
 }
 
 /* Nút OK */
-button[type="submit"] {
+.search-container [type="submit"] {
   background-color: #4CAF50;
   color: white;
   border: none;
@@ -246,7 +246,7 @@ button[type="submit"]:disabled {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .form-group {
+  .form-group-booleanSearch {
     flex-direction: column;
   }
 

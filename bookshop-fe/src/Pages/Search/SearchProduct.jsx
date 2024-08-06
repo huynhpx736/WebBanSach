@@ -111,7 +111,7 @@ const Search = () => {
         {/* Phần form tìm kiếm */}
         {showSearchForm && (
           <form id="searchForm" onSubmit={handleSearch}>
-            <div className="form-group">
+            <div className="form-group-booleanSearch">
               {selectedCriteria.includes('title') && (
                 <div className="criteria-line">
                   <label htmlFor="title">Tên sách:&emsp;&emsp;&emsp;</label>

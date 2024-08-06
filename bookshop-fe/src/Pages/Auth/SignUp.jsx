@@ -113,6 +113,7 @@ const Register = () => {
   };
 
   return (
+    <div className = "auth">
     <div className='wrapper'>
       <div className="auth-container">
         <div className="auth-header">
@@ -190,6 +191,7 @@ const Register = () => {
         {/* </div> */}
         {message && <p className="auth-message">{message}</p>}
       </div>
+    </div>
     </div>
   );
 };
