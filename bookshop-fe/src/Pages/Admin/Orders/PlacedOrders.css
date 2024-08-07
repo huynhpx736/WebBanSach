@@ -1,0 +1,67 @@
+.placed-orders {
+    padding: 20px;
+  }
+  
+  .placed-orders h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .orders-table th, .orders-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  .orders-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  
+  .orders-table td {
+    background-color: #fff;
+  }
+  
+  .orders-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .action-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .action-button svg {
+    margin-right: 5px;
+  }
+  
+  .cancel-button {
+    background-color: #f44336;
+  }
+  
+  .action-button:hover, .cancel-button:hover {
+    opacity: 0.9;
+  }
+  
+  .no-orders {
+    text-align: center;
+    color: #777;
+    margin-top: 20px;
+    font-size: 18px;
+  }
+  

@@ -438,17 +438,41 @@ const ProductDetail = () => {
                   ))}
                 </div>
               </div>
+              {/* //nếu product.status = 1 thì hiển thị nút thêm vào giỏ hàng và số lượng còn không thì hiển thị sản phẩm không còn bán */}
+              {product.status === 1 ? (
+                <>
+                  <div className="quantity-input">
+                    <label htmlFor="quantity">Số lượng:</label>
+                    <input
+                       type="number"
+                  id="quantity"
+                  min="1"
+                  max={product.salesVolume}
+                  value={quantity}
+                  onChange={(e) => {
+                    if (e.target.value < 1) {
+                      setQuantity(1);
+                    } else if (e.target.value > product.salesVolume) {
+                      setQuantity(product.salesVolume);
+                    } else {
+                      setQuantity(Number(e.target.value));
+                    }
+                  }}     
+                />
+              </div>
 
-              <div className="quantity-input">
+              <button className="add-to-cart" onClick={handleAddToCart}>
+                Thêm vào giỏ hàng
+              </button>
+                </>
+              ) : (
+                <p className='stop-sale'>Sản phẩm hiện không còn bán</p>
+              )}
+
+
+              {/* <div className="quantity-input">
                 <label htmlFor="quantity">Số lượng:</label>
                 <input
-                  // type="number"
-                  // id="quantity"
-                  // min="1" max={product.salesVolume}
-                  
-                  // value={quantity}
-                  // onChange={(e) => setQuantity(Number(e.target.value))}
-                                    //khong cho nhap so < 1 va > so luong con lai
                   type="number"
                   id="quantity"
                   min="1"
@@ -470,7 +494,7 @@ const ProductDetail = () => {
 
               <button className="add-to-cart" onClick={handleAddToCart}>
                 Thêm vào giỏ hàng
-              </button>
+              </button> */}
 
               <div className="comments">
                 <h3>Bình luận</h3>

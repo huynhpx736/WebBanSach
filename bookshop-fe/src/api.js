@@ -134,6 +134,17 @@ export const fetchCartItems = async (userId) => {
   }
 };
 
+
+export const getOrderItemsByOrderId = async (orderId) => {
+  try {
+    const response = await axios.get(`/api/orderdetails/order/${orderId}`);
+    return response.data.data;
+  } catch (error) {
+    throw new Error('Failed to fetch order items by order ID.');
+  }
+};
+
+
 export const updateCartItemQuantity = async (orderDetailId, newQuantity) => {
   try {
     const response = await axios.put(`/api/orderdetails/update-quantity`, null, {
@@ -187,6 +198,18 @@ export const cancelOrder = async (orderId, status) => {
     throw new Error('Failed to cancel order.');
   }
 };
+//hàm get all order by status
+export const getOrderByStatus = async (status) => {
+  try {
+    const response = await axios.get(`/api/orders/get-all-by-status`, {
+      params: { status }
+    });
+    return response.data.data;
+  } catch (error) {
+    console.error('Failed to fetch orders by status:', error);
+    throw new Error('Failed to fetch orders by status.');
+  }
+}
 
 export const getOrderByUserAndStatus = async (userId, status) => {
   try {

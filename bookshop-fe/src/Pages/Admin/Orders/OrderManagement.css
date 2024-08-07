@@ -1,0 +1,75 @@
+.orders-page {
+    padding: 20px;
+  }
+  
+  .orders-page h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .orders-table th, .orders-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  .orders-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  
+  .orders-table td {
+    background-color: #fff;
+  }
+  
+  .orders-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .no-orders {
+    text-align: center;
+    color: #777;
+    margin-top: 20px;
+    font-size: 18px;
+  }
+  
+  .action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .action-buttons button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .action-buttons button:hover {
+    opacity: 0.8;
+  }
+  
+  .button-processing {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .button-cancel {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  
+  .button-completed {
+    background-color: #28a745;
+    color: #fff;
+  }
+  

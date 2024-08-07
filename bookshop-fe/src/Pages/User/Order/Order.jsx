@@ -195,7 +195,7 @@ const Order = () => {
     };
 
     fetchOrders('PLACED', setPlacedOrders);
-    fetchOrders('CANCEL', setCancelledOrders);
+    fetchOrders('CANCELLED', setCancelledOrders);
     fetchOrders('SHIPPING', setShippingOrders);
     fetchOrders('COMPLETED', setCompletedOrders);
   }, [userId]);
@@ -206,11 +206,20 @@ const Order = () => {
     }
 
     return orders.map((order) => (
+      //div chứa link tới chi tiết đơn hàng
       <div key={order.id} className="order-item">
-        <p><strong>Mã đơn hàng:</strong> {order.id}</p>
-        <p><strong>Ngày đặt hàng:</strong> {new Date(order.orderDate).toLocaleDateString()}</p>
-        <p><strong>Tổng tiền:</strong> {formatter.format(order.total)}</p>
+        <a href={`/orderDetail/${order.id}`}>
+          <p><strong>Mã đơn hàng:</strong> {order.id}</p>
+          <p><strong>Ngày đặt hàng:</strong> {new Date(order.orderDate).toLocaleDateString()}</p>
+          <p><strong>Tổng tiền:</strong> {formatter.format(order.total)}</p>
+        </a>
       </div>
+      // <div key={order.id} className="order-item">
+
+      //   <p><strong>Mã đơn hàng:</strong> {order.id}</p>
+      //   <p><strong>Ngày đặt hàng:</strong> {new Date(order.orderDate).toLocaleDateString()}</p>
+      //   <p><strong>Tổng tiền:</strong> {formatter.format(order.total)}</p>
+      // </div>
     ));
   };
 
@@ -225,6 +234,10 @@ const Order = () => {
         <div className="order-section">
           <h2 onClick={() => toggleSection('PLACED')}>Đơn hàng đã đặt</h2>
           {activeSection === 'PLACED' && renderOrders(placedOrders)}
+        </div>
+        <div className="order-section">
+          <h2 onClick={() => toggleSection('SHIPPING')}>Đơn hàng đang giao</h2>
+          {activeSection === 'SHIPPING' && renderOrders(shippingOrders)}
         </div>
         <div className="order-section">
           <h2 onClick={() => toggleSection('CANCEL')}>Đơn hàng đã hủy</h2>

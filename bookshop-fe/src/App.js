@@ -92,13 +92,21 @@ import ManagePublisher from './Pages/Admin/Publisher/ManagePublisher';
 import ManageAuthor from './Pages/Admin/Author/ManageAuthor';
 import ManageTag from './Pages/Admin/Tag/ManageTag';
 import CreateOrder from './Pages/User/CreateOrder/CreateOrder';
-
-
+import NotFound from './Pages/404';
+import OrderDetail from './Pages/User/Order/OrderDetail';
+import PlacedOrders from './Pages/Admin/Orders/PlacedOrders';
+import OrderDetailAdmin from './Pages/Admin/Orders/OrderDetailAdmin';
+import ShippingOrders from './Pages/Admin/Orders/ShippingOrders';
+import CancelledOrders from './Pages/Admin/Orders/CancelledOrders';
+import CompletedOrders from './Pages/Admin/Orders/CompletedOrders';
 const App = () => {
   return (
     <AuthProvider>
     <Routes>
-
+     
+       <Route path="*" element={NotFound} /> 
+       
+      {/* <Route path="*" element={<div> <h2>Not found</h2></div>} /> */}
       <Route path="/" element={<Home />} />
       <Route path="/shop" element={<Shop/>} />
       <Route path="/search" element={<Search />} />
@@ -108,7 +116,7 @@ const App = () => {
       <Route path='/profile' element ={<Profile/>} />
       <Route path='/cart' element ={<Cart />} />
       <Route path='/orders' element={<Order />} />
-      {/* <Route path='/orderDetail/:id' element={<Order />} /> */}
+      <Route path='/orderDetail/:orderId' element={<OrderDetail />} />
       <Route path='createOrder' element={<CreateOrder />} />
       <Route path="/category/:categoryId" element={<CategoryPage/>} />
 
@@ -125,6 +133,11 @@ const App = () => {
         <Route path="authors" element={ <ManageAuthor/>} />
         <Route path="publishers" element={<ManagePublisher/>} />
         <Route path="tags" element={<ManageTag />} />
+        <Route path="orders/ordered" element = {<PlacedOrders/>} />
+        <Route path='orders/shipping' element={<ShippingOrders />} />
+        <Route path='orders/cancelled' element={<CancelledOrders />} />
+        <Route path='orders/completed' element={<CompletedOrders />} />
+        <Route path='orders/:orderId' element={<OrderDetailAdmin />} />
       </Route>      
     </Routes>
     </AuthProvider>

@@ -65,3 +65,6 @@
     text-align: left;
   }
   
+  .order-section a {
+    text-decoration: none;
+  }

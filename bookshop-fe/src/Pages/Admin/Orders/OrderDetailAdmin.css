@@ -1,0 +1,90 @@
+/* OrderDetail.css */
+/* .order-detail {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .order-info p {
+    margin: 10px 0;
+  }
+  
+  .order-summary {
+    margin-top: 20px;
+  }
+  
+  .cart-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f1f1f1;
+    font-weight: bold;
+  }
+ 
+  
+  .weight-div {
+    margin-top: 10px;
+  }
+  
+  .shipping-info {
+    margin-top: 20px;
+  }
+  
+  .order-summary p,
+  .order-summary h3 {
+    margin: 10px 0;
+    text-align: right;
+  }
+  
+  .cancel-order {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .cancel-order button {
+    background-color: #ff4d4f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cancel-order button:hover {
+    background-color: #d9363e;
+  } */
+  
+  .order-actions {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .order-actions button {
+    color: rgb(23, 6, 6);
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .order-actions button:hover {
+    background-color: #a37678;
+  }
+
+  .shipping{
+    background-color: rgb(0, 255, 55);
+  }
+
+  .cancel{
+    background-color: red;
+  }
+
+  .completed{
+    background-color: rgb(0, 0, 255);
+  }

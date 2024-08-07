@@ -33,7 +33,7 @@ const AdminPanel = () => {
           </div>
           {showOrderSubmenu && (
             <ul className="submenu">
-              <li><NavLink to="/admin/orders/pending"><FaShoppingCart className="icon" />Đơn hàng đã đặt</NavLink></li>
+              <li><NavLink to="/admin/orders/ordered"><FaShoppingCart className="icon" />Đơn hàng đã đặt</NavLink></li>
               <li><NavLink to="/admin/orders/shipping"><FaShippingFast className="icon" />Đơn hàng đang giao</NavLink></li>
               <li><NavLink to="/admin/orders/cancelled"><FaBan className="icon" />Đơn hàng đã hủy</NavLink></li>
               <li><NavLink to="/admin/orders/completed"><FaCheckCircle className="icon" />Đơn hàng đã giao</NavLink></li>

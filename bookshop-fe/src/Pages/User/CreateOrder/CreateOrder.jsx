@@ -622,6 +622,7 @@ const CreateOrder = () => {
   const [weight, setWeight] = useState(null);
   const [receiverName, setReceiverName] = useState('');
   const [receiverPhone, setReceiverPhone] = useState('');
+  const [error, setError] = useState(null);
   const token = '18aae827-4dcd-11ef-b635-eeb7b370243f';
   const shopId = 5228359;
   const formatter = new Intl.NumberFormat('vi-VN', {
@@ -635,6 +636,8 @@ const CreateOrder = () => {
     fetchUserById(UserId)
       .then(response => {
         setUser(response);
+        setReceiverName(response.fullname);
+        setReceiverPhone(response.phone);
       })
       .catch(error => console.error('Error fetching user data:', error));
 
@@ -706,7 +709,10 @@ const CreateOrder = () => {
       };
       calculateShippingFee(token, params)
         .then(data => setShippingFee(data.data.total))
-        .catch(() => console.error('Địa chỉ không nằm trong khu vực giao hàng'));
+        //nếu lỗi thì set error và hiển thị thông báo
+
+
+        .catch(() => setError('Địa chỉ không nằm trong khu vực giao hàng'));
     }
   }, [selectedWard, totalPrice, weight]);
 
@@ -744,6 +750,9 @@ const CreateOrder = () => {
   };
 
   const handlePlaceOrder = async () => {
+    //hỏi xác nhận đặt hàng
+    if (!window.confirm('Xác nhận đặt hàng?')) return;
+    
     const discount = calculateDiscount();
     const total = totalPrice + shippingFee - discount;
     const receiverAddress = `${wards.find(w => w.WardCode === selectedWard)?.WardName}, ${districts.find(d => d.DistrictID === selectedDistrict)?.DistrictName}, ${provinces.find(p => p.ProvinceID === selectedProvince)?.ProvinceName}`;
@@ -839,6 +848,10 @@ const CreateOrder = () => {
                   readOnly
                 />
               </div>
+              <div>
+                {error && <p className="error">{error}</p>}
+                </div>
+
               {/* <div>
                 <label>Dịch vụ vận chuyển:</label>
                 <select onChange={handleServiceChange}>
@@ -854,7 +867,12 @@ const CreateOrder = () => {
               <p>Phí vận chuyển: {formatter.format(shippingFee)}</p>
               <p>Giảm giá: {formatter.format(calculateDiscount())}</p>
               <h3>Tổng thanh toán: {formatter.format(totalPrice + shippingFee - calculateDiscount())}</h3>
-              <button onClick={handlePlaceOrder}>Đặt hàng</button>
+              {/* <button onClick={handlePlaceOrder}>Đặt hàng</button>
+               */}
+               
+                <button onClick={handlePlaceOrder} disabled={error || !selectedWard || !selectedDistrict || !selectedProvince || !receiverName || !receiverPhone}>Đặt hàng</button>
+          
+                {/* <button onClick={handlePlaceOrder} disabled={error || !selectedWard || !selectedDistrict || !selectedProvince || !receiverName || !receiverPhone}>Đặt hàng</button> */}
             </div>
           </div>
         )}

@@ -185,6 +185,7 @@ const Cart = () => {
   return (
     <div>
       <Header />
+      <div className='main-cart'>
       <div className="cart">
        
         {cartItems.length === 0 ? (
@@ -226,7 +227,9 @@ const Cart = () => {
           </div>
         )}
       </div>
+      </div>
       <Footer />
+    
     </div>
   );
 };

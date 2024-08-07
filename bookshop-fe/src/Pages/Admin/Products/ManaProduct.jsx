@@ -524,7 +524,7 @@ const ManageProduct = () => {
         loadProducts();
         toast.success('Xóa sản phẩm thành công.');
       } catch (error) {
-        toast.error('Không thể xóa sản phẩm.');
+        toast.error('Không thể xóa sản phẩm, sản phẩm thuộc đơn hàng.');
       }
     }
   };

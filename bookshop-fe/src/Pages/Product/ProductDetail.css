@@ -301,3 +301,13 @@
   padding: 5px;
   text-align: center;
 }
+
+.stop-sale{
+  display: block;
+    background-color: yellow;
+    width: fit-content;
+    font-size: large;
+    font-weight: 500;
+    color: darkgreen;
+    font-family: system-ui;
+}
