@@ -45,7 +45,8 @@ const formatter = new Intl.NumberFormat('vi-VN', {
   currency: 'VND',
 });
 
-const CartItem = ({ item }) => {
+// const CartItem = ({ item }) => {
+const OrderItem = ({ item }) => {
   return (
     <div className="cart-item">
       <Link to={`/product/${item.productId}`} className="cart-item-link">
@@ -70,4 +71,5 @@ const CartItem = ({ item }) => {
   );
 };
 
-export default CartItem;
+// export default CartItem;
+export default OrderItem;

@@ -21,7 +21,7 @@ const ManageAuthor = () => {
       const data = await fetchAllAuthors();
       setAuthors(data);
     } catch (error) {
-      notification.error({ message: 'Failed to fetch authors.' });
+      notification.error({ message: 'Tải danh sách tác giả thất bại.' });
     }
   };
 
@@ -53,9 +53,9 @@ const ManageAuthor = () => {
       }
       fetchAuthors();
       setIsModalVisible(false);
-      notification.success({ message: 'Author saved successfully.' });
+      notification.success({ message: 'Thêm mới thành công.' });
     } catch (error) {
-      notification.error({ message: 'Failed to save author.' });
+      notification.error({ message: 'Thêm mới thất bại.' });
     }
   };
 
@@ -63,16 +63,16 @@ const ManageAuthor = () => {
     try {
       await deleteAuthor(id);
       fetchAuthors();
-      notification.success({ message: 'Author deleted successfully.' });
+      notification.success({ message: 'Xóa thành công.' });
     } catch (error) {
-      notification.error({ message: 'Failed to delete author. Author might be linked with other data.' });
+      notification.error({ message: 'Xóa thất bại, tác giả có liên kết với sách.' });
     }
   };
 
   return (
     <div className="manage-author">
       <Input
-        placeholder="Search authors"
+        placeholder="Tìm tác giả"
         value={searchText}
         onChange={handleSearch}
         prefix={<SearchOutlined />}
@@ -127,7 +127,7 @@ const ManageAuthor = () => {
           </Form.Item>
           <Form.Item
             name="biography"
-            label="Tiểu sử"
+            label="Tiểu sử, mô tả"
             rules={[{ required: true, message: 'Vui lòng nhập tiểu sử!' }]}
           >
             <Input.TextArea rows={6} />

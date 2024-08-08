@@ -54,7 +54,7 @@ const AdminPanel = () => {
             </ul>
           )}
         </li>
-        <li><NavLink to="/admin/customers"><FaUsers className="icon" />Quản lý khách hàng</NavLink></li>
+        {/* <li><NavLink to="/admin/customers"><FaUsers className="icon" />Quản lý khách hàng</NavLink></li> */}
          {/* <li><NavLink to="/logout"><FaSignOutAlt className="icon" />Đăng xuất</NavLink></li> */}
          
         <li className='li-logout' onClick={handleLogout}><FaSignOutAlt className="icon" />&ensp;Đăng xuất</li>

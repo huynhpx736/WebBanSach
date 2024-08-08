@@ -147,20 +147,41 @@ const Cart = () => {
   };
 
   const handleQuantityChange = async (id, newQuantity) => {
+    //chỉ cho tăng số lượng tới mức tồn kho, khi tới mức tồn kho thông báo, và nếu số lượng = 0 thì xóa sản phẩm khỏi giỏ hàng, trước khi xóa cần xác nhận
     if (newQuantity <= 0) {
       handleRemove(id);
     } else {
       try {
+        const item = cartItems.find(item => item.id === id);
+        if (newQuantity > item.stock) {
+          alert('Số lượng sản phẩm đạt giới hạn hiện có');
+          return;
+        }
         await updateCartItemQuantity(id, newQuantity);
         const updatedItems = cartItems.map(item =>
           item.id === id ? { ...item, quantity: newQuantity } : item
         );
         setCartItems(updatedItems);
         calculateTotalPrice(updatedItems);
-      } catch (error) {
+      }
+      catch (error) {
         console.error('Error updating quantity:', error);
       }
+       
+      // try {
+      //   await updateCartItemQuantity(id, newQuantity);
+      //   const updatedItems = cartItems.map(item =>
+      //     item.id === id ? { ...item, quantity: newQuantity } : item
+      //   );
+      //   setCartItems(updatedItems);
+      //   calculateTotalPrice(updatedItems);
+      // } catch (error) {
+      //   console.error('Error updating quantity:', error);
+      // }
     }
+
+
+            
   };
   const handleCheckout = async () => {
     //tới link tạo đơn hàng là /createOrder

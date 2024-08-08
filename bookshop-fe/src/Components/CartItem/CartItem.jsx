@@ -50,7 +50,7 @@ const formatter = new Intl.NumberFormat('vi-VN', {
 const CartItem = ({ item, onQuantityChange, onRemove }) => {
   return (
     <div className="cart-item">
-      <Link to={`/product/${item.orderId}`} className="cart-item-link">
+      <Link to={`/product/${item.productId}`} className="cart-item-link">
         <img src={item.image} alt={item.productName} className="cart-item-image" />
       </Link>
       <div className="cart-item-details">

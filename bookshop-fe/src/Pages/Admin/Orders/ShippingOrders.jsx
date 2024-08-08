@@ -122,7 +122,7 @@ const ShippingOrders = () => {
 
   return (
     <div className="orders-page">
-      <h2>Đơn hàng đang giao</h2>
+      <h2>ĐƠN HÀNG ĐANG GIAO</h2>
       {orders.length === 0 ? (
         <p className="no-orders">Không có đơn hàng nào</p>
       ) : (

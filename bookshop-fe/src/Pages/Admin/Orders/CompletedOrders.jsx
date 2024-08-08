@@ -76,7 +76,7 @@ const CompletedOrders = () => {
 
   return (
     <div className="orders-page">
-      <h2>Đơn hàng đã giao</h2>
+      <h2>ĐƠN HÀNG ĐÃ GIAO</h2>
       {orders.length === 0 ? (
         <p className="no-orders">Không có đơn hàng nào</p>
       ) : (

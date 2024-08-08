@@ -91,6 +91,15 @@ export const changePassword = async (userId, oldPassword, newPassword) => {
 };
 
 // Cart APIs
+export const fetchCartItemById = async (orderDetailId) => {
+  try {
+    const response = await axios.get(`/api/orderdetails/${orderDetailId}`);
+    return response.data.data;
+  } catch (error) {
+    throw new Error('Failed to fetch cart item by ID.');
+  }
+};
+
 export const addProductToCart = async (userId, productId, quantity) => {
   try {
     const response = await axios.post('/api/orderdetails/add-to-cart', null, {
@@ -686,10 +695,16 @@ export const updateProduct = async (id, product) => {
 };
 
 export const deleteProduct = async (id) => {
-  const response = await axios.delete(`/api/products/delete/${id}`);
-  return response.data;
+  try {
+    const response = await axios.delete(`/api/products/delete/${id}`);
+    return response.data;
+  }
+  catch (error) {
+    console.error('Failed to delete product:', error);
+    throw new Error('Failed to delete product.');
+  }
+  
 };
-
 
 export const uploadProductImage = (productId, file) => {
   const formData = new FormData();
