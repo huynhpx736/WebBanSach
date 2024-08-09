@@ -56,6 +56,28 @@
   .cancel-order button:hover {
     background-color: #d42830;
   }
+
+  
+  .complete-order {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .complete-order button {
+    background-color: #50ff4d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .complete-order button:hover {
+    background-color: #288fd4;
+  }
   
   /* OrderItem.css */
   /* .order-item {

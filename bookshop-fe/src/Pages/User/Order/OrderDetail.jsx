@@ -231,6 +231,22 @@ const OrderDetail = () => {
     }
   };
 
+    const handleCompleteOrder = async () => {
+        //Hỏi người dùng có chắc chắn muốn đánh dấu đơn hàng đã nhận không
+        if (!window.confirm('Bạn có chắc chắn muốn đánh dấu đơn hàng này đã nhận không?')) {
+            return;
+        }
+        try {
+            await updateOrderStatus(orderId, 'COMPLETED');
+            // Cập nhật trạng thái đơn hàng sau khi đánh dấu đã nhận thành công
+            setOrder((prevOrder) => ({
+                ...prevOrder,
+                status: 'COMPLETED',
+            }));
+        } catch (error) {
+            console.error('Failed to complete order:', error);
+        }
+    }
   if (!order) {
     return <div>Loading...</div>;
   }
@@ -294,6 +310,11 @@ const OrderDetail = () => {
           <button onClick={handleCancelOrder}>Hủy đơn hàng</button>
         </div>
       )}
+        {status === 'SHIPPING' && (
+            <div className="complete-order">
+            <button onClick={handleCompleteOrder}>Đã nhận hàng</button>
+            </div>
+        )}
       <Footer />
     </div>
   );

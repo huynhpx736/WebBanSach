@@ -105,6 +105,11 @@ const PlacedOrders = () => {
 
   const handleProcessing = async (orderId) => {
     try {
+      //hỏi xác nhận
+      if (!window.confirm('Chuyển đơn hàng sang đang giao?')) {
+        return;
+      }
+
       await updateOrderStatus(orderId, 'SHIPPING');
       setOrders(orders.filter(order => order.id !== orderId));
     } catch (error) {
@@ -114,6 +119,10 @@ const PlacedOrders = () => {
 
   const handleCancel = async (orderId) => {
     try {
+      //hỏi xác nhận
+      if (!window.confirm('Hủy đơn hàng?')) {
+        return;
+      }
       await cancelOrder(orderId, 'CANCELLED');
       setOrders(orders.filter(order => order.id !== orderId));
     } catch (error) {

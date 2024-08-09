@@ -607,6 +607,9 @@ const ProductDetail = () => {
                 <div className="product-meta-item">
                   <strong>NXB:</strong> {product.publisher.name}
                 </div>
+                <div className="product-meta-item">
+                  <strong>Trọng lượng:</strong> {product.weight} g
+                  </div>
               </div>
 
               <div>

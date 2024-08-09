@@ -24,12 +24,13 @@ const Header = () => {
         </div>
         <nav className="navigation">
           <ul>
+          <li><Link to="/about">About</Link></li>
             <li><Link to="/shop">Shop</Link></li>
-            <li><Link to="/about">About</Link></li>
+          
           </ul>
         </nav>
         <div className="search-bar-header">
-          <input type="text" placeholder="Search for books..." />
+          <input type="text" placeholder="Tìm sách..." />
           <button className="search-btn">
             <i className="fas fa-search"></i>
           </button>

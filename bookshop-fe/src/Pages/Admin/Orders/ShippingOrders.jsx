@@ -104,6 +104,10 @@ const ShippingOrders = () => {
 
   const handleCompleted = async (orderId) => {
     try {
+        //hỏi người dùng có chắc chắn muốn hoàn thành đơn hàng không
+        if (!window.confirm('Hoàn thành đơn hàng?')) {
+            return;
+            }
       await updateOrderStatus(orderId, 'COMPLETED');
       setOrders(orders.filter(order => order.id !== orderId));
     } catch (error) {
@@ -113,6 +117,10 @@ const ShippingOrders = () => {
 
   const handleCancel = async (orderId) => {
     try {
+        //hỏi người dùng có chắc chắn muốn hủy đơn hàng không
+        if (!window.confirm('Hủy đơn hàng?')) {
+            return;
+            }
       await cancelOrder(orderId, 'CANCELLED');
       setOrders(orders.filter(order => order.id !== orderId));
     } catch (error) {
