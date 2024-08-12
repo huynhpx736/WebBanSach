@@ -74,7 +74,14 @@ const Cart = () => {
             
   };
   const handleCheckout = async () => {
-    //tới link tạo đơn hàng là /createOrder
+    //nếu trong cartItems có sản phẩm có số lượng > số lượng tồn kho thì không cho tạo đơn hàng và thông báo
+    //nếu không có sản phẩm nào có số lượng > số lượng tồn kho thì tạo đơn hàng và chuyển tới trang tạo đơn hàng
+    const items = cartItems.filter(item => item.quantity > item.stock || item.stock === 0);
+    if (items.length > 0) {
+      alert('Không thể tạo đơn hàng trống, hãy cập nhật số lượng sản phẩm hoặc xóa sản phẩm khỏi giỏ hàng');
+      return;
+    }
+
     window.location.href = '/createOrder';
 
   }

@@ -290,8 +290,9 @@ const CreateOrder = () => {
                 </div>
             <div className="order-summary">
               <p>Tổng tiền sản phẩm: {formatter.format(totalPrice)}</p>
-              <p>Phí vận chuyển: {formatter.format(shippingFee)}</p>
-              <p>Giảm giá : {formatter.format(calculateDiscount())}</p>
+              {/* //Nếu là khách hàng thường thì ghi "Uư đãi thân thiết, nếu là khách hàng VIP thì ghi "Ưi đãi VIP", còn lại ghi ưu đãi */}
+              <p>{User.classification === 'LOYAL' ? 'Giảm giá ưu đãi KH thân thiết: ' : User.classification === 'VIP' ? 'Giảm giá ưu đãi VIP: ' : 'Giảm giá KH thường: '} -{formatter.format(calculateDiscount())}</p>
+
               <h3>Tổng thanh toán: {formatter.format(totalPrice + shippingFee - calculateDiscount())}</h3>
               <button onClick={handlePlaceOrder}>Đặt hàng</button> 
               

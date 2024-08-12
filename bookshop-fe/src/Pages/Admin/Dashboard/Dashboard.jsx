@@ -709,7 +709,7 @@ const Dashboard = () => {
                 },
                 title: {
                   display: true,
-                  text: 'Doanh thu (VND)',
+                  text: 'Giá trị (VND)',
                 },
                 grid: {
                   drawOnChartArea: false,

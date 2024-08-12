@@ -294,7 +294,7 @@ const ProductDetail = () => {
                     </div>
 
                   ) : (
-                    <strong>Sản phẩm đã hết hàng</strong>
+                    <strong className='zero-product'>Sản phẩm đã hết hàng</strong>
                   )}
 
                    
@@ -344,7 +344,7 @@ const ProductDetail = () => {
                 </div>
               </div>
               {/* //nếu product.status = 1 thì hiển thị nút thêm vào giỏ hàng và số lượng còn không thì hiển thị sản phẩm không còn bán */}
-              {product.status === 1 ? (
+              {(product.status === 1&&product.salesVolume!==0) ? (
                 <>
                   <div className="quantity-input">
                     <label htmlFor="quantity">Số lượng:</label>
