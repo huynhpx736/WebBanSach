@@ -203,7 +203,7 @@
 
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchProductById, fetchProductsByCategory, fetchAllProducts, addProductToCart, fetchUserById } from '../../api';
+import { fetchProductById, fetchProductsByCategory, fetchAllProducts, addProductToCart, fetchUserById, getReviewByProduct } from '../../api';
 import Cover from '../../images/biasach.jpg'; // Thay thế với hình ảnh từ API nếu có
 import './ProductDetail.css';
 import Header from '../../Components/Header/Header';
@@ -236,6 +236,13 @@ const ProductDetail = () => {
         }
       })
       .catch(err => console.error('Failed to fetch product details.', err));
+
+      getReviewByProduct(id)
+      .then(reviewsData => {
+        setReviews(reviewsData);
+      })
+      .catch(err => console.error('Failed to fetch reviews.', err));
+
   }, [id]);
 
   const handleAddToCart = () => {
@@ -372,20 +379,27 @@ const ProductDetail = () => {
                 </>
               ) : (
                 <p className='stop-sale'>Sản phẩm hiện không còn bán</p>
-              )}
-
+              )}         
               <div className="reviews">
-                <h3>Đánh giá</h3>
-                {reviews.length > 0 ? (
-                  reviews.map((review, index) => (
-                    <div key={index} className="review">
-                      <p><strong>{review.user}</strong>: {review.text}</p>
-                    </div>
-                  ))
-                ) : (
-                  <p>Chưa có bình luận nào.</p>
-                )}
-              </div>
+  <h3>Đánh giá</h3>
+  {reviews.length > 0 ? (
+    reviews.map((review, index) => (
+      <div key={index} className="review">
+        <div className="review-header">
+          <img src={`/${review.userAvatar}` || '/defaultAvatar.jpg'} alt={review.userName} className="review-avatar" />
+          <div className="review-info">
+            <strong className="review-username">{review.userName}</strong>
+            <div className="review-rating">{renderStars(review.rating)}</div>
+          </div>
+        </div>
+        <p className="review-comment">{review.comment}</p>
+      </div>
+    ))
+  ) : (
+    <p>Chưa có đánh giá nào.</p>
+  )}
+</div>
+
               <div className="related-products">
                 <h2>Có thể bạn quan tâm</h2>
                 <SliderProduct products={relatedProducts} />

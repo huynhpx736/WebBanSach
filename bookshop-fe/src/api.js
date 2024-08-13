@@ -753,6 +753,17 @@ export const getAllReviews = async () => {
     throw error;
   }
 };
+//Hàm lấy đánh giá theo sản phẩm
+export const getReviewByProduct = async (productId) => {
+  try {
+    const response = await axios.get(`api/reviews/get-all-by-book-id/${productId}`);
+    return response.data.data;
+  }
+  catch (error) {
+    console.error('Failed to get review by product:', error);
+    throw error;
+  }
+}
 
 // Hàm lấy đánh giá theo ID
 export const getReviewById = async (id) => {
@@ -770,6 +781,7 @@ export const createReview = async (reviewDTO) => {
     const response = await axios.post(`api/reviews/create`, reviewDTO);
     return response.data.data;
   } catch (error) {
+    console.error('Failed to create review:', error);
     throw error;
   }
 };
@@ -793,3 +805,13 @@ export const deleteReview = async (id) => {
     throw error;
   }
 };
+
+//hàm đánh dấu sản phẩm đã được đánh giá
+export const markProductAsReviewed = async (itemId) => {
+  try {
+    const response = await axios.put(`api/orderdetails/mark-item-has-review/${itemId}`);
+    return response.data.data;
+  } catch (error) {
+    throw error;
+  }
+}
