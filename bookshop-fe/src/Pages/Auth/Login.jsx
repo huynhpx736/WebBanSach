@@ -33,6 +33,7 @@ const Login = () => {
 
   return (
     <div className = "auth">
+        <a href="/" className="back-home">Trở về trang chủ</a>    
     <div className='wrapper'>
       <div className="auth-container">
         <div className="auth-header">

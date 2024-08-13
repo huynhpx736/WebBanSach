@@ -136,6 +136,13 @@ const OrderDetail = () => {
             <button onClick={handleCompleteOrder}>Đã nhận hàng</button>
             </div>
         )}
+        {/* //nếu đơn hàng có trạng thái "COMPLETED" thì hiển thị nút "Đánh giá" */}
+        {status === 'COMPLETED' && (
+            <div className="complete-order">
+            <button onClick={() => navigate(`/review/${orderId}`)}>Đánh giá</button>
+            </div>
+        )}
+        
       <Footer />
     </div>
   );

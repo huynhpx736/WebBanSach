@@ -9,7 +9,16 @@
 /* body {
   background: #f4f4f9;
 } */
-
+.back-home {
+  display: block;
+  margin-top: 20px;
+  position: left;
+  color: hsl(245, 82%, 59%);
+  margin-bottom: -30px;
+  font-weight: 600;
+  text-decoration: none;
+  font-style: italic;
+}
 .wrapper {
   display: flex;
   justify-content: center;
