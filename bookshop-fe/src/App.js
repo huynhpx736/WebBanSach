@@ -100,6 +100,7 @@ import ShippingOrders from './Pages/Admin/Orders/ShippingOrders';
 import CancelledOrders from './Pages/Admin/Orders/CancelledOrders';
 import CompletedOrders from './Pages/Admin/Orders/CompletedOrders';
 import About from './Pages/About/About';
+import ReviewPage from './Pages/User/Order/ReviewPage';
 const App = () => {
   return (
     <AuthProvider>
@@ -119,6 +120,7 @@ const App = () => {
       <Route path='/orders' element={<Order />} />
       <Route path='/orderDetail/:orderId' element={<OrderDetail />} />
       <Route path='createOrder' element={<CreateOrder />} />
+      <Route path='/review/:orderId' element={<ReviewPage />} />
       <Route path="/category/:categoryId" element={<CategoryPage/>} />
       <Route path='/about' element={<About/>} />
       

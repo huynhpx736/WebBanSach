@@ -628,9 +628,15 @@ export const deleteProductTag = async (id) => {
 
 
 // Product APIs
+export const searchProductsByKeyword = async (keyword) => {
+  try {
+    const response = await axios.get(`/api/products/search-by-keyword?keyword=${keyword}`);
+    return response.data.data;
+  } catch (error) {
+    throw new Error('Failed to search products by keyword.');
+  }
+}
 
-
-// Product APIs
 export const fetchNewestProducts = async () => {
   try {
     const response = await axios.get('/api/products/newest');
@@ -735,4 +741,55 @@ export const fetchAuthors = async () => {
 export const fetchTags = async () => {
   const response = await axios.get('/api/tags/get-all');
   return response.data.data;
+};
+
+
+//Review APIs
+export const getAllReviews = async () => {
+  try {
+    const response = await axios.get(`api/reviews/get-all`);
+    return response.data.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Hàm lấy đánh giá theo ID
+export const getReviewById = async (id) => {
+  try {
+    const response = await axios.get(`api/reviews/${id}`);
+    return response.data.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Hàm tạo đánh giá mới
+export const createReview = async (reviewDTO) => {
+  try {
+    const response = await axios.post(`api/reviews/create`, reviewDTO);
+    return response.data.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Hàm cập nhật đánh giá theo ID
+export const updateReview = async (id, reviewDTO) => {
+  try {
+    const response = await axios.put(`api/reviews/update/${id}`, reviewDTO);
+    return response.data.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Hàm xóa đánh giá theo ID
+export const deleteReview = async (id) => {
+  try {
+    const response = await axios.delete(`api/reviews/delete/${id}`);
+    return response.data.data;
+  } catch (error) {
+    throw error;
+  }
 };
