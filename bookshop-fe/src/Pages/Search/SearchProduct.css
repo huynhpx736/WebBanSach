@@ -108,6 +108,7 @@
  /* Container chính cho trang tìm kiếm */
 .search-container {
   max-width: 1200px;
+  min-height: 700px;
   margin: 0 auto;
   padding: 20px;
   background: #ffffff;

@@ -72,7 +72,7 @@ const ManageTag = () => {
         loadTags();
       } catch (error) {
         console.error('Không thể xóa tag:', error);
-        toast.error('Xóa tag thất bại. Tag có thể đang được liên kết với dữ liệu khác.');
+        toast.error('Xóa tag thất bại. Tag đã được gắn vào sản phẩm.');
       }
     }
   };

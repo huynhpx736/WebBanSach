@@ -633,6 +633,7 @@ export const searchProductsByKeyword = async (keyword) => {
     const response = await axios.get(`/api/products/search-by-keyword?keyword=${keyword}`);
     return response.data.data;
   } catch (error) {
+    console.error('Failed to search products by keyword:', error);
     throw new Error('Failed to search products by keyword.');
   }
 }

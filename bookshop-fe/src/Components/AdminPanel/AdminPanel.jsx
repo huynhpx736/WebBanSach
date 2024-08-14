@@ -46,7 +46,7 @@ const AdminPanel = () => {
           </div>
           {showProductSubmenu && (
             <ul className="submenu">
-              <li><NavLink to="/admin/products"><FaBox className="icon" />Quản lý sản phẩm</NavLink></li>
+              <li><NavLink to="/admin/products"><FaBox className="icon" />Quản lý sách</NavLink></li>
               <li><NavLink to="/admin/categories"><FaTags className="icon" />Quản lý thể loại</NavLink></li>
               <li><NavLink to="/admin/authors"><FaUserEdit className="icon" />Quản lý tác giả</NavLink></li>
               <li><NavLink to="/admin/publishers"><FaBuilding className="icon" />Quản lý nhà xuất bản</NavLink></li>
