@@ -1,52 +1,140 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+// import React, { useEffect, useState } from 'react';
+// import { useLocation, Link } from 'react-router-dom';
+// import { searchProductsByKeyword } from '../../api'; 
+// import './FindProduct.css'; 
+// import BookCard from '../../Components/BookCard/BookCard';
+// import Footer from '../../Components/Footer/Footer';
+// import Header from '../../Components/Header/Header';
+
+// const FindResults = () => {
+//   const [products, setProducts] = useState([]);
+//   const [loading, setLoading] = useState(true);
+//   const location = useLocation();
+//   const keyword = new URLSearchParams(location.search).get('keyword');
+
+//   useEffect(() => {
+//     const fetchProducts = async () => {
+//       try {
+//         setLoading(true);
+//         const results = await searchProductsByKeyword(keyword);
+//         setProducts(results);
+//         setLoading(false);
+//       } catch (error) {
+//         console.error('Failed to fetch products:', error);
+//         setLoading(false);
+//       }
+//     };
+
+//     if (keyword) {
+//       fetchProducts();
+//     }
+//   }, [keyword]);
+
+//   return (
+//     <div className='find-product-container'>
+//       <Header />
+    
+//     <div className="find-results">
+    
+//       <h2>Kết quả tìm kiếm cho: "{keyword}"</h2>
+//       {loading ? (
+//         <p>Đang tải...</p>
+//       ) : products.length > 0 ? (
+//         <div className="product-list">
+//           {products.map(product => (
+//             <BookCard key={product.id} book={product} />
+//           ))}
+//         </div>
+//       ) : (
+//         <p>Không tìm thấy sản phẩm nào.</p>
+//       )}
+//     </div>
+//     <Footer />
+//     </div>
+//   );
+// };
+
+// export default FindResults;
+
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { searchProductsByKeyword } from '../../api';
 import './FindProduct.css';
+import BookCard from '../../Components/BookCard/BookCard';
+import Footer from '../../Components/Footer/Footer';
+import Header from '../../Components/Header/Header';
 
-const FindProduct = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [results, setResults] = useState([]);
+const FindResults = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(8);
+  const location = useLocation();
+  const keyword = new URLSearchParams(location.search).get('keyword');
 
-  const handleSearch = async (e) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
+  useEffect(() => {
+    const fetchProducts = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/products/search?query=${searchQuery}`);
-        setResults(response.data);
+        setLoading(true);
+        const results = await searchProductsByKeyword(keyword);
+        setProducts(results);
+        setLoading(false);
       } catch (error) {
-        console.error('Error fetching search results:', error);
+        console.error('Failed to fetch products:', error);
+        setLoading(false);
       }
+    };
+
+    if (keyword) {
+      fetchProducts();
     }
-  };
+  }, [keyword]);
+
+  // Lấy sản phẩm hiện tại trên trang hiện tại
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  // Thay đổi trang
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="find-product">
-      <form className="search-form" onSubmit={handleSearch}>
-        <input
-          type="text"
-          placeholder="Search for books..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-        <button type="submit">
-          <i className="fas fa-search"></i>
-        </button>
-      </form>
-      <div className="results">
-        {results.length > 0 ? (
-          results.map((product) => (
-            <div key={product.id} className="result-item">
-              <img src={product.imageUrl} alt={product.title} />
-              <h3>{product.title}</h3>
-              <p>{product.author}</p>
-              <p>{product.price} USD</p>
-            </div>
-          ))
+    <div className='find-product-container'>
+      <Header />
+
+      <div className="find-results">
+        <h2>Kết quả tìm kiếm cho: "{keyword}"</h2>
+        {loading ? (
+          <p>Đang tải...</p>
+        ) : currentProducts.length > 0 ? (
+          <div className="product-list">
+            {currentProducts.map(product => (
+              <BookCard key={product.id} book={product} />
+            ))}
+          </div>
         ) : (
-          <p>No results found</p>
+          <p>Không tìm thấy sản phẩm nào.</p>
         )}
       </div>
+
+      {/* Pagination */}
+      {products.length > productsPerPage && (
+        <div className="pagination">
+          {[...Array(Math.ceil(products.length / productsPerPage)).keys()].map(number => (
+            <button 
+              key={number + 1} 
+              onClick={() => paginate(number + 1)} 
+              className={number + 1 === currentPage ? 'active' : ''}
+            >
+              {number + 1}
+            </button>
+          ))}
+        </div>
+      )}
+      
+      <Footer />
     </div>
   );
 };
 
-export default FindProduct;
+export default FindResults;

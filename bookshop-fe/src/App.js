@@ -101,6 +101,7 @@ import CancelledOrders from './Pages/Admin/Orders/CancelledOrders';
 import CompletedOrders from './Pages/Admin/Orders/CompletedOrders';
 import About from './Pages/About/About';
 import ReviewPage from './Pages/User/Order/ReviewPage';
+import FindResults from './Pages/FindProduct/FindProduct';
 const App = () => {
   return (
     <AuthProvider>
@@ -112,6 +113,7 @@ const App = () => {
       <Route path="/" element={<Home />} />
       <Route path="/shop" element={<Shop/>} />
       <Route path="/search" element={<Search />} />
+      <Route path='/findProduct' element={<FindResults />} />
       <Route path="/product/:id" element={<ProductDetail />} />
       <Route path="/register" element={<Register/>} />
       <Route path="/login" element={<Login/>} />

@@ -17,7 +17,7 @@ const Footer = () => {
           <h4>Sách chất lượng cao</h4>
         </div>
         <div className="footer-section" >
-          <p>Thông tin</p>
+          <p><a href='/about'>Giới thiệu</a></p>
           <p>PTITHCM</p>
           <p>TTTN-N20DCCN023</p>
         </div>
