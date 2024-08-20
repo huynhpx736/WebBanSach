@@ -52,22 +52,22 @@ const OrderDetail = () => {
     }
   };
 
-    const handleCompleteOrder = async () => {
-        //Hỏi người dùng có chắc chắn muốn đánh dấu đơn hàng đã nhận không
-        if (!window.confirm('Bạn có chắc chắn muốn đánh dấu đơn hàng này đã nhận không?')) {
-            return;
-        }
-        try {
-            await updateOrderStatus(orderId, 'COMPLETED');
-            // Cập nhật trạng thái đơn hàng sau khi đánh dấu đã nhận thành công
-            setOrder((prevOrder) => ({
-                ...prevOrder,
-                status: 'COMPLETED',
-            }));
-        } catch (error) {
-            console.error('Failed to complete order:', error);
-        }
+  const handleCompleteOrder = async () => {
+    //Hỏi người dùng có chắc chắn muốn đánh dấu đơn hàng đã nhận không
+    if (!window.confirm('Bạn có chắc chắn muốn đánh dấu đơn hàng này đã nhận không?')) {
+      return;
     }
+    try {
+      await updateOrderStatus(orderId, 'COMPLETED');
+      // Cập nhật trạng thái đơn hàng sau khi đánh dấu đã nhận thành công
+      setOrder((prevOrder) => ({
+        ...prevOrder,
+        status: 'COMPLETED',
+      }));
+    } catch (error) {
+      console.error('Failed to complete order:', error);
+    }
+  }
   if (!order) {
     return <div>Loading...</div>;
   }
@@ -120,7 +120,7 @@ const OrderDetail = () => {
         </div>
 
         <div className="order-summary">
-          <p><strong>Tổng tiền sản phẩm:</strong> {formatter.format(total-shippingFee-discount)}</p>
+          <p><strong>Tổng tiền sản phẩm:</strong> {formatter.format(total - shippingFee - discount)}</p>
           <p><strong>Phí vận chuyển:</strong> {formatter.format(shippingFee)}</p>
           <p><strong>Giảm giá:</strong> {formatter.format(discount)}</p>
           <h3><strong>Tổng thanh toán:</strong> {formatter.format(total)}</h3>
@@ -131,18 +131,18 @@ const OrderDetail = () => {
           <button onClick={handleCancelOrder}>Hủy đơn hàng</button>
         </div>
       )}
-        {status === 'SHIPPING' && (
-            <div className="complete-order">
-            <button onClick={handleCompleteOrder}>Đã nhận hàng</button>
-            </div>
-        )}
-        {/* //nếu đơn hàng có trạng thái "COMPLETED" thì hiển thị nút "Đánh giá" */}
-        {status === 'COMPLETED' && (
-            <div className="complete-order">
-            <button onClick={() => navigate(`/review/${orderId}`)}>Đánh giá</button>
-            </div>
-        )}
-        
+      {status === 'SHIPPING' && (
+        <div className="complete-order">
+          <button onClick={handleCompleteOrder}>Đã nhận hàng</button>
+        </div>
+      )}
+      {/* //nếu đơn hàng có trạng thái "COMPLETED" thì hiển thị nút "Đánh giá" */}
+      {status === 'COMPLETED' && (
+        <div className="complete-order">
+          <button onClick={() => navigate(`/review/${orderId}`)}>Đánh giá</button>
+        </div>
+      )}
+
       <Footer />
     </div>
   );
