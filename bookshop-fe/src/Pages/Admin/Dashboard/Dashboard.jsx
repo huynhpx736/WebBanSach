@@ -202,7 +202,7 @@ const Dashboard = () => {
                 position: 'right',
                 ticks: {
                   beginAtZero: true,
-                  callback: function(value) {
+                  callback: function (value) {
                     return value.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
                   },
                 },
