@@ -93,11 +93,11 @@ const CreateOrder = () => {
     const wardCode = e.target.value;
     setSelectedWard(wardCode);
     console.log('selectedWard:', selectedWard);
-    console.log('ward',wards);
+    console.log('ward', wards);
     console.log('selectedDistrict:', selectedDistrict);
-    console.log('district',districts);
+    console.log('district', districts);
     console.log('selectedProvince:', selectedProvince);
-    console.log('province',provinces);
+    console.log('province', provinces);
   };
 
   const getAddressComponent = (list, id, idKey = 'id', nameKey = 'name') => {
@@ -119,7 +119,7 @@ const CreateOrder = () => {
       // setReceiverAddress(`${detailAddress}, ${wardName}, ${districtName}, ${provinceName}`);
       setReceiverAddress(`${detailAddress}, ${wardName}`);
 
-    
+
       const params1 = {
         service_id: 53321,
         insurance_value: totalPrice,
@@ -138,7 +138,7 @@ const CreateOrder = () => {
         to_ward_code: selectedWard,
         weight: weight,
       };
-     //gọi calculateShippingFee với params1, nếu có lỗi thì gọi calculateShippingFee với params2 và setShippingFee bằng data.data.total, nếu lần 2 vẫn có lỗi thì setError('Địa chỉ không nằm trong khu vực giao hàng.')); và hiển thị thông báo
+      //gọi calculateShippingFee với params1, nếu có lỗi thì gọi calculateShippingFee với params2 và setShippingFee bằng data.data.total, nếu lần 2 vẫn có lỗi thì setError('Địa chỉ không nằm trong khu vực giao hàng.')); và hiển thị thông báo
       calculateShippingFee(token, params1)
         .then(data => setShippingFee(data.data.total))
         .catch(() => {
@@ -162,7 +162,7 @@ const CreateOrder = () => {
   };
 
   const handlePlaceOrder = async () => {
-    if (!selectedWard || !selectedDistrict || !selectedProvince || !receiverName || !receiverPhone|| (detailAddress.trim() === '')) {
+    if (!selectedWard || !selectedDistrict || !selectedProvince || !receiverName || !receiverPhone || (detailAddress.trim() === '')) {
       alert('Vui lòng chọn đủ thông tin vận chuyển.');
       return;
     }
@@ -174,7 +174,7 @@ const CreateOrder = () => {
       alert('Không có sản phẩm trong giỏ hàng.');
       return;
     }
-    
+
     if (!window.confirm('Xác nhận đặt hàng?')) return;
 
     const discount = calculateDiscount();
@@ -195,11 +195,11 @@ const CreateOrder = () => {
     <div>
       <Header />
       <div className="cart">
-      <div className="discount-explain">
-        <h3>Ưu đãi khi mua hàng:</h3>
-        <p>Khách hàng loại <strong>thân thiết</strong> sẽ được giảm giá 10% phí vận chuyển và giảm giá 2% tổng giá trị đơn hàng nếu đơn hàng có tổng giá trị trên 2 triệu đồng.</p>
-        <p>Khách hàng loại <strong>VIP</strong> sẽ được giảm giá 30% phí vận chuyển và giảm giá 3% tổng giá trị đơn hàng nếu đơn hàng có tổng giá trị trên 2 triệu đồng.</p>
-      </div>
+        <div className="discount-explain">
+          <h3>Ưu đãi khi mua hàng:</h3>
+          <p>Khách hàng loại <strong>thân thiết</strong> sẽ được giảm giá 10% phí vận chuyển và giảm giá 2% tổng giá trị đơn hàng nếu đơn hàng có tổng giá trị trên 2 triệu đồng.</p>
+          <p>Khách hàng loại <strong>VIP</strong> sẽ được giảm giá 30% phí vận chuyển và giảm giá 3% tổng giá trị đơn hàng nếu đơn hàng có tổng giá trị trên 2 triệu đồng.</p>
+        </div>
         <h2>Đơn hàng</h2>
         {orderItems.length === 0 ? (
           <p>Trống.</p>
@@ -255,9 +255,9 @@ const CreateOrder = () => {
                 <label>Thôn/xóm/đường</label>
                 <input type="text" value={detailAddress} onChange={(e) => setDetailAddress(e.target.value)} />
               </div>
-           
-          
-            <div>
+
+
+              <div>
                 <label>Tên người nhận:</label>
                 <input
                   type="text"
@@ -286,8 +286,8 @@ const CreateOrder = () => {
               </div> */}
               <div>
                 {error && <p className="error">{error}</p>}
-                </div>
-                </div>
+              </div>
+            </div>
             <div className="order-summary">
               <p>Tổng tiền sản phẩm: {formatter.format(totalPrice)}</p>
               <p>Phí vận chuyển: {formatter.format(shippingFee)}</p>
@@ -295,13 +295,13 @@ const CreateOrder = () => {
               <p>{User.classification === 'LOYAL' ? 'Giảm giá ưu đãi KH thân thiết: ' : User.classification === 'VIP' ? 'Giảm giá ưu đãi VIP: ' : 'Giảm giá KH thường: '} -{formatter.format(calculateDiscount())}</p>
 
               <h3>Tổng thanh toán: {formatter.format(totalPrice + shippingFee - calculateDiscount())}</h3>
-              <button onClick={handlePlaceOrder}>Đặt hàng</button> 
-              
+              <button onClick={handlePlaceOrder}>Đặt hàng</button>
+
             </div>
           </div>
         )}
       </div>
-          
+
       <Footer />
     </div>
   );
