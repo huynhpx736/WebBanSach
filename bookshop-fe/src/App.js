@@ -76,13 +76,13 @@ import CategoryPage from './Pages/CategoryPage/CategoryPage';
 import AdminLayout from './Pages/Admin/AdminLayout/AdminLayout';
 import Dashboard from './Pages/Admin/Dashboard/Dashboard';
 // import ManageProduct from './Pages/Admin/ManageProducts/ManageProducts';
-import AddProduct from './Pages/Admin/Products/AddProduct';
-import EditProduct from './Pages/Admin/Products/EditProduct';
+// import AddProduct from './Pages/Admin/Products/AddProduct';
+// import EditProduct from './Pages/Admin/Products/EditProduct';
 // import ManageProduct from './Pages/Admin/Products/ManageProducts';
 import ManageProduct from './Pages/Admin/Products/ManaProduct';
 import ManageCategory from './Pages/Admin/Category/ManageCategory';
-import AddCategory from './Pages/Admin/Category/AddCateory';
-import EditCategory from './Pages/Admin/Category/EditCategory';
+// import AddCategory from './Pages/Admin/Category/AddCateory';
+// import EditCategory from './Pages/Admin/Category/EditCategory';
 import Shop from './Pages/Shop/Shop';
 import { AuthProvider } from './Pages/Auth/AuthContext';
 import Profile from './Pages/User/Profile/Profile';
@@ -130,11 +130,11 @@ const App = () => {
         <Route path="dashboard" element={<Dashboard />} />
         {/* <Route path="orders" element={<Orders />} /> */}
         <Route path="products" element={<ManageProduct />} />
-        <Route path="products/add" element={<AddProduct />} />
-        <Route path="products/edit/:id" element={<EditProduct />} />
+        {/* <Route path="products/add" element={<AddProduct />} /> */}
+        {/* <Route path="products/edit/:id" element={<EditProduct />} /> */}
         <Route path="categories" element={<ManageCategory />} />
-        <Route path="categories/add" element={<AddCategory />} />
-        <Route path="categories/edit/:id" element={<EditCategory />} />
+        {/* <Route path="categories/add" element={<AddCategory />} /> */}
+        {/* <Route path="categories/edit/:id" element={<EditCategory />} /> */}
         <Route path="authors" element={ <ManageAuthor/>} />
         <Route path="publishers" element={<ManagePublisher/>} />
         <Route path="tags" element={<ManageTag />} />
