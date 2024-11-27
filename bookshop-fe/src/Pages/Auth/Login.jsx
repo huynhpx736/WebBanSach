@@ -22,8 +22,10 @@ const Login = () => {
       localStorage.setItem('user', JSON.stringify(response.data));
       if (response.data.role === 2) {
         navigate('/admin/dashboard');
-      } else {
+      } else if (response.data.role === 1) {
         navigate('/');
+      } else {
+        navigate('/shipper');
       }
     } catch (error) {
       // setMessage(error.message);
