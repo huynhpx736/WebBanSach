@@ -1,0 +1,95 @@
+.pannel-shipper {
+  width: 250px;
+  background-color: #000;
+  border-right: 1px solid #333;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  min-height: 1300px;
+}
+
+.pannel-shipper h2 {
+  font-size: 24px;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.pannel-shipper ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.pannel-shipper ul li {
+  margin-bottom: 15px;
+}
+
+.pannel-shipper ul li a,
+.pannel-shipper .submenu-toggle {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: 18px;
+  color: #bbb;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+  cursor: pointer;
+}
+.pannel-shipper .li-logout{
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: 18px;
+  color: #bbb;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+  cursor: pointer;
+}
+.pannel-shipper ul li a .icon,
+.pannel-shipper .submenu-toggle .icon {
+  margin-right: 10px;
+  font-size: 20px;
+}
+.pannel-shipper ul li a:hover,
+.pannel-shipper .submenu-toggle:hover {
+  background-color: #333;
+  color: #fff;
+}
+.pannel-shipper ul li a.active,
+.pannel-shipper .submenu-toggle.active {
+  background-color: #333;
+  color: #fff;
+}
+
+.pannel-shipper .submenu {
+  list-style-type: none;
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.pannel-shipper .submenu li {
+  margin-bottom: 10px;
+}
+
+.pannel-shipper .submenu li a {
+  font-size: 16px;
+  padding: 8px 10px;
+}
+
+.pannel-shipper .submenu li a .icon {
+  font-size: 16px;
+}
+
+.pannel-shipper .submenu li a:hover {
+  background-color: #444;
+}
+
+.dropdown-icon {
+  margin-left: auto;
+}
+
+.submenu-toggle {
+  justify-content: space-between;
+}
+

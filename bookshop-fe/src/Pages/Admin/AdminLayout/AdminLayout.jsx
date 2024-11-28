@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import './AdminLayout.css';
-import AdminPanel from '../../../Components/AdminPanel/AdminPanel';
+import AdminPanel from '../AdminPanel/AdminPanel';
 
 const AdminLayout = () => {
   return (

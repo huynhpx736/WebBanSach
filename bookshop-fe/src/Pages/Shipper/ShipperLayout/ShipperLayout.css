@@ -1,0 +1,9 @@
+.shipper-layout {
+    display: flex;
+  }
+  
+  .shipper-content {
+    flex: 1;
+    padding: 20px;
+  }
+  

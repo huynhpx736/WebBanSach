@@ -1,8 +1,9 @@
 // api.js
 import axios from 'axios';
-
-axios.defaults.baseURL = 'http://localhost:8080';
-
+// import dotenv from  'dotenv'
+// axios.defaults.baseURL = 'http://localhost:8080';
+//lấy từ env file
+axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
 // Auth APIs
 export const register = async (username, password, email, fullname, phone) => {
   try {
