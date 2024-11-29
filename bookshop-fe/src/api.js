@@ -817,3 +817,70 @@ export const markProductAsReviewed = async (itemId) => {
     throw error;
   }
 }
+
+
+// Shipper APIs
+export const fetchAvailableOrders = async () => {
+  try {
+    const response = await axios.get('/api/shipper/orders/available');
+    return response.data.data;
+  } catch (error) {
+    throw new Error('Failed to fetch available orders.');
+  }
+};
+
+export const acceptOrder = async (orderId, shipperId) => {
+  try {
+    const response = await axios.put('/api/shipper/orders/accept', null, {
+      params: {
+        orderId,
+        shipperId
+      }
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error('Failed to accept the order.');
+  }
+};
+
+export const fetchOrdersByShipper = async (shipperId) => {
+  try {
+    const response = await axios.get('/api/shipper/orders', {
+      params: {
+        shipperId
+      }
+    });
+    return response.data.data;
+  } catch (error) {
+    throw new Error('Failed to fetch orders for the shipper.');
+  }
+};
+
+//hàm lấy đơn hàng theo id shipper và status
+export const fetchOrdersByShipperAndStatus = async (shipperId, status) => {
+  try {
+    const response = await axios.get('/api/shipper/orders', {
+      params: {
+        shipperId,
+        status
+      }
+    });
+    return response.data.data;
+  } catch (error) {
+    throw new Error('Failed to fetch orders for the shipper.');
+  }
+};
+
+export const reportFailedDelivery = async (orderId, reason, note) => {
+  try {
+    const response = await axios.post(`/api/shipper/orders/report-failed/${orderId}`, null, {
+      params: {
+        reason,
+        note
+      }
+    });
+    return response.data.data;
+  } catch (error) {
+    throw new Error('Failed to report failed delivery.');
+  }
+};

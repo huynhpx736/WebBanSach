@@ -94,7 +94,8 @@ const ProductDetail = () => {
                    {/* //nếu product.salesVolume > 0 thì hiển thị "Còn lại: +salesVolume" không thì hiển thị sản phẩm hết hàng */}
                     {product.salesVolume > 0 ? (
                       <div>
-                    <strong>Còn lại: </strong>{product.salesVolume}
+                      <strong>Đã bán:</strong> {product.quantity_sold}
+                    <strong><br/>Còn lại: </strong>{product.salesVolume}
                     </div>
 
                   ) : (

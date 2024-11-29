@@ -107,6 +107,8 @@ import ManageOrdersShipper from './Pages/Shipper/ManageOrderShipper';
 // import ProfileShipper from './Pages/Shipper/ProfileShipper';
 import ShipperLayout from './Pages/Shipper/ShipperLayout/ShipperLayout';
 import ProfileShip from './Pages/Shipper/Profile/ProfileShipper';
+import WaitingOrders from './Pages/Shipper/Orders/WaitingOrders';
+import AcceptedOrders from './Pages/Shipper/Orders/AcceptedOrders';
 const App = () => {
   return (
     <AuthProvider>
@@ -153,6 +155,11 @@ const App = () => {
       <Route path="/shipper" element={<ShipperLayout />}>
 
       <Route path="dashboard" element= {<DashboardShipper />} />
+      <Route path="orders/waiting" element={<WaitingOrders />} />
+      <Route path="orders/accepted" element = {<AcceptedOrders />} />
+        <Route path="orders/cancelled" element={<CancelledOrders />} />
+        <Route path="orders/completed" element={<CompletedOrders />} />
+
         <Route path="orders" element={<ManageOrdersShipper />} />
         <Route path="profile" element={<ProfileShip />} />
       </Route>

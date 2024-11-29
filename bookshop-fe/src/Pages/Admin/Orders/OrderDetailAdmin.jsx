@@ -17,6 +17,7 @@ const OrderDetailAdmin = () => {
     const fetchOrder = async () => {
       try {
         const orderData = await getOrderById(orderId);
+        console.log(orderData);
         setOrder(orderData);
       } catch (error) {
         console.error(error);
@@ -107,7 +108,14 @@ const OrderDetailAdmin = () => {
           <p><strong>Địa chỉ người nhận:</strong> {receiverAddress}</p>
           <p><strong>Tên người nhận:</strong> {receiverName}</p>
           <p><strong>Ngày đặt hàng:</strong> {new Date(orderDate).toLocaleString()}</p>
-          <p><strong>Trạng thái:</strong> {status === 'PLACED' ? 'Đã đặt hàng' : status === 'SHIPPING' ? 'Đang giao' : status === 'COMPLETED' ? 'Đã nhận' : 'Đã hủy'}</p>
+          <p><strong>Trạng thái:</strong> {status === 'PLACED' ? 'Đã đặt hàng' : status === 'SHIPPING' ? 'Đang giao' : status === 'COMPLETED' ? 'Đã nhận' : status === 'FAILED' ? ' Giao hàng thất bại' : 'Đã hủy'}</p>
+          {status === 'FAILED' && (
+        <div className="failure-reason">
+          <p><strong>Lý do thất bại:</strong> {order.failureReason}</p>
+          {order.note && <p><strong>Ghi chú:</strong> {order.note}</p>}
+          {/* <p><strong>Ghi chú:</strong> {order.note}</p> */}
+        </div>
+      )}
         </div>
 
         <div className="cart">
@@ -140,9 +148,11 @@ const OrderDetailAdmin = () => {
           <p><strong>Giảm giá:</strong> {formatter.format(discount)}</p>
           <h3><strong>Tổng thanh toán:</strong> {formatter.format(total)}</h3>
         </div>
+           {/* //nếu đơn hàng thất bại FAILURE thì hiển thị lý do thất bại và ghi chú nếu có */}
+      
       </div>
       {/* //nếu đơn hàng đã đặt thì hiển thị nút chuyển sang đang giao và hủy đơn hàng, nếu đang giao thì hiển thị nút hoàn thành đơn hàng và hủy đơn hàng */}
-      {status === 'PLACED' && (
+      {/* {status === 'PLACED' && (
         <div className="order-actions">
           <button className = "shipping" onClick={changeStatusToShipping}>Chuyển sang đang giao</button>
           <button className = "cancel" onClick={handleCancelOrder}>Hủy đơn hàng</button>
@@ -153,8 +163,10 @@ const OrderDetailAdmin = () => {
           <button className = "completed" onClick={handleCompleteOrder}>Hoàn thành đơn hàng</button>
           <button className = "cancel" onClick={handleCancelOrder}>Hủy đơn hàng</button>
         </div>
-      )}
+      )} */}
+     
 
+      
       {/* <Footer /> */}
     </div>
   );

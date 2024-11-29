@@ -13,7 +13,15 @@ import { fetchCartItems, fetchUserById, placeOrder } from '../../../api';
 
 const CreateOrder = () => {
   // const DistricIDFrom = 1542;
-  const DistricIDFrom = 3695;
+  const DistricIDFrom = 1451;
+  const WardCodeFrom = '20911';
+  const shopId = 5228359;
+  const token = '18aae827-4dcd-11ef-b635-eeb7b370243f';
+
+  // const DistricIDFrom = process.env.REACT_APP_DISTRICT_ID_FROM;
+  // const WardCodeFrom = process.env.REACT_APP_WARD_CODE_FROM;
+  //  const token = process.env.REACT_APP_TOKEN;
+  //  const shopId = process.env.REACT_APP_SHOP_ID;
   const [orderItems, setOrderItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const UserId = localStorage.getItem('userId');
@@ -31,8 +39,7 @@ const CreateOrder = () => {
   const [receiverPhone, setReceiverPhone] = useState('');
   const [receiverAddress, setReceiverAddress] = useState('');
   const [error, setError] = useState(null);
-  const token = '18aae827-4dcd-11ef-b635-eeb7b370243f';
-  const shopId = 5228359;
+ 
   const formatter = new Intl.NumberFormat('vi-VN', {
     style: 'currency',
     currency: 'VND',
@@ -125,6 +132,7 @@ const CreateOrder = () => {
         insurance_value: totalPrice,
         coupon: null,
         from_district_id: DistricIDFrom,
+        from_ward_code: WardCodeFrom,
         to_district_id: selectedDistrict,
         to_ward_code: selectedWard,
         weight: weight,
@@ -134,6 +142,7 @@ const CreateOrder = () => {
         insurance_value: totalPrice,
         coupon: null,
         from_district_id: DistricIDFrom,
+        from_ward_code: WardCodeFrom,
         to_district_id: selectedDistrict,
         to_ward_code: selectedWard,
         weight: weight,

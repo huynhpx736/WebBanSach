@@ -1,0 +1,108 @@
+/* .failure-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .failure-modal h3 {
+    margin-bottom: 10px;
+  }
+  
+  .failure-modal label,
+  .failure-modal textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .failure-modal button {
+    margin-right: 10px;
+    padding: 8px 12px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .failure-modal button:hover {
+    background-color: #0056b3;
+  }
+   */
+
+   .failure-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+  }
+  
+  .failure-modal h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .failure-modal label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .failure-modal select,
+  .failure-modal textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+  
+  .modal-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .modal-buttons button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .modal-buttons button:first-child {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .modal-buttons button:first-child:hover {
+    background-color: #0056b3;
+  }
+  
+  .modal-buttons button:last-child {
+    background-color: #ccc;
+  }
+  
+  .modal-buttons button:last-child:hover {
+    background-color: #bbb;
+  }
+  

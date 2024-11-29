@@ -3,6 +3,7 @@ import axios from "axios";
 // import "./ManageOrdersShipper.css";
 
 const ManageOrdersShipper = () => {
+    const userId = localStorage.getItem("userId");
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
