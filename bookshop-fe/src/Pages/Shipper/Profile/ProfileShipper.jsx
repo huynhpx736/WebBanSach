@@ -2,9 +2,6 @@ import React, { useEffect, useState, useContext } from 'react';
 import { fetchUserById, updateUser, changePassword } from '../../../api';
 import './ProfileShipper.css';
 import AuthContext from '../../Auth/AuthContext';
-import Footer from '../../../Components/Footer/Footer';
-import Header from '../../../Components/Header/Header';
-import ProfileShipper from '../ProfileShipper';
 
 const ProfileShip = () => {
   const { userId } = useContext(AuthContext);
@@ -79,15 +76,14 @@ const ProfileShip = () => {
   }
 
   return (
-    <div>
-      <Header />
-      <div className="profile-container">
+    <div >
+      <div className="profile-ship-container">
         <h1>Thông tin cá nhân</h1>
-        <div className="profile-details">
-          <img src={avatar} alt={user.username} className="profile-avatar" />
+        <div className="profile-ship-details">
+          <img src={avatar} alt={user.username} className="profile-ship-avatar" />
           {isEditing ? (
             <>
-              <div className="profile-field">
+              <div className="profile-ship-field">
                 <label>Avatar:</label>
                 <input
                   type="file"
@@ -95,7 +91,7 @@ const ProfileShip = () => {
                   accept="image/*"
                 />
               </div>
-              <div className="profile-field">
+              <div className="profile-ship-field">
                 <label>Tên:</label>
                 <input
                   type="text"
@@ -103,7 +99,7 @@ const ProfileShip = () => {
                   onChange={(e) => setFullname(e.target.value)}
                 />
               </div>
-              <div className="profile-field">
+              <div className="profile-ship-field">
                 <label>Email:</label>
                 <input
                   type="email"
@@ -111,7 +107,7 @@ const ProfileShip = () => {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              <div className="profile-field">
+              <div className="profile-ship-field">
                 <label>Số điện thoại:</label>
                 <input
                   type="tel"
@@ -119,36 +115,29 @@ const ProfileShip = () => {
                   onChange={(e) => setPhone(e.target.value)}
                 />
               </div>
-              <div className="profile-buttons">
+              <div className="profile-ship-buttons">
                 <button onClick={handleUpdateInfo} className="update-btn">Lưu thông tin</button>
                 <button onClick={() => setIsEditing(false)} className="cancel-btn">Hủy</button>
               </div>
             </>
           ) : (
             <>
-              <div className="profile-field">
+              <div className="profile-ship-field">
                 <label>Username:</label>
                 <p>{user.username}</p>
               </div>
-              <div className="profile-field">
+              <div className="profile-ship-field">
                 <label>Email:</label>
                 <p>{user.email}</p>
               </div>
-              <div className="profile-field">
+              <div className="profile-ship-field">
                 <label>Tên:</label>
                 <p>{user.fullname}</p>
               </div>
-              <div className="profile-field">
+              <div className="profile-ship-field">
                 <label>Số điện thoại:</label>
                 <p>{user.phone}</p>
               </div>
-              {/* <div className="profile-field"> */}
-                {/* <label>Loại:</label> */}
-                {/* //nếu NORMAL thì hiện thường, nếu VIP thì hiện vip, khác thì hiện Thân thiết */}
-                <p>{user.classification === 'NORMAL' ? "Thường" : user.classification === 'VIP' ? "VIP" : "Thân thiết"}</p>
-                {/* <p>{user.classification=='NORMAL'?"Thường":"vip"}</p> */}
-                {/* <p>({user.classification}==='normal')?:"thường":"vip"</p> */}
-              {/* </div> */}
               <button onClick={() => setIsEditing(true)} className="update-btn">Cập nhật thông tin</button>
             </>
           )}
@@ -157,22 +146,15 @@ const ProfileShip = () => {
         {isChangingPassword ? (
           <div className="password-change">
             <h2>Đổi mật khẩu</h2>
-            <div className="profile-field">
+            <div className="profile-ship-field">
               <label>Mật khẩu cũ:</label>
               <input
                 type="password"
                 value={oldPassword}
                 onChange={(e) => setOldPassword(e.target.value)}
               />
-
-
-              {/* <input
-                type="password"
-                value={oldPassword}
-                onChange={(e) => setOldPassword(e.target.value)}
-              /> */}
             </div>
-            <div className="profile-field">
+            <div className="profile-ship-field">
               <label>Mật khẩu mới:</label>
               <input
                 type="password"
@@ -180,7 +162,7 @@ const ProfileShip = () => {
                 onChange={(e) => setNewPassword(e.target.value)}
               />
             </div>
-            <div className="profile-field">
+            <div className="profile-ship-field">
               <label>Xác nhận mật khẩu mới:</label>
               <input
                 type="password"
@@ -188,7 +170,7 @@ const ProfileShip = () => {
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </div>
-            <div className="profile-buttons">
+            <div className="profile-ship-buttons">
               <button onClick={handleChangePassword} className="update-btn">Lưu mật khẩu</button>
               <button onClick={() => setIsChangingPassword(false)} className="cancel-btn">Hủy</button>
             </div>
@@ -198,7 +180,6 @@ const ProfileShip = () => {
         )}
         {message && <p className="message">{message}</p>}
       </div>
-      <Footer />
     </div>
   );
 };

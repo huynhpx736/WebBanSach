@@ -33,32 +33,17 @@ const ShipperPanel = () => {
           </div>
           {showOrderSubmenu && (
             <ul className="submenu">
-              <li><NavLink to="/shipper/orders/ordered"><FaShoppingCart className="icon" />Đơn hàng đã đặt</NavLink></li>
-              <li><NavLink to="/shipper/orders/shipping"><FaShippingFast className="icon" />Đơn hàng đang giao</NavLink></li>
+              <li><NavLink to="/shipper/orders/waiting"><FaShoppingCart className="icon" />Đơn hàng đang chờ</NavLink></li>
+              <li><NavLink to="/shipper/orders/accepted"><FaShippingFast className="icon" />Đơn hàng đã nhận</NavLink></li>
               <li><NavLink to="/shipper/orders/cancelled"><FaBan className="icon" />Đơn hàng đã hủy</NavLink></li>
-              <li><NavLink to="/shipper/orders/completed"><FaCheckCircle className="icon" />Đơn hàng đã giao</NavLink></li>
-            </ul>
-          )}
-        </li>
-        <li>
-          <div onClick={toggleProductSubmenu} className="submenu-toggle">
-            <FaBox className="icon" />Quản lý sản phẩm <FaChevronDown className="dropdown-icon" />
-          </div>
-          {showProductSubmenu && (
-            <ul className="submenu">
-              <li><NavLink to="/shipper/products"><FaBox className="icon" />Quản lý sách</NavLink></li>
-              <li><NavLink to="/shipper/categories"><FaTags className="icon" />Quản lý thể loại</NavLink></li>
-              <li><NavLink to="/shipper/authors"><FaUserEdit className="icon" />Quản lý tác giả</NavLink></li>
-              <li><NavLink to="/shipper/publishers"><FaBuilding className="icon" />Quản lý nhà xuất bản</NavLink></li>
-              <li><NavLink to="/shipper/tags"><FaTag className="icon" />Quản lý tag</NavLink></li>
-            </ul>
-          )}
-        </li>
-        {/* <li><NavLink to="/shipper/customers"><FaUsers className="icon" />Quản lý khách hàng</NavLink></li> */}
-         {/* <li><NavLink to="/logout"><FaSignOutAlt className="icon" />Đăng xuất</NavLink></li> */}
-         <li><NavLink to="/shipper/profile"><FaPersonBooth className="icon" />Thông tin cá nhân</NavLink></li>
+              <li><NavLink to="/shipper/orders/completed"><FaCheckCircle className="icon" />Đơn hàng đã giao thành công</NavLink></li>
+              <li><NavLink to="/shipper/orders/failure"><FaBan className="icon" />Đơn hàng thất bại</NavLink></li>
 
-        {/* <li className='profile' onClick={handleLogout}><FaSignOutAlt className="icon" />&ensp;Đăng xuất</li> */}
+            </ul>
+          )}
+        </li>
+       
+         <li><NavLink to="/shipper/profile"><FaPersonBooth className="icon" />Thông tin cá nhân</NavLink></li>
         <li className='li-logout' onClick={handleLogout}><FaSignOutAlt className="icon" />&ensp;Đăng xuất</li>
        
 

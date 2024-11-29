@@ -25,7 +25,7 @@ const Login = () => {
       } else if (response.data.role === 1) {
         navigate('/');
       } else {
-        navigate('/shipper');
+        navigate('/shipper/dashboard');
       }
     } catch (error) {
       // setMessage(error.message);
