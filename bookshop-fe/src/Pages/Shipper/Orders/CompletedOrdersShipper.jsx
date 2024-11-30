@@ -3,12 +3,12 @@ import { fetchOrdersByShipper, fetchOrdersByShipperAndStatus, updateOrderStatus 
 import { Link } from 'react-router-dom';
 // import './AcceptedOrders.css';
 const CompletedOrdersShipper = () => {
-  const shipperId = localStorage.getItem('userId');
+  // const shipperId = localStorage.getItem('userId');
 
-    //nếu shipperId không tồn tại thì sẽ gán shipperId = 30
-  if (!shipperId) {
-    shipperId = 30;
-  }
+  // if (!shipperId) {
+  //   shipperId = 30;
+  // }
+  const shipperId = localStorage.getItem('userId') || 30;
 
   const [orders, setOrders] = useState([]);
   const [failureReason, setFailureReason] = useState('');
@@ -50,7 +50,7 @@ const CompletedOrdersShipper = () => {
 
   return (
     <div className="orders-page">
-      <h2>ĐƠN HÀNG ĐÃ NHẬN</h2>
+      <h2>ĐƠN HÀNG ĐÃ GIAO THÀNH CÔNG</h2>
       {orders.length === 0 ? (
         <p className="no-orders">Không có đơn hàng nào</p>
       ) : (
@@ -67,7 +67,7 @@ const CompletedOrdersShipper = () => {
           <tbody>
             {orders.map(order => (
               <tr key={order.id}>
-                <td><Link to={`/admin/orders/${order.id}`}>{order.id}</Link></td>
+                <td><Link to={`/shipper/orders/${order.id}`}>{order.id}</Link></td>
                 <td>{new Date(order.orderDate).toLocaleString()}</td>
                 <td>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(order.total)}</td>
                 <td>{order.user.fullname}</td>
@@ -77,8 +77,7 @@ const CompletedOrdersShipper = () => {
                 {/* <button onClick={() =>>Xem chi tiết</button>
                  */}
 
-                //nút xem chi tiết đơn hàng mở ra trang tab mới để xem chi tiết đơn hàng
-                <button onClick={() => window.open(`/admin/orders/${order.id}`)}>Xem chi tiết</button>
+                <button onClick={() => window.open(`/shipper/orders/${order.id}`)}>Xem chi tiết</button>
                 </td>
               </tr>
             ))}
@@ -87,25 +86,7 @@ const CompletedOrdersShipper = () => {
       )}
     </div>
   );
-  // return (
-  //   <div className="accepted-orders">
-  //     <h1>Đơn hàng đã nhận</h1>
-  //     <ul>
-  //       {orders.map(order => (
-  //         <li key={order.id}>
-  //           <p><strong>Mã đơn hàng:</strong> {order.id}</p>
-  //           <p><strong>Địa chỉ:</strong> {order.receiverAddress}</p>
-  //           <button onClick={() => handleCompleteOrder(order.id)}>Giao thành công</button>
-  //           <button onClick={() => handleFailureOrder(order.id)}>Giao thất bại</button>
-  //           <textarea
-  //             placeholder="Lý do thất bại..."
-  //             onChange={(e) => setFailureReason(e.target.value)}
-  //           />
-  //         </li>
-  //       ))}
-  //     </ul>
-  //   </div>
-  // );
+  
 };
 
 export default CompletedOrdersShipper;

@@ -1,0 +1,22 @@
+.search-bar {
+    margin-bottom: 15px;
+    padding: 8px;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .pagination {
+    margin-top: 15px;
+  }
+  
+  .page-btn {
+    margin: 0 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .page-btn.active {
+    background-color: #007bff;
+    color: white;
+  }
+  

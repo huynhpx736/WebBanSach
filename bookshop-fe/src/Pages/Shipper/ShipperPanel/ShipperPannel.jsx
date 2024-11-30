@@ -34,10 +34,10 @@ const ShipperPanel = () => {
           {showOrderSubmenu && (
             <ul className="submenu">
               <li><NavLink to="/shipper/orders/waiting"><FaShoppingCart className="icon" />Đơn hàng đang chờ</NavLink></li>
-              <li><NavLink to="/shipper/orders/accepted"><FaShippingFast className="icon" />Đơn hàng đã nhận</NavLink></li>
+              <li><NavLink to="/shipper/orders/accepted"><FaShippingFast className="icon" />Đơn hàng đã nhận giao</NavLink></li>
               <li><NavLink to="/shipper/orders/cancelled"><FaBan className="icon" />Đơn hàng đã hủy</NavLink></li>
               <li><NavLink to="/shipper/orders/completed"><FaCheckCircle className="icon" />Đơn hàng đã giao thành công</NavLink></li>
-              <li><NavLink to="/shipper/orders/failure"><FaBan className="icon" />Đơn hàng thất bại</NavLink></li>
+              <li><NavLink to="/shipper/orders/failed"><FaBan className="icon" />Đơn hàng thất bại</NavLink></li>
 
             </ul>
           )}

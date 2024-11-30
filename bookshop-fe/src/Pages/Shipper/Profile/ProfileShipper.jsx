@@ -4,7 +4,8 @@ import './ProfileShipper.css';
 import AuthContext from '../../Auth/AuthContext';
 
 const ProfileShip = () => {
-  const { userId } = useContext(AuthContext);
+  // const { userId } = useContext(AuthContext);
+  const userId = localStorage.getItem('userId')||30;
   const [user, setUser] = useState(null);
   const [avatar, setAvatar] = useState('');
   const [fullname, setFullname] = useState('');

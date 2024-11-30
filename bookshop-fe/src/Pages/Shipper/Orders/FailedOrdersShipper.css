@@ -1,0 +1,90 @@
+/* .failed-orders-page {
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .failed-orders-page h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .no-failed-orders {
+    font-size: 16px;
+    color: #888;
+  }
+  
+  .failed-orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .failed-orders-table th,
+  .failed-orders-table td {
+    text-align: left;
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .failed-orders-table th {
+    background-color: #f1f1f1;
+    color: #555;
+    font-weight: bold;
+  }
+  
+  .failed-orders-table tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .failed-orders-table a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .failed-orders-table a:hover {
+    text-decoration: underline;
+  }
+   */
+
+   .search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+  }
+  
+  .search-bar input[type="text"],
+  .search-bar input[type="date"] {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 200px;
+  }
+  
+  .search-bar button {
+    padding: 8px 15px;
+    font-size: 14px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .search-bar button:hover {
+    background-color: #0056b3;
+  }
+  
+  .search-bar button:last-of-type {
+    background-color: #6c757d;
+  }
+  
+  .search-bar button:last-of-type:hover {
+    background-color: #5a6268;
+  }
+  

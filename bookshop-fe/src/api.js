@@ -859,7 +859,7 @@ export const fetchOrdersByShipper = async (shipperId) => {
 //hàm lấy đơn hàng theo id shipper và status
 export const fetchOrdersByShipperAndStatus = async (shipperId, status) => {
   try {
-    const response = await axios.get('/api/shipper/orders', {
+    const response = await axios.get('/api/shipper/orders-by-shipperid-and-status', {
       params: {
         shipperId,
         status

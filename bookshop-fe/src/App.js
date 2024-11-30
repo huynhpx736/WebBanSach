@@ -22,45 +22,6 @@
 //   );
 // }
 
-// export default App;
-
-// import React from 'react';
-// import { Routes, Route } from 'react-router-dom';
-// import Home from './pages/Home';
-// import Search from './pages/Search';
-// import ProductDetail from './pages/ProductDetail';
-// import AdminDashboard from './pages/admin/Dashboard';
-// import AdminProducts from './pages/admin/Products';
-// import AdminOrders from './pages/admin/Orders';
-// import AdminAuthors from './pages/admin/Authors';
-// import AdminPublishers from './pages/admin/Publishers';
-// import AdminTags from './pages/admin/Tags';
-// import AdminUsers from './pages/admin/Users';
-// import Cart from './pages/Cart';
-// import OrderStatus from './pages/OrderStatus';
-// import Login from './pages/Login';
-// import Register from './pages/Register';
-
-// const App = () => {
-//   return (
-//     <Routes>
-//       <Route path="/" element={<Home />} />
-//       <Route path="/search" element={<Search />} />
-//       <Route path="/product/:id" element={<ProductDetail />} />
-//       <Route path="/cart" element={<Cart />} />
-//       <Route path="/order-status" element={<OrderStatus />} />
-//       <Route path="/login" element={<Login />} />
-//       <Route path="/register" element={<Register />} />
-//       <Route path="/admin" element={<AdminDashboard />} />
-//       <Route path="/admin/products" element={<AdminProducts />} />
-//       <Route path="/admin/orders" element={<AdminOrders />} />
-//       <Route path="/admin/authors" element={<AdminAuthors />} />
-//       <Route path="/admin/publishers" element={<AdminPublishers />} />
-//       <Route path="/admin/tags" element={<AdminTags />} />
-//       <Route path="/admin/users" element={<AdminUsers />} />
-//     </Routes>
-//   );
-// };
 
 // export default App;
 import './App.css';
@@ -75,14 +36,8 @@ import CategoryPage from './Pages/CategoryPage/CategoryPage';
 
 import AdminLayout from './Pages/Admin/AdminLayout/AdminLayout';
 import Dashboard from './Pages/Admin/Dashboard/Dashboard';
-// import ManageProduct from './Pages/Admin/ManageProducts/ManageProducts';
-// import AddProduct from './Pages/Admin/Products/AddProduct';
-// import EditProduct from './Pages/Admin/Products/EditProduct';
-// import ManageProduct from './Pages/Admin/Products/ManageProducts';
 import ManageProduct from './Pages/Admin/Products/ManaProduct';
 import ManageCategory from './Pages/Admin/Category/ManageCategory';
-// import AddCategory from './Pages/Admin/Category/AddCateory';
-// import EditCategory from './Pages/Admin/Category/EditCategory';
 import Shop from './Pages/Shop/Shop';
 import { AuthProvider } from './Pages/Auth/AuthContext';
 import Profile from './Pages/User/Profile/Profile';
@@ -108,7 +63,9 @@ import ManageOrdersShipper from './Pages/Shipper/ManageOrderShipper';
 import ShipperLayout from './Pages/Shipper/ShipperLayout/ShipperLayout';
 import ProfileShip from './Pages/Shipper/Profile/ProfileShipper';
 import WaitingOrders from './Pages/Shipper/Orders/WaitingOrders';
-import AcceptedOrders from './Pages/Shipper/Orders/AcceptedOrders';
+import FailedOrderShipper from './Pages/Shipper/Orders/FailedOrdersShipper';
+import CompletedOrdersShipper from './Pages/Shipper/Orders/CompletedOrdersShipper';
+import AcceptedOrdersShipper from './Pages/Shipper/Orders/AcceptedOrdersShipper';
 const App = () => {
   return (
     <AuthProvider>
@@ -156,9 +113,11 @@ const App = () => {
 
       <Route path="dashboard" element= {<DashboardShipper />} />
       <Route path="orders/waiting" element={<WaitingOrders />} />
-      <Route path="orders/accepted" element = {<AcceptedOrders />} />
+      <Route path="orders/accepted" element = {<AcceptedOrdersShipper />} />
         <Route path="orders/cancelled" element={<CancelledOrders />} />
-        <Route path="orders/completed" element={<CompletedOrders />} />
+        <Route path="orders/completed" element={<CompletedOrdersShipper />} />
+        <Route path="orders/failed" element = {<FailedOrderShipper />} />
+        <Route path="orders/:orderId" element={<OrderDetailAdmin />} />
 
         <Route path="orders" element={<ManageOrdersShipper />} />
         <Route path="profile" element={<ProfileShip />} />
