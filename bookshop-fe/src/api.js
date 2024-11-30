@@ -843,9 +843,9 @@ export const acceptOrder = async (orderId, shipperId) => {
   }
 };
 
-export const fetchOrdersByShipper = async (shipperId) => {
+export const fetchAllOrdersByShipper = async (shipperId) => {
   try {
-    const response = await axios.get('/api/shipper/orders', {
+    const response = await axios.get('/api/shipper/all-orders-by-shipperid ', {
       params: {
         shipperId
       }
