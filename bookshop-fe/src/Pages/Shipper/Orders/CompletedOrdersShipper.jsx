@@ -71,12 +71,7 @@ const CompletedOrdersShipper = () => {
                 <td>{new Date(order.orderDate).toLocaleString()}</td>
                 <td>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(order.total)}</td>
                 <td>{order.user.fullname}</td>
-                <td className="action-buttons">
-                {/* <button onClick={() => handleCompleteOrder(order.id)}>Giao thành công</button> */}
-                {/* <button onClick={() => handleFailureOrder(order.id)}>Giao thất bại</button> */}
-                {/* <button onClick={() =>>Xem chi tiết</button>
-                 */}
-
+                <td className="action-buttons">                
                 <button onClick={() => window.open(`/shipper/orders/${order.id}`)}>Xem chi tiết</button>
                 </td>
               </tr>
