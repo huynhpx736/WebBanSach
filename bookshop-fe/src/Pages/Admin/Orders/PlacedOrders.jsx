@@ -27,7 +27,7 @@ const PlacedOrders = () => {
         return;
       }
 
-      await updateOrderStatus(orderId, 'SHIPPING');
+      await updateOrderStatus(orderId, 'CONFIRMED');
       setOrders(orders.filter(order => order.id !== orderId));
     } catch (error) {
       console.error('Failed to update order status:', error);

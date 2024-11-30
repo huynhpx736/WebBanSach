@@ -58,7 +58,6 @@ import About from './Pages/About/About';
 import ReviewPage from './Pages/User/Order/ReviewPage';
 import FindResults from './Pages/FindProduct/FindProduct';
 import DashboardShipper from './Pages/Shipper/DashboardShiper';
-import ManageOrdersShipper from './Pages/Shipper/ManageOrderShipper';
 // import ProfileShipper from './Pages/Shipper/ProfileShipper';
 import ShipperLayout from './Pages/Shipper/ShipperLayout/ShipperLayout';
 import ProfileShip from './Pages/Shipper/Profile/ProfileShipper';
@@ -71,9 +70,9 @@ const App = () => {
     <AuthProvider>
     <Routes>
      
-       <Route path="*" element={NotFound} /> 
+       {/* <Route path="*" element={NotFound} />  */}
        
-      {/* <Route path="*" element={<div> <h2>Not found</h2></div>} /> */}
+      <Route path="*" element={<div> <h2>404 Not found</h2></div>} />
       <Route path="/" element={<Home />} />
       <Route path="/shop" element={<Shop/>} />
       <Route path="/search" element={<Search />} />
@@ -118,8 +117,6 @@ const App = () => {
         <Route path="orders/completed" element={<CompletedOrdersShipper />} />
         <Route path="orders/failed" element = {<FailedOrderShipper />} />
         <Route path="orders/:orderId" element={<OrderDetailAdmin />} />
-
-        <Route path="orders" element={<ManageOrdersShipper />} />
         <Route path="profile" element={<ProfileShip />} />
       </Route>
     </Routes>
