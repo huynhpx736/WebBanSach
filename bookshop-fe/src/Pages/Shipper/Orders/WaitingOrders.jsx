@@ -19,7 +19,8 @@ const WaitingOrders = () => {
   const fetchOrders = useCallback(async () => {
     setLoading(true);
     try {
-      const data = await getOrderByStatus('PLACED');
+      // const data = await getOrderByStatus('PLACED');
+      const data = await getOrderByStatus('CONFIRMED');
       const sortedData = data.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate));
       setOrders(sortedData);
       setFilteredOrders(sortedData);
