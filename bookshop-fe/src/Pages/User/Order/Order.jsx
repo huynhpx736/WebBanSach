@@ -11,6 +11,7 @@ const Order = () => {
   });
   const userId = localStorage.getItem('userId');
   const [placedOrders, setPlacedOrders] = useState([]);
+  const [confirmedOrders, setConfirmedOrders] = useState([]);
   const [cancelledOrders, setCancelledOrders] = useState([]);
   const [shippingOrders, setShippingOrders] = useState([]);
   const [completedOrders, setCompletedOrders] = useState([]);
@@ -27,10 +28,12 @@ const Order = () => {
     };
 
     fetchOrders('PLACED', setPlacedOrders);
+    fetchOrders('CONFIRMED', setConfirmedOrders);
     fetchOrders('CANCELLED', setCancelledOrders);
     fetchOrders('SHIPPING', setShippingOrders);
     fetchOrders('COMPLETED', setCompletedOrders);
   }, [userId]);
+  
 
   const renderOrders = (orders) => {
     if (orders.length === 0) {
@@ -64,8 +67,10 @@ const Order = () => {
       <Header />
       <div className="order-container">
         <div className="order-section">
+        {/* //đơn hàng đã đặt gồm tất cả các đơn hàng có status là PLACED hoặc CONFIRMED */}
           <h2 onClick={() => toggleSection('PLACED')}>Đơn hàng đã đặt</h2>
-          {activeSection === 'PLACED' && renderOrders(placedOrders)}
+          {activeSection === 'PLACED' && renderOrders(placedOrders.concat(confirmedOrders))}
+       
         </div>
         <div className="order-section">
           <h2 onClick={() => toggleSection('SHIPPING')}>Đơn hàng đang giao</h2>

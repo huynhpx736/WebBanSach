@@ -92,7 +92,8 @@ const OrderDetail = () => {
           <p><strong>Địa chỉ người nhận:</strong> {receiverAddress}</p>
           <p><strong>Tên người nhận:</strong> {receiverName}</p>
           <p><strong>Ngày đặt hàng:</strong> {new Date(orderDate).toLocaleString()}</p>
-          <p><strong>Trạng thái:</strong> {status === 'PLACED' ? 'Đã đặt hàng' : status === 'SHIPPING' ? 'Đang giao' : status === 'COMPLETED' ? 'Đã nhận' : 'Đã hủy'}</p>
+          {/* <p><strong>Trạng thái:</strong> {status === 'PLACED' ? 'Đã đặt hàng' : status === 'SHIPPING' ? 'Đang giao' : status === 'COMPLETED' ? 'Đã nhận' : 'Đã hủy'}</p> */}
+          <p><strong>Trạng thái:</strong> {status === 'PLACED' ? 'Đã đặt hàng' :status==='CONFIRMED'?'Đang chuẩn bị đơn hàng': status === 'SHIPPING' ? 'Đang giao' : status === 'COMPLETED' ? 'Đã nhận hàng' : status === 'FAILED' ? ' Giao hàng thất bại' : 'Đã hủy'}</p>
         </div>
 
         <div className="cart">
