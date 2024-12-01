@@ -198,9 +198,9 @@ export const updateOrderStatus = async (orderId, status) => {
   }
 };
 
-export const cancelOrder = async (orderId, status) => {
+export const cancelOrderByAdmin = async (orderId, status) => {
   try {
-    const response = await axios.get(`/api/orders/cancel/${orderId}`, {
+    const response = await axios.get(`/api/orders/cancel-by-admin/${orderId}`, {
       params: { status }
     });
     return response.data;

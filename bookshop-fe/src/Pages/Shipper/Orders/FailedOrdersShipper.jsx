@@ -105,10 +105,10 @@ const FailedOrderShipper = () => {
       </div>
 
       {currentOrders.length === 0 ? (
-        <p className="no-failed-orders">Không có đơn hàng thất bại nào</p>
+        <p className="no-orders">Không có đơn hàng thất bại nào</p>
       ) : (
         <>
-          <table className="failed-orders-table">
+          <table className="orders-table">
             <thead>
               <tr>
                 <th>Mã đơn</th>

@@ -82,7 +82,8 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getOrderByStatus, updateOrderStatus, cancelOrder } from '../../../api';
+// import { getOrderByStatus, updateOrderStatus, cancelOrder } from '../../../api';
+import { getOrderByStatus, updateOrderStatus, cancelOrderByAdmin } from '../../../api';
 import './OrderManagement.css';
 import { FaCheckCircle, FaBan } from 'react-icons/fa';
 
@@ -121,7 +122,7 @@ const ShippingOrders = () => {
         if (!window.confirm('Hủy đơn hàng?')) {
             return;
             }
-      await cancelOrder(orderId, 'CANCELLED');
+      await cancelOrderByAdmin(orderId, 'CANCELLED');
       setOrders(orders.filter(order => order.id !== orderId));
     } catch (error) {
       console.error('Failed to cancel order:', error);
