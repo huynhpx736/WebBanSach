@@ -20,9 +20,8 @@ const PlacedOrders = () => {
 
   const reasons = [
     'Hàng bị hỏng',
-    'Không liên lạc được với người nhận',
-    'Khách hàng từ chối nhận hàng',
-    'Địa chỉ không đúng hoặc không tìm thấy',
+    'Không chuẩn bị được hàng'
+    
   ];
 
   useEffect(() => {
@@ -224,11 +223,11 @@ const PlacedOrders = () => {
               onChange={(e) => setCustomReason(e.target.value)}
             />
           )}
-          <textarea
+          {/* <textarea
             placeholder="Ghi chú thêm..."
             value={note}
             onChange={(e) => setNote(e.target.value)}
-          />
+          /> */}
           {error && <p className="error-message">{error}</p>}
           <div className="modal-buttons">
             <button onClick={handleCancelOrder}>OK</button>

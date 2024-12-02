@@ -64,6 +64,8 @@ import WaitingOrders from './Pages/Shipper/Orders/WaitingOrders';
 import FailedOrderShipper from './Pages/Shipper/Orders/FailedOrdersShipper';
 import CompletedOrdersShipper from './Pages/Shipper/Orders/CompletedOrdersShipper';
 import AcceptedOrdersShipper from './Pages/Shipper/Orders/AcceptedOrdersShipper';
+import ConfirmedOrders from './Pages/Admin/Orders/ConfirmedOrders';
+import FailedOrders from './Pages/Admin/Orders/FailedOrders';
 const App = () => {
   return (
     <AuthProvider>
@@ -90,20 +92,17 @@ const App = () => {
       
       <Route path="/admin" element={<AdminLayout />}>
         <Route path="dashboard" element={<Dashboard />} />
-        {/* <Route path="orders" element={<Orders />} /> */}
         <Route path="products" element={<ManageProduct />} />
-        {/* <Route path="products/add" element={<AddProduct />} /> */}
-        {/* <Route path="products/edit/:id" element={<EditProduct />} /> */}
         <Route path="categories" element={<ManageCategory />} />
-        {/* <Route path="categories/add" element={<AddCategory />} /> */}
-        {/* <Route path="categories/edit/:id" element={<EditCategory />} /> */}
         <Route path="authors" element={ <ManageAuthor/>} />
         <Route path="publishers" element={<ManagePublisher/>} />
         <Route path="tags" element={<ManageTag />} />
         <Route path="orders/ordered" element = {<PlacedOrders/>} />
+        <Route path="orders/confirmed" element = {<ConfirmedOrders/>} />
         <Route path='orders/shipping' element={<ShippingOrders />} />
         <Route path='orders/cancelled' element={<CancelledOrders />} />
         <Route path='orders/completed' element={<CompletedOrders />} />
+        <Route path='orders/failed' element={<FailedOrders />} />
         <Route path='orders/:orderId' element={<OrderDetailAdmin />} />
       </Route>      
       {/* Shipper Routes */}

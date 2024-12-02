@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { getOrderByStatus, updateOrderStatus, reportFailedDelivery } from '../../../api';
+// import { fetchOrdersByShipperAndStatus, updateOrderStatus, reportFailedDelivery } from '../../../api';
+import { getOrderByStatus, updateOrderStatus, cancelOrderByAdmin } from '../../../api';
+
 import { Link } from 'react-router-dom';
-const ShippingOrders = () => {
+import { MdCheckCircle, MdCancel } from 'react-icons/md'; 
+const FailedOrders = () => {
   const [orders, setOrders] = useState([]);
   const [filteredOrders, setFilteredOrders] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -9,23 +12,30 @@ const ShippingOrders = () => {
   const [searchDate, setSearchDate] = useState('');
   const [searchCustomer, setSearchCustomer] = useState('');
   const [selectedOrderId, setSelectedOrderId] = useState(null);
-  const [failureReason, setFailureReason] = useState('');
+  const [cancelledReason, setCancelledReason] = useState('');
   const [customReason, setCustomReason] = useState('');
   const [note, setNote] = useState('');
   const [error, setError] = useState('');
   const itemsPerPage = 10;
 
+  const reasons = [
+    'Hàng bị hỏng',
+    'Không liên lạc được với người nhận',
+    'Khách hàng từ chối nhận hàng',
+    'Địa chỉ không đúng hoặc không tìm thấy',
+  ];
+
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const data = await getOrderByStatus('SHIPPING');
+        const data = await getOrderByStatus('FAILED');
         const sortedData = data.sort(
           (a, b) => new Date(b.orderDate) - new Date(a.orderDate) // Sắp xếp đơn hàng mới nhất lên trước
         );
         setOrders(sortedData);
         setFilteredOrders(sortedData);
       } catch (error) {
-        console.error('Failed to fetch accepted orders:', error);
+        console.error('Failed to fetch placed orders:', error);
       }
     };
     fetchOrders();
@@ -75,45 +85,46 @@ const ShippingOrders = () => {
     setCurrentPage(page);
   };
 
-  const handleCompleteOrder = async (orderId) => {
-    if (!window.confirm('Xác nhận giao hàng thành công?')) {
+  const handleConfirmOrderAgain = async (orderId) => {
+    if (!window.confirm('Xác nhận duyệt đơn hàng?')) {
       return;
     }
     try {
-      await updateOrderStatus(orderId, 'COMPLETED');
+      await updateOrderStatus(orderId, 'SHIPPING');
       setOrders(orders.filter(order => order.id !== orderId));
       setFilteredOrders(filteredOrders.filter(order => order.id !== orderId));
-      alert('Giao hàng thành công!');
+      alert('Đã duyệt đơn hàng!');
     } catch (error) {
-      console.error('Failed to complete order:', error);
+      console.error('Failed to confrim order:', error);
     }
   };
 
-  const handleFailureOrder = async () => {
-    if (!failureReason || (failureReason === 'Khác' && !customReason)) {
-      setError('Vui lòng chọn lý do thất bại!');
+  const handleCancelOrder = async () => {
+    if (!cancelledReason || (cancelledReason === 'Khác' && !customReason)) {
+      setError('Vui lòng chọn lý do hủy đơn!');
       return;
     }
     setError('');
-    const reasonToSend = failureReason === 'Khác' ? customReason : failureReason;
+    const reasonToSend = cancelledReason === 'Khác' ? customReason : cancelledReason;
 
     try {
-      await reportFailedDelivery(selectedOrderId, reasonToSend, note || null);
+      // await reportFailedDelivery(selectedOrderId, reasonToSend, note || null);
+      await cancelOrderByAdmin(selectedOrderId, reasonToSend, note);
       setOrders(orders.filter(order => order.id !== selectedOrderId));
       setFilteredOrders(filteredOrders.filter(order => order.id !== selectedOrderId));
-      alert('Đã báo giao thất bại!');
+      alert('Đã huỷ đơn hàng!');
       setSelectedOrderId(null);
-      setFailureReason('');
+      setCancelledReason('');
       setCustomReason('');
       setNote('');
     } catch (error) {
-      console.error('Failed to report failed delivery:', error);
+      console.error('Failed to cancel order:', error);
     }
   };
 
   return (
     <div className="orders-page">
-      <h2>ĐƠN HÀNG ĐANG GIAO</h2>
+      <h2>ĐƠN HÀNG GIAO THẤT BẠI</h2>
 
       {/* Thanh tìm kiếm */}
       <div className="search-bar">
@@ -149,7 +160,7 @@ const ShippingOrders = () => {
                 <th>Ngày đặt</th>
                 <th>Tổng tiền</th>
                 <th>Người đặt</th>
-                <th>Shipper</th>
+                <th>Lý do</th>
                 <th>Hành động</th>
               </tr>
             </thead>
@@ -162,9 +173,14 @@ const ShippingOrders = () => {
                   <td>{new Date(order.orderDate).toLocaleString()}</td>
                   <td>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(order.total)}</td>
                   <td>{order.user.fullname}</td>
-                  <td>{order.shipper ? order.shipper.fullname : 'Chưa phân công'}</td>
+                    <td>{order.failureReason}</td>
                   <td>
-                    <button className="btn-view-detail" onClick={() => window.open(`/admin/orders/${order.id}`)}>Xem chi tiết</button>
+                    <button className="btn-complete" onClick={() => handleConfirmOrderAgain(order.id)}>
+                      <MdCheckCircle /> Duyệt lại
+                    </button>
+                    <button className="btn-failure" onClick={() => setSelectedOrderId(order.id)}>
+                      <MdCancel /> Hủy
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -186,9 +202,44 @@ const ShippingOrders = () => {
         </>
       )}
 
-     
+      {selectedOrderId && (
+        <div className="failure-modal">
+          {/* <h3>Hủy đơn hàng: {selectedOrderId}</h3> */}
+          <h3>Hủy đơn hàng </h3>
+          <label>
+            Lý do hủy đơn:
+            <select
+              value={cancelledReason}
+              onChange={(e) => setCancelledReason(e.target.value)}
+            >
+              <option value="">Chọn lý do</option>
+              {reasons.map((reason, index) => (
+                <option key={index} value={reason}>{reason}</option>
+              ))}
+              <option value="Khác">Khác</option>
+            </select>
+          </label>
+          {cancelledReason === 'Khác' && (
+            <textarea
+              placeholder="Nhập lý do khác..."
+              value={customReason}
+              onChange={(e) => setCustomReason(e.target.value)}
+            />
+          )}
+          <textarea
+            placeholder="Ghi chú thêm..."
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+          />
+          {error && <p className="error-message">{error}</p>}
+          <div className="modal-buttons">
+            <button onClick={handleCancelOrder}>OK</button>
+            <button onClick={() => setSelectedOrderId(null)}>Hủy</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
-export default ShippingOrders;
+export default FailedOrders;
