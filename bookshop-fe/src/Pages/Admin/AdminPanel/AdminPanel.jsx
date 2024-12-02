@@ -34,9 +34,11 @@ const AdminPanel = () => {
           {showOrderSubmenu && (
             <ul className="submenu">
               <li><NavLink to="/admin/orders/ordered"><FaShoppingCart className="icon" />Đơn hàng đang chờ</NavLink></li>
+              <li><NavLink to="/admin/orders/confirmed"><FaShoppingCart className="icon" />Đơn hàng đã duyệt</NavLink></li>
               <li><NavLink to="/admin/orders/shipping"><FaShippingFast className="icon" />Đơn hàng đang giao</NavLink></li>
+              <li><NavLink to="/admin/orders/completed"><FaCheckCircle className="icon" />Đơn hàng thành công</NavLink></li>
+              <li><NavLink to="/admin/orders/failed"><FaCheckCircle className="icon" />Đơn hàng thất bại</NavLink></li>
               <li><NavLink to="/admin/orders/cancelled"><FaBan className="icon" />Đơn hàng đã hủy</NavLink></li>
-              <li><NavLink to="/admin/orders/completed"><FaCheckCircle className="icon" />Đơn hàng đã giao</NavLink></li>
             </ul>
           )}
         </li>

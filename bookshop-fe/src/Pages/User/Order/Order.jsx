@@ -14,6 +14,7 @@ const Order = () => {
   const [confirmedOrders, setConfirmedOrders] = useState([]);
   const [cancelledOrders, setCancelledOrders] = useState([]);
   const [shippingOrders, setShippingOrders] = useState([]);
+  const [failedOrders, setFailedOrders] = useState([]);
   const [completedOrders, setCompletedOrders] = useState([]);
   const [activeSection, setActiveSection] = useState(null);
 
@@ -31,6 +32,7 @@ const Order = () => {
     fetchOrders('CONFIRMED', setConfirmedOrders);
     fetchOrders('CANCELLED', setCancelledOrders);
     fetchOrders('SHIPPING', setShippingOrders);
+    fetchOrders('FAILED', setFailedOrders);
     fetchOrders('COMPLETED', setCompletedOrders);
   }, [userId]);
   
@@ -73,8 +75,9 @@ const Order = () => {
        
         </div>
         <div className="order-section">
+        {/* //đơn hàng đang giao gồm tất cả các đơn hàng có status là SHIPPING hoặc FAILED (vì fail có thể giao lại đến khi thành CANCELLED thì mới bỏ) */}
           <h2 onClick={() => toggleSection('SHIPPING')}>Đơn hàng đang giao</h2>
-          {activeSection === 'SHIPPING' && renderOrders(shippingOrders)}
+          {activeSection === 'SHIPPING' && renderOrders(shippingOrders.concat(failedOrders))}
         </div>
         <div className="order-section">
           <h2 onClick={() => toggleSection('CANCEL')}>Đơn hàng đã hủy</h2>

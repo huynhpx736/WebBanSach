@@ -69,10 +69,10 @@ const Dashboard = () => {
           }
 
           switch (order.status) {
-            case 'PLACED':
-              placedOrders += 1;
-              groupedData[date].placed += 1;
-              break;
+            // case 'PLACED':
+            //   placedOrders += 1;
+            //   groupedData[date].placed += 1;
+            //   break;
             case 'CONFIRMED':
               placedOrders += 1;
               groupedData[date].placed += 1;
@@ -121,7 +121,7 @@ const Dashboard = () => {
         labels,
         datasets: [
           {
-            label: 'Đơn hàng đã đặt',
+            label: 'Đơn hàng đã duyệt',
             data: placedOrderData,
             borderColor: 'rgba(54, 162, 235, 1)',
             backgroundColor: 'rgba(54, 162, 235, 0.2)',
@@ -245,8 +245,8 @@ const Dashboard = () => {
       <div className="stats-container">
         <h3>Thống kê tháng {selectedMonth}/{selectedYear}</h3>
         <p><strong>Tổng số đơn hàng:</strong> {stats.totalOrders}</p>
-        <p><strong>Đơn hàng khách đã đặt:</strong> {stats.placedOrders}</p>
-        <p><strong>Đơn hàng đang nhận giao:</strong> {stats.shippingOrders}</p>
+        <p><strong>Đơn hàng khách đã duyệt:</strong> {stats.placedOrders}</p>
+        <p><strong>Đơn hàng đang giao:</strong> {stats.shippingOrders}</p>
         <p><strong>Đơn hàng đã hủy:</strong> {stats.cancelledOrders}</p>
         <p><strong>Đơn hàng đã giao thành công:</strong> {stats.completedOrders}</p>
         <p><strong>Đơn hàng giao thất bại:</strong> {stats.failedOrders}</p>

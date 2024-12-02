@@ -86,14 +86,18 @@ const OrderDetail = () => {
 
         <div className="order-info">
           <p><strong>Mã:</strong> {order.id}</p>
-          <p><strong>Người đặt:</strong> {user.fullname}</p>
+          {/* <p><strong>Người đặt:</strong> {user.fullname}</p> */}
           {/* <p><strong>Email:</strong> {user.email}</p> */}
           <p><strong>Số điện thoại người nhận:</strong> {receiverPhone}</p>
           <p><strong>Địa chỉ người nhận:</strong> {receiverAddress}</p>
           <p><strong>Tên người nhận:</strong> {receiverName}</p>
           <p><strong>Ngày đặt hàng:</strong> {new Date(orderDate).toLocaleString()}</p>
           {/* <p><strong>Trạng thái:</strong> {status === 'PLACED' ? 'Đã đặt hàng' : status === 'SHIPPING' ? 'Đang giao' : status === 'COMPLETED' ? 'Đã nhận' : 'Đã hủy'}</p> */}
-          <p><strong>Trạng thái:</strong> {status === 'PLACED' ? 'Đã đặt hàng' :status==='CONFIRMED'?'Đang chuẩn bị đơn hàng': status === 'SHIPPING' ? 'Đang giao' : status === 'COMPLETED' ? 'Đã nhận hàng' : status === 'FAILED' ? ' Giao hàng thất bại' : 'Đã hủy'}</p>
+          <p><strong>Trạng thái:</strong> {status === 'PLACED' ? 'Đã đặt hàng' :status==='CONFIRMED'?'Đang chuẩn bị đơn hàng': status === 'SHIPPING' ? 'Đang giao' : status === 'COMPLETED' ? 'Đã nhận hàng' : status === 'FAILED' ? 'Đang giao' : 'Đã hủy'}</p>
+          {/* //nếu đơn hàng có trạng thái "CANCEL" và có cancelledReason thì hiển thị lý do hủy */}
+          {status === 'CANCELLED' && order.cancelReason && (
+            <p><strong>Lý do hủy:</strong> {order.cancelReason}</p>
+          )}
         </div>
 
         <div className="cart">

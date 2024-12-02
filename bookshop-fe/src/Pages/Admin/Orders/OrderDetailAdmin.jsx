@@ -101,9 +101,9 @@ const OrderDetailAdmin = () => {
         <h2>Chi tiết đơn hàng</h2>
 
         <div className="order-info">
-          <p><strong>Mã:</strong> {order.id}</p>
-          <p><strong>Người đặt:</strong> {user.fullname}</p>
-          <p><strong>Email:</strong> {user.email}</p>
+          <p><strong>Mã đơn:</strong> {order.id}</p>
+          <p><strong>Khách hàng:</strong> {user.fullname}</p>
+          <p><strong>Email khách hàng:</strong> {user.email}</p>
           <p><strong>Số điện thoại người nhận:</strong> {receiverPhone}</p>
           <p><strong>Địa chỉ người nhận:</strong> {receiverAddress}</p>
           <p><strong>Tên người nhận:</strong> {receiverName}</p>
