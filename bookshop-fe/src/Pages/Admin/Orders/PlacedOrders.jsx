@@ -35,7 +35,7 @@ const PlacedOrders = () => {
         setOrders(sortedData);
         setFilteredOrders(sortedData);
       } catch (error) {
-        console.error('Failed to fetch accepted orders:', error);
+        console.error('Failed to fetch placed orders:', error);
       }
     };
     fetchOrders();
@@ -95,7 +95,7 @@ const PlacedOrders = () => {
       setFilteredOrders(filteredOrders.filter(order => order.id !== orderId));
       alert('Đã duyệt đơn hàng!');
     } catch (error) {
-      console.error('Failed to complete order:', error);
+      console.error('Failed to confrim order:', error);
     }
   };
 
@@ -109,7 +109,7 @@ const PlacedOrders = () => {
 
     try {
       // await reportFailedDelivery(selectedOrderId, reasonToSend, note || null);
-      await cancelOrderByAdmin(selectedOrderId, reasonToSend, note || null);
+      await cancelOrderByAdmin(selectedOrderId, reasonToSend, note);
       setOrders(orders.filter(order => order.id !== selectedOrderId));
       setFilteredOrders(filteredOrders.filter(order => order.id !== selectedOrderId));
       alert('Đã huỷ đơn hàng!');
@@ -118,7 +118,7 @@ const PlacedOrders = () => {
       setCustomReason('');
       setNote('');
     } catch (error) {
-      console.error('Failed to report cancelled delivery:', error);
+      console.error('Failed to cancel order:', error);
     }
   };
 
@@ -167,7 +167,7 @@ const PlacedOrders = () => {
               {currentOrders.map(order => (
                 <tr key={order.id}>
                   <td>
-                    <Link to={`/shipper/orders/${order.id}`}>{order.id}</Link>
+                    <Link to={`/admin/orders/${order.id}`}>{order.id}</Link>
                   </td>
                   <td>{new Date(order.orderDate).toLocaleString()}</td>
                   <td>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(order.total)}</td>

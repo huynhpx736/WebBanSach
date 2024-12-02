@@ -88,7 +88,7 @@ const OrderDetailAdmin = () => {
     return <div>Loading...</div>;
   }
 
-  const { user, total, shippingFee, discount, receiverName, receiverPhone, receiverAddress, orderDate, status } = order;
+  const { user, total, shippingFee, discount, receiverName, receiverPhone, receiverAddress, orderDate, status, note } = order;
   const formatter = new Intl.NumberFormat('vi-VN', {
     style: 'currency',
     currency: 'VND',
@@ -103,21 +103,26 @@ const OrderDetailAdmin = () => {
         <div className="order-info">
           <p><strong>Mã:</strong> {order.id}</p>
           <p><strong>Người đặt:</strong> {user.fullname}</p>
-          {/* <p><strong>Email:</strong> {user.email}</p> */}
+          <p><strong>Email:</strong> {user.email}</p>
           <p><strong>Số điện thoại người nhận:</strong> {receiverPhone}</p>
           <p><strong>Địa chỉ người nhận:</strong> {receiverAddress}</p>
           <p><strong>Tên người nhận:</strong> {receiverName}</p>
-          <p><strong>Ngày đặt hàng:</strong> {new Date(orderDate).toLocaleString()}</p>
+          <p><strong>Ngày đặt hàng:</strong> {new Date(orderDate).toLocaleString()}</p>        
           <p><strong>Trạng thái:</strong> {status === 'PLACED' ? 'Đã đặt hàng' :status==='CONFIRMED'?'Đã duyệt': status === 'SHIPPING' ? 'Đang giao' : status === 'COMPLETED' ? 'Đã nhận hàng' : status === 'FAILED' ? ' Giao hàng thất bại' : 'Đã hủy'}</p>
+          {/* <p><strong>Ghi chú:</strong> {order.note}</p> */}
+
           {status === 'FAILED' && (
         <div className="failure-reason">
           <p><strong>Lý do thất bại:</strong> {order.failureReason}</p>
-          {order.note && <p><strong>Ghi chú:</strong> {order.note}</p>}
-          {/* <p><strong>Ghi chú:</strong> {order.note}</p> */}
         </div>
       )}
+        {/* //nếu đơn hàng có ghi chú và khác rỗngthì hiển thị ghi chú */}
+         {order.note&&(order.note!=='')&& ( 
+          <div className="note">
+            <p><strong>Ghi chú:</strong> {order.note}</p>
+          </div>
+      )}
         </div>
-
         <div className="cart">
           <h2>Sản phẩm trong đơn hàng</h2>
           {orderItems.length === 0 ? (
