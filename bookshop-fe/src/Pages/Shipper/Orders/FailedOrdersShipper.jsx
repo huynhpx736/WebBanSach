@@ -123,7 +123,7 @@ const FailedOrderShipper = () => {
               {currentOrders.map(order => (
                 <tr key={order.id}>
                   <td>
-                    <Link to={`/admin/orders/${order.id}`}>{order.id}</Link>
+                    <Link to={`/shipper/orders/${order.id}`}>{order.id}</Link>
                   </td>
                   <td>{new Date(order.orderDate).toLocaleString()}</td>
                   <td>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(order.total)}</td>

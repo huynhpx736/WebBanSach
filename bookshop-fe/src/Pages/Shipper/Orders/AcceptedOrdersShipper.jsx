@@ -106,7 +106,7 @@ const AcceptedOrdersShipper = () => {
     const reasonToSend = failureReason === 'Khác' ? customReason : failureReason;
 
     try {
-      await reportFailedDelivery(selectedOrderId, reasonToSend, note || null);
+      await reportFailedDelivery(selectedOrderId, reasonToSend, note);
       setOrders(orders.filter(order => order.id !== selectedOrderId));
       setFilteredOrders(filteredOrders.filter(order => order.id !== selectedOrderId));
       alert('Đã báo giao thất bại!');
