@@ -20,6 +20,7 @@ const ManageTag = () => {
   const loadTags = async () => {
     try {
       const data = await fetchAllTags();
+      data.sort((a, b) => b.id - a.id);
       setTags(data);
     } catch (error) {
       console.error('Không thể tải danh sách tag:', error);
@@ -135,10 +136,10 @@ const ManageTag = () => {
           value={newTagName}
           onChange={(e) => setNewTagName(e.target.value)}
         />
-        <button onClick={modalMode === 'create' ? handleCreateTag : handleUpdateTag}>
+        <button className="btn-add-tag" onClick={modalMode === 'create' ? handleCreateTag : handleUpdateTag}>
           {modalMode === 'create' ? 'Tạo' : 'Cập Nhật'}
         </button>
-        <button onClick={closeModal}>Hủy</button>
+        <button className="btn-cancel-tag" onClick={closeModal}>Hủy</button>
       </Modal>
 
       <ToastContainer />

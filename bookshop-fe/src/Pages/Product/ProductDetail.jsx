@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchProductById, fetchProductsByCategory, fetchAllProducts, addProductToCart, fetchUserById, getReviewByProduct } from '../../api';
-import Cover from '../../images/biasach.jpg'; // Thay thế với hình ảnh từ API nếu có
+import Cover from '../../images/biasach.jpg'; // Thay thế với hình ảnh từ API nếu không có bìa
 import './ProductDetail.css';
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
@@ -10,11 +10,11 @@ import AuthContext from '../Auth/AuthContext';
 import { toast } from 'react-toastify';
 const ProductDetail = () => {
   const { id } = useParams();
-  const { userId } = useContext(AuthContext); // Get the logged-in user information
+  const { userId } = useContext(AuthContext); 
   const [product, setProduct] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [reviews, setReviews] = useState([]);
-  const [quantity, setQuantity] = useState(1); // State for quantity
+  const [quantity, setQuantity] = useState(1); 
   const [user, setUser] = useState(null);
   useEffect(() => {
 
@@ -137,7 +137,24 @@ const ProductDetail = () => {
                   ))}
                 </div>
               </div>
+              {product.topic&&(<div>
+                  <h3>Chủ đề</h3>
+                  <div className="topics">
+                    {product.topic}
+                  </div>
+                </div>
+              )}
+                {product.content&&(<div>
+                  <h3>Mục lục</h3>
+                  <div className="table-of-contents">                
+                  {product.content.split('\n').map((item, key) => {
+                    return <span key={key}>{item}<br/></span>
+                  })}
+                </div>
+              </div>
+              )}
 
+              {/* <div dangerouslySetInnerHTML={{ __html: product.content }}></div> */}
               <div>
                 <h3>Tags:</h3>
                 <div className="tags">

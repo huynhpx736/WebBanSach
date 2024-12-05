@@ -94,8 +94,8 @@
     background-color: #c82333;
   }
   
-  /* Modal styles */
-  .modal {
+  Modal styles
+  .modal-category {
     padding: 20px;
     background-color: #fff;
     border-radius: 4px;
@@ -103,7 +103,7 @@
     margin: auto;
   }
   
-  .modal input {
+  .modal-category input {
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ddd;
@@ -111,21 +111,26 @@
     width: 100%;
   }
   
-  .modal button {
+  .modal-category button {
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
-    background-color: #007bff;
+    /* background-color: #007bff; */
     color: #fff;
     cursor: pointer;
     margin-right: 10px;
   }
   
-  .modal button:hover {
+  .modal-category button:hover {
     background-color: #0056b3;
   }
   
   .overlay {
     background: rgba(0, 0, 0, 0.5);
   }
-  
+  .btn-add-tag {
+    background-color: #089f3a;
+  }
+  .btn-cancel-tag {
+    background-color: #e8083c;
+  }
