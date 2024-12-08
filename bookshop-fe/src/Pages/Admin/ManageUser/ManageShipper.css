@@ -1,60 +1,134 @@
+
 .manage-shipper {
   padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .search-bar {
   display: flex;
   gap: 10px;
+  justify-content: center;
   margin-bottom: 20px;
 }
 
 .search-bar input {
   padding: 8px;
-  flex: 1;
+  font-size: 14px;
+  width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
-button {
+.search-bar button {
   padding: 8px 12px;
+  font-size: 14px;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #007bff;
-  color: white;
+.search-bar button:hover {
+  background-color: #0056b3;
 }
 
 .shipper-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-.shipper-table th,
-.shipper-table td {
+.shipper-table th, .shipper-table td {
   border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
+  padding: 10px;
+  /* text-align: center; */
 }
 
 .shipper-table th {
-  background-color: #f4f4f4;
+  background-color: #b1c3b9;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.pagination button {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  background-color: white;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.pagination button:hover:not(.active) {
+  background-color: #ddd;
 }
 
 .modal {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .modal-content {
-  background: white;
+  background-color: white;
   padding: 20px;
   border-radius: 5px;
   width: 400px;
+}
+
+.modal-content h3 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.modal-content form input {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.modal-content form button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 48%;
+}
+
+.modal-content form button:first-child {
+  background-color: #007bff;
+  color: white;
+}
+
+.modal-content form button:last-child {
+  background-color: #ddd;
+}
+.action-manage-shipper-col {
+  /* display: flex;
+  gap: 5px; */
+  /* justify-content: center;
+  align-items: center; */
+  text-align: center;
 }

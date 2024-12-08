@@ -34,6 +34,20 @@ export const login = async (username, password) => {
 };
 
 // User APIs
+export const updateActive = async (id, activeStatus) => {
+  try {
+    const response = await axios.put('/api/users/update-active', null, {
+      params: {
+        id,
+        activeStatus
+      }
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error('Failed to update active status.');
+  }
+};
+
 export const getAllUserByRole = async (role) => {
   try {
     const response = await axios.get('/api/users/get-all-by-role', {

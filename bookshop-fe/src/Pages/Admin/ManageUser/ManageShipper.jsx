@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaSearch, FaPlus, FaLock, FaUnlock } from 'react-icons/fa';
-import { register as apiRegister, getAllUserByRole } from '../../../api';
+import { register as apiRegister, getAllUserByRole, updateActive, fetchUserById } from '../../../api';
 import './ManageShipper.css';
 
 const ManageShipper = () => {
@@ -14,6 +14,8 @@ const ManageShipper = () => {
   const [shipper, setShipper] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [shipperPerPage] = useState(10);
 
   useEffect(() => {
     loadShipper();
@@ -67,9 +69,9 @@ const ManageShipper = () => {
     }
 
     try {
-      const response = await apiRegister(username, password, email, fullname, phone);
+      const response = await apiRegister(username, password, email, fullname, phone, 3);
       if (response.desc === 'User registered successfully') {
-        setMessage('Đăng kí thành công.');
+        setMessage('Đăng ký thành công.');
         setModalOpen(false);
         loadShipper();
         return;
@@ -82,11 +84,34 @@ const ManageShipper = () => {
         setMessage('Email đã tồn tại.');
         return;
       }
-      setMessage('Đăng kí thất bại.');
+      setMessage('Đăng ký thất bại.');
     } catch (error) {
       console.error('Failed to register:', error);
     }
   };
+
+  const handleActive = async (id) => {
+    try {
+      const user = await fetchUserById(id);
+      const newActive = user.active === 1 ? 0 : 1;
+      const notify = newActive ? 'Đã mở khóa tài khoản' : 'Đã khóa tài khoản';
+      await updateActive(id, newActive);
+      alert(notify);
+      loadShipper();
+    } catch (error) {
+      console.error('Failed to update active:', error);
+    }
+  };
+
+  const filteredShippers = shipper.filter((item) =>
+    item.fullname.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const indexOfLastShipper = currentPage * shipperPerPage;
+  const indexOfFirstShipper = indexOfLastShipper - shipperPerPage;
+  const currentShippers = filteredShippers.slice(indexOfFirstShipper, indexOfLastShipper);
+
+  const totalPages = Math.ceil(filteredShippers.length / shipperPerPage);
 
   return (
     <div className="manage-shipper">
@@ -108,23 +133,36 @@ const ManageShipper = () => {
             <th>Email</th>
             <th>Họ và tên</th>
             <th>Số điện thoại</th>
-            <th>Hành động</th>
+            <th className='action-manage-shipper-col'>Hành động</th>
           </tr>
         </thead>
         <tbody>
-          {shipper.filter((item) => item.username.includes(searchTerm)).map((item) => (
+          {currentShippers.map((item) => (
             <tr key={item.id}>
               <td>{item.username}</td>
               <td>{item.email}</td>
               <td>{item.fullname}</td>
               <td>{item.phone}</td>
-              <td>
-                <button><FaLock /> Khóa</button>
+              <td className='action-manage-shipper-col'>
+                <button onClick={() => handleActive(item.id)}>
+                  {item.active ? <FaUnlock /> : <FaLock />}
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      <div className="pagination">
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index}
+            className={index + 1 === currentPage ? 'active' : ''}
+            onClick={() => setCurrentPage(index + 1)}
+          >
+            {index + 1}
+          </button>
+        ))}
+      </div>
 
       {modalOpen && (
         <div className="modal">
@@ -168,7 +206,7 @@ const ManageShipper = () => {
                 onChange={(e) => setPhone(e.target.value)}
               />
               <button type="submit">Thêm</button>
-              <button onClick={() => setModalOpen(false)}>Hủy</button>
+              <button type="button" onClick={() => setModalOpen(false)}>Hủy</button>
             </form>
             <p>{message}</p>
           </div>
