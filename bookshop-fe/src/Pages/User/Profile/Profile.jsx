@@ -46,10 +46,11 @@ const Profile = () => {
         fullname: fullname,
         username: user.username,
         email: email,
-        role: 1,
+        role: user.role,
         password: oldPassword,
         phone: phone,
-        classification: user.classification
+        classification: user.classification,
+        active: user.active
       });
       setUser(updatedUser);
       setMessage('Thông tin cá nhân đã được cập nhật.');
@@ -145,8 +146,6 @@ const Profile = () => {
                 <label>Loại:</label>
                 {/* //nếu NORMAL thì hiện thường, nếu VIP thì hiện vip, khác thì hiện Thân thiết */}
                 <p>{user.classification === 'NORMAL' ? "Thường" : user.classification === 'VIP' ? "VIP" : "Thân thiết"}</p>
-                {/* <p>{user.classification=='NORMAL'?"Thường":"vip"}</p> */}
-                {/* <p>({user.classification}==='normal')?:"thường":"vip"</p> */}
               </div>
               <button onClick={() => setIsEditing(true)} className="update-btn">Cập nhật thông tin</button>
             </>

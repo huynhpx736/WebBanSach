@@ -5,14 +5,15 @@ import axios from 'axios';
 //lấy từ env file
 axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
 // Auth APIs
-export const register = async (username, password, email, fullname, phone) => {
+export const register = async (username, password, email, fullname, phone, role) => {
   try {
     const response = await axios.post('/api/auth/register', {
       username: username,
       password: password,
       email: email,
       fullname: fullname,
-      phone: phone
+      phone: phone,
+      role: role
     });
     return response.data;
   } catch (error) {
@@ -33,6 +34,32 @@ export const login = async (username, password) => {
 };
 
 // User APIs
+export const getAllUserByRole = async (role) => {
+  try {
+    const response = await axios.get('/api/users/get-all-by-role', {
+      params: {
+        role
+      }
+    });
+    return response.data.data;
+  } catch (error) {
+    throw new Error('Failed to fetch users by role.');
+  }
+};
+export const updateClassifications = async (id, classifications) => {
+  try {
+    const response = await axios.put('/api/users/update-classifications', null, {
+      params: {
+        id,
+        classifications
+      }
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error('Failed to update classifications.');
+  }
+};
+
 export const fetchAllUsers = async () => {
   try {
     const response = await axios.get('/api/users/get-all');

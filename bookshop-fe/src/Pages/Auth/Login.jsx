@@ -11,12 +11,21 @@ const Login = () => {
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
-
+  const [desc, setDesc] = useState('');
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const response = await apiLogin(username, password);
-      setMessage("Login successful");
+     console.log(response.desc);
+     if (response.desc === 'User is inactive') {
+      setMessage("Tài khoản đã bị khóa");
+      return;
+    } else if (response.desc === 'Login successful') {
+      setMessage("Đăng nhập thành công");
+    } else {
+      setMessage("Đăng nhập thất bại");
+      return;
+    }
       login(response.data.id); // Pass the user ID to the login function
       // localStorage.setUser(response.data.data);
       localStorage.setItem('user', JSON.stringify(response.data));
@@ -27,16 +36,16 @@ const Login = () => {
       } else {
         navigate('/shipper/dashboard');
       }
+      
     } catch (error) {
-      // setMessage(error.message);
-      setMessage("Đăng nhập thất bại");
+      console.error('Failed to login:', error);
+      // setMessage("Đăng nhập thất bại");
     }
   };
 
   return (
     <div className = "auth">
         <a href="/" className="back-home">Trở về trang chủ</a>   
-        {/* <div>${process.env.TOKEN}</div>  */}
     <div className='wrapper'>
       <div className="auth-container">
         <div className="auth-header">

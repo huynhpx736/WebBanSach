@@ -45,10 +45,11 @@ const ProfileShip = () => {
         fullname: fullname,
         username: user.username,
         email: email,
-        role: 1,
+        role: user.role,
         password: oldPassword,
         phone: phone,
-        classification: user.classification
+        classification: user.classification,
+        active: user.active
       });
       setUser(updatedUser);
       setMessage('Thông tin cá nhân đã được cập nhật.');

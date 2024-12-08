@@ -245,7 +245,7 @@ const Dashboard = () => {
       <div className="stats-container">
         <h3>Thống kê tháng {selectedMonth}/{selectedYear}</h3>
         <p><strong>Tổng số đơn hàng:</strong> {stats.totalOrders}</p>
-        <p><strong>Đơn hàng khách đã duyệt:</strong> {stats.placedOrders}</p>
+        <p><strong>Đơn hàng đã duyệt:</strong> {stats.placedOrders}</p>
         <p><strong>Đơn hàng đang giao:</strong> {stats.shippingOrders}</p>
         <p><strong>Đơn hàng đã hủy:</strong> {stats.cancelledOrders}</p>
         <p><strong>Đơn hàng đã giao thành công:</strong> {stats.completedOrders}</p>
