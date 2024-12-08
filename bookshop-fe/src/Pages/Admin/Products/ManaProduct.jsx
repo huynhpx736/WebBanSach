@@ -33,6 +33,7 @@ const ManageProduct = () => {
     tags: [],
     status: 1,
     prioity: 0,
+    quantity_sold:0 ,
     image: ''
   });
   const [selectedImage, setSelectedImage] = useState(null);
@@ -113,6 +114,7 @@ const ManageProduct = () => {
         authors: product.authors.map(author => author.id),
         tags: product.tags.map(tag => tag.id),
         status: product.status,
+        quantity_sold: product.quantity_sold,
         image: product.image
       });
       setShowModal(true);
@@ -346,7 +348,7 @@ const ManageProduct = () => {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="salesVolume">Số lượng bán:</label>
+                <label htmlFor="salesVolume">Số lượng:</label>
                 <input
                   type="number"
                   id="salesVolume"

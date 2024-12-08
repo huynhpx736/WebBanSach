@@ -123,7 +123,7 @@ const ConfirmedOrders = () => {
 
   return (
     <div className="orders-page">
-      <h2>ĐƠN HÀNG ĐANG CHỜ</h2>
+      <h2>ĐƠN HÀNG ĐÃ DUYỆT</h2>
 
       {/* Thanh tìm kiếm */}
       <div className="search-bar">

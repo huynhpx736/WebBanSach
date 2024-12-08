@@ -16,8 +16,9 @@ const criteriaList = [
   { id: 'tag', label: 'Tag' },
   { id: 'rating', label: 'Đánh giá' },
   { id: 'price', label: 'Giá' },
-  { id: 'sold', label: 'Số lượng đã bán' }, // Số lượng đã bán
-  { id: 'content', label: 'Mục lục' }, // Mục lục
+  { id: 'sold', label: 'Số lượng đã bán' }, 
+  { id: 'content', label: 'Mục lục' }, 
+  { id: 'all', label: 'Chọn tất cả' },
 ];
 
 const Search = () => {
@@ -58,10 +59,33 @@ const Search = () => {
 
   const handleChangeCriteria = (e) => {
     const { id, checked } = e.target;
-    setSelectedCriteria(prev => {
-      if (checked) return [...prev, id];
-      return prev.filter(criteria => criteria !== id);
-    });
+    if (id === 'all') {
+      if (checked) {
+        setSelectedCriteria(criteriaList.map(criteria => criteria.id));
+        //đánh dấu tất cả các ô trên giao diện
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+          checkbox.checked = true;
+        }
+        );
+      } else {
+        setSelectedCriteria([]);
+        //bỏ đánh dấu tất cả các ô trên giao diện
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+          checkbox.checked = false;
+        }
+        );
+      }
+    } else {
+      setSelectedCriteria(prev => {
+        if (checked) return [...prev, id];
+        return prev.filter(criteria => criteria !== id);
+      });
+    }
+    // const { id, checked } = e.target;
+    // setSelectedCriteria(prev => {
+    //   if (checked) return [...prev, id];
+    //   return prev.filter(criteria => criteria !== id);
+    // });
   };
 
   const handleSubmitCriteria = (e) => {
@@ -359,14 +383,7 @@ const Search = () => {
       value={formData.minQuantitySold}
       onChange={handleChange}
     />
-    {/* <span>-</span>
-    <input
-      type="number"
-      id="maxQuantitySold"
-      name="maxQuantitySold"
-      value={formData.maxQuantitySold}
-      onChange={handleChange}
-    /> */}
+ 
     <label htmlFor="quantitySoldWeight">Độ ưu tiên:</label>
     <input
       type="number"
@@ -431,14 +448,16 @@ const Search = () => {
                 <strong>{book.title}</strong><br />
                 Tác giả: {book.authors.map(author => author.name).join(', ')}<br />
                 Thể loại: {book.categories.map(category => category.name).join(', ')}<br />
-                Chủ đề: {book.topic}<br />
+                {book.topic&&(<div>
+                  Chủ đề: {book.topic}
+                </div>
+                )}
                 Nhà xuất bản: {book.publisher.name}<br />
                 Năm xuất bản: {book.publicationYear}<br />
                 Tag: {book.tags.map(tag => tag.name).join(', ')}<br />
                 Đánh giá: {book.starRating} sao<br />
                 Giá: {book.price.toLocaleString()} VNĐ<br />
-                Số lượng đã bán: {book.quantity_sold}<br /> {/* Hiển thị số lượng đã bán */}
-                //nếu có mục lục thì hiển thị một phần mục lục
+                Số lượng đã bán: {book.quantity_sold}<br /> 
                 {book.content && (
                   <div>
                     Mục lục: {book.content.slice(0, 50)}...

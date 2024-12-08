@@ -66,6 +66,7 @@ import CompletedOrdersShipper from './Pages/Shipper/Orders/CompletedOrdersShippe
 import AcceptedOrdersShipper from './Pages/Shipper/Orders/AcceptedOrdersShipper';
 import ConfirmedOrders from './Pages/Admin/Orders/ConfirmedOrders';
 import FailedOrders from './Pages/Admin/Orders/FailedOrders';
+import ManageShipper from './Pages/Admin/ManageUser/ManageShipper';
 const App = () => {
   return (
     <AuthProvider>
@@ -104,6 +105,7 @@ const App = () => {
         <Route path='orders/completed' element={<CompletedOrders />} />
         <Route path='orders/failed' element={<FailedOrders />} />
         <Route path='orders/:orderId' element={<OrderDetailAdmin />} />
+        <Route path="manage-shipper" element={<ManageShipper />} />
       </Route>      
       {/* Shipper Routes */}
       <Route path="/shipper" element={<ShipperLayout />}>

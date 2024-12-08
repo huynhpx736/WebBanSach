@@ -116,7 +116,7 @@ const CompletedOrdersShipper = () => {
 
   return (
     <div className="orders-page">
-      <h2>ĐƠN HÀNG ĐÃ NHẬN</h2>
+      <h2>ĐƠN HÀNG ĐÃ GIAO THÀNH CÔNG</h2>
 
       {/* Thanh tìm kiếm */}
       <div className="search-bar">

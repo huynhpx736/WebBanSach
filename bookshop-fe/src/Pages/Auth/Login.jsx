@@ -44,7 +44,7 @@ const Login = () => {
         </div>
         <form className="auth-form" onSubmit={handleLogin}>
           <div className='line-input'>
-            <label>Tên đăng nhập</label>
+            <label>Tên đăng nhập(email)</label>
             <input
               type="text"
               value={username}

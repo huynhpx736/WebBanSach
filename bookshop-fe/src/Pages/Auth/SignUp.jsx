@@ -11,6 +11,7 @@ const Register = () => {
   const [phone, setPhone] = useState('');
   const [fullname, setFullname] = useState('');
   const [message, setMessage] = useState('');
+  const [role, setRole] = useState(1);
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -60,31 +61,8 @@ const Register = () => {
     }
 
 
-    apiRegister(username, password, email, fullname, phone).then(
+    apiRegister(username, password, email, fullname, phone,role).then(
       (response) => {
-        
-        // if (response.data.desc === "User registered successfully") {
-        //   setMessage("Đăng kí thành công.");
-        //   return;
-        // }
-        //neu null thi tra ve thong bao
-        // if (response.data.desc === null) {
-        //   setMessage("Đăng kí thất bại null.");
-        //   return;
-        // }
-        // if (response.data.desc  === "User already exists") {
-        //   setMessage("Tên tài khoản đã tồn tại.");
-        //   return;
-        // }
-        // if (response.data.desc  === "Email already exists") {
-        //   setMessage("Email đã tồn tại.");
-        //   return;
-        // }
-
-        // setMessage("Đăng kí thành công.");
-        
-        // setMessage(response.desc==="Username already exists"?"Tên tài khoản đã tồn tại.":(response.desc==="Email already exists"?"Email đã tồn tại.":response.desc==="User registered successfully"?"Đăng kí thành công.":"Đăng kí thất bại."));
-        // setMessage(response.desc);
         if (response.desc === "User registered successfully") {
           setMessage("Đăng kí thành công.");
           return;

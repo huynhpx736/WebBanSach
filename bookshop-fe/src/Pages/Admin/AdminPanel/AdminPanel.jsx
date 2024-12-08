@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { FaTachometerAlt, FaClipboardList, FaBox, FaTags, FaUserEdit, FaBuilding, FaTag, FaSignOutAlt, FaUsers, FaChevronDown, FaShoppingCart, FaShippingFast, FaCheckCircle, FaBan } from 'react-icons/fa';
+import { FaTachometerAlt, FaClipboardList, FaBox, FaTags, FaUserEdit, FaBuilding, FaTag, FaSignOutAlt, FaUsers, FaChevronDown, FaShoppingCart, FaShippingFast, FaCheckCircle, FaBan, FaPersonBooth, FaMotorcycle, FaPeopleCarry, FaPeopleArrows } from 'react-icons/fa';
 import './AdminPanel.css';
 import { useContext } from 'react';
 import AuthContext from '../../Auth/AuthContext';
@@ -13,6 +13,7 @@ const AdminPanel = () => {
   };
   const [showProductSubmenu, setShowProductSubmenu] = useState(false);
   const [showOrderSubmenu, setShowOrderSubmenu] = useState(false);
+  const [showShipperSubmenu, setShowShipperSubmenu] = useState(false);
 
   const toggleProductSubmenu = () => {
     setShowProductSubmenu(!showProductSubmenu);
@@ -20,6 +21,9 @@ const AdminPanel = () => {
 
   const toggleOrderSubmenu = () => {
     setShowOrderSubmenu(!showOrderSubmenu);
+  };
+  const toggleShipperSubmenu = () => {
+    setShowShipperSubmenu(!showShipperSubmenu);
   };
 
   return (
@@ -56,9 +60,17 @@ const AdminPanel = () => {
             </ul>
           )}
         </li>
-        {/* <li><NavLink to="/admin/customers"><FaUsers className="icon" />Quản lý khách hàng</NavLink></li> */}
-         {/* <li><NavLink to="/logout"><FaSignOutAlt className="icon" />Đăng xuất</NavLink></li> */}
-         
+        <li>
+          <div onClick={toggleShipperSubmenu} className="submenu-toggle">
+            <FaMotorcycle className="icon" />Quản lý shipper <FaChevronDown className="dropdown-icon" />
+          </div>
+          {showShipperSubmenu && (
+            <ul className="submenu">
+              <li><NavLink to="/admin/manage-shipper"><FaPeopleCarry className="icon" />Quản lý shipper</NavLink></li>
+              <li><NavLink to="/admin/manage-customer"><FaPeopleArrows className="icon" />Quản lý khách hàng</NavLink></li>             
+            </ul>
+          )}
+        </li>       
         <li className='li-logout' onClick={handleLogout}><FaSignOutAlt className="icon" />&ensp;Đăng xuất</li>
        
 

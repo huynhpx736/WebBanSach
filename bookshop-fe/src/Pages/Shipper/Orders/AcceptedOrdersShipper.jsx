@@ -199,7 +199,8 @@ const AcceptedOrdersShipper = () => {
 
       {selectedOrderId && (
         <div className="failure-modal">
-          <h3>Giao thất bại: {selectedOrderId}</h3>
+          {/* <h3>Giao thất bại: {selectedOrderId}</h3> */}
+          <h3>Giao hàng thất bại</h3>
           <label>
             Lý do thất bại:
             <select
