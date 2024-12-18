@@ -31,18 +31,22 @@ const About = () => {
                 <p>- Trở thành thành viên <strong>Thân thiết</strong> sau 10 đơn hàng hoặc tổng giá trị mua hàng đạt 10 triệu đồng.</p>
                 <p>- Trở thành thành viên <strong>VIP</strong> sau 25 đơn hàng hoặc tổng giá trị mua hàng đạt 25 triệu đồng.</p>
 
-                <h3>Phương thức thanh toán:</h3>
-                <p>Thanh toán khi nhận hàng.</p>
-
-                <h3>Phí giao hàng và chi phí:</h3>
-                <img src="shipfee.png" alt="Phương thức thanh toán" className="payment-image" />
-
-                <p>Hệ thống của chúng tôi tự động tính toán tổng chi phí, bao gồm phí vận chuyển và các ưu đãi. Phí vận chuyển được tính dựa trên trọng lượng sản phẩm và khoảng cách giao hàng. Ví dụ, một đơn hàng nặng 2kg trong nội thành Hà Nội có phí vận chuyển là 28,500 VNĐ.</p>
-                <p>Chúng tôi hỗ trợ thanh toán khi nhận hàng để đảm bảo sự tiện lợi và yên tâm cho khách hàng.</p>
-                <h3>Liên hệ:</h3>
-                <p>Địa chỉ: Đường số 102, Tăng Nhơn Phú A, quận 9, Hồ Chí Minh</p>
-                <p>Số điện thoại: 0702363862</p>
-                <p>Email: xuanhuynhmc@gmail.com</p>
+                {/* <h3>Phương thức thanh toán:</h3>
+                <p>Thanh toán khi nhận hàng.</p> */}
+    
+            <h3>Chính sách giao hàng:</h3>
+            <p>Đơn hàng có thể sẽ không được duyệt nếu không đảm bảo các điều kiện sau:</p>
+            <p>- Chúng tôi chỉ giao hàng trong phạm vi các tỉnh thành thuộc Việt Nam.</p>
+            <p>- Không giao hàng ở các khu vực hẻo lánh hoặc không an toàn, khu vực đang có thiên tai, dịch bệnh hoặc các khu vực khác mà công ty vận chuyển không thể đảm bảo an toàn cho hàng hóa, khu vực đang có chiến tranh, xung đột, bạo loạn, khủng bố hoặc các yếu tố khác ảnh hưởng đến việc vận chuyển hàng hóa.</p>
+            <p>Hệ thống của chúng tôi tự động tính toán tổng chi phí, bao gồm phí vận chuyển và các ưu đãi. Phí vận chuyển được tính dựa trên trọng lượng sản phẩm và khoảng cách giao hàng. Ví dụ, một đơn hàng nặng 2kg trong nội thành Hà Nội có phí vận chuyển là 28,500 VNĐ.</p>
+            <p>Đơn hàng sẽ được giao trong vòng 3-5 ngày làm việc kể từ ngày đặt hàng.</p>
+            <p>Chúng tôi hỗ trợ thanh toán khi nhận hàng để đảm bảo sự tiện lợi và yên tâm cho khách hàng.</p>            
+            <h3>Phí giao hàng và chi phí:</h3>
+            <img src="shipfee.png" alt="Phương thức thanh toán" className="payment-image" />
+            <h3>Liên hệ:</h3>
+            <p>Địa chỉ: Đường số 102, Tăng Nhơn Phú A, quận 9, Hồ Chí Minh</p>
+            <p>Số điện thoại: 0702363862</p>
+            <p>Email: xuanhuynh254@gmail.com</p>
             </section>
         </div>
         <Footer />

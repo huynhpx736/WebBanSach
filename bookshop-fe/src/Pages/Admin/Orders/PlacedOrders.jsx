@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // import { fetchOrdersByShipperAndStatus, updateOrderStatus, reportFailedDelivery } from '../../../api';
-import { getOrderByStatus, updateOrderStatus, cancelOrderByAdmin } from '../../../api';
+import { getOrderByStatus, updateOrderStatus, cancelOrderByAdmin, sendMailSpring } from '../../../api';
 
 import { Link } from 'react-router-dom';
 import { MdCheckCircle, MdCancel } from 'react-icons/md'; 
@@ -19,9 +19,8 @@ const PlacedOrders = () => {
   const itemsPerPage = 10;
 
   const reasons = [
-    'Hàng bị hỏng',
-    'Không chuẩn bị được hàng'
-    
+    'Không chuẩn bị được hàng',
+    'Địa chỉ hiện không thể giao hàng'
   ];
 
   useEffect(() => {
@@ -92,7 +91,10 @@ const PlacedOrders = () => {
       await updateOrderStatus(orderId, 'CONFIRMED');
       setOrders(orders.filter(order => order.id !== orderId));
       setFilteredOrders(filteredOrders.filter(order => order.id !== orderId));
-      alert('Đã duyệt đơn hàng!');
+      // Gửi email thông báo
+      await sendMailSpring(orderId, 'CONFIRMED');
+      
+      alert('Đã duyệt đơn hàng và gửi email thông báo cho khách hàng!');
     } catch (error) {
       console.error('Failed to confrim order:', error);
     }

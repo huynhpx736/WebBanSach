@@ -60,7 +60,7 @@ const AdminPanel = () => {
             </ul>
           )}
         </li>
-        <li>
+        {/* <li>
           <div onClick={toggleShipperSubmenu} className="submenu-toggle">
             <FaMotorcycle className="icon" />Quản lý shipper <FaChevronDown className="dropdown-icon" />
           </div>
@@ -70,7 +70,8 @@ const AdminPanel = () => {
               <li><NavLink to="/admin/manage-customer"><FaPeopleArrows className="icon" />Quản lý khách hàng</NavLink></li>             
             </ul>
           )}
-        </li>       
+        </li>        */}
+        <li><NavLink to="/admin/manage-shipper"><FaMotorcycle className="icon" />Quản lý shipper</NavLink></li>
         <li className='li-logout' onClick={handleLogout}><FaSignOutAlt className="icon" />&ensp;Đăng xuất</li>
        
 

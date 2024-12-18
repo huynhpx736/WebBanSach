@@ -107,7 +107,16 @@ const OrderDetailAdmin = () => {
           <p><strong>Số điện thoại người nhận:</strong> {receiverPhone}</p>
           <p><strong>Địa chỉ người nhận:</strong> {receiverAddress}</p>
           <p><strong>Tên người nhận:</strong> {receiverName}</p>
-          <p><strong>Ngày đặt hàng:</strong> {new Date(orderDate).toLocaleString()}</p>        
+          <p><strong>Ngày đặt hàng:</strong> {new Date(orderDate).toLocaleString()}</p> 
+          {/* //tên nhân viên giao hàng nếu có  */}
+          {order.shipper&&(
+            <div>
+            <p><strong>Nhân viên giao hàng:</strong> {order.shipper.fullname}</p>
+
+            </div>
+          )
+
+          }
           <p><strong>Trạng thái:</strong> {status === 'PLACED' ? 'Đã đặt hàng' :status==='CONFIRMED'?'Đã duyệt': status === 'SHIPPING' ? 'Đang giao' : status === 'COMPLETED' ? 'Đã nhận hàng' : status === 'FAILED' ? ' Giao hàng thất bại' : 'Đã hủy'}</p>
           {/* <p><strong>Ghi chú:</strong> {order.note}</p> */}
 
