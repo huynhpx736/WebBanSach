@@ -18,10 +18,8 @@ const ConfirmedOrders = () => {
   const itemsPerPage = 10;
 
   const reasons = [
-    'Hàng bị hỏng',
-    'Không liên lạc được với người nhận',
-    'Khách hàng từ chối nhận hàng',
-    'Địa chỉ không đúng hoặc không tìm thấy',
+    'Không chuẩn bị được hàng',
+    'Địa chỉ hiện không thể giao hàng',
   ];
 
   useEffect(() => {

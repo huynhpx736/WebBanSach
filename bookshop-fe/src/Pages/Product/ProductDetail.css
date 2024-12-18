@@ -70,13 +70,15 @@
 
 .authors,
 .categories,
-.tags {
+.tags
+ {
   margin: 10px 0;
 }
 
 .author,
 .category,
-.tag {
+.tag,
+.topics {
   display: inline-block;
   padding: 5px 10px;
   margin: 5px;

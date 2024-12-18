@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchOrdersByShipperAndStatus, updateOrderStatus, reportFailedDelivery } from '../../../api';
+import { fetchOrdersByShipperAndStatus, updateOrderStatus, reportFailedDelivery, getOrderItemsByOrderId } from '../../../api';
 import { Link } from 'react-router-dom';
 import { MdCheckCircle, MdCancel } from 'react-icons/md'; 
 const AcceptedOrdersShipper = () => {
@@ -18,9 +18,10 @@ const AcceptedOrdersShipper = () => {
   const shipperId = localStorage.getItem('userId') || 30;
 
   const reasons = [
-    'Không liên lạc được với người nhận',
-    'Khách hàng từ chối nhận hàng',
-    'Địa chỉ không đúng hoặc không tìm thấy',
+    'Không liên lạc được',
+    'Không nhận hàng',
+    'Hoãn',
+    'Hàng hỏng cần đổi'
   ];
 
   useEffect(() => {

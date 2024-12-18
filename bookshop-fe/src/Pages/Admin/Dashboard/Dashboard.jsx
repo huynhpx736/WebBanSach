@@ -20,6 +20,7 @@ const Dashboard = () => {
   const [stats, setStats] = useState({
     totalOrders: 0,
     placedOrders: 0,
+    confirmedOrders: 0,
     shippingOrders: 0,
     cancelledOrders: 0,
     completedOrders: 0,
@@ -33,6 +34,7 @@ const Dashboard = () => {
       const orders = await getAllOrders();
       const labels = [];
       const placedOrderData = [];
+      const confirmedOrderData = [];
       const shippingOrderData = [];
       const cancelledOrderData = [];
       const completedOrderData = [];
@@ -41,6 +43,7 @@ const Dashboard = () => {
       const groupedData = {};
       let totalOrders = 0;
       let placedOrders = 0;
+      let confirmedOrders = 0;
       let shippingOrders = 0;
       let cancelledOrders = 0;
       let completedOrders = 0;
@@ -62,6 +65,7 @@ const Dashboard = () => {
               placed: 0,
               shipping: 0,
               cancelled: 0,
+              confirmed: 0,
               completed: 0,
               failed: 0,
               revenue: 0,
@@ -69,12 +73,12 @@ const Dashboard = () => {
           }
 
           switch (order.status) {
-            // case 'PLACED':
-            //   placedOrders += 1;
-            //   groupedData[date].placed += 1;
-            //   break;
-            case 'CONFIRMED':
+            case 'PLACED':
               placedOrders += 1;
+              groupedData[date].placed += 1;
+              break;
+            case 'CONFIRMED':
+              confirmedOrders += 1;
               groupedData[date].placed += 1;
               break;
             case 'SHIPPING':
@@ -108,6 +112,7 @@ const Dashboard = () => {
       Object.keys(groupedData).forEach(date => {
         labels.push(date);
         placedOrderData.push(groupedData[date].placed);
+        confirmedOrderData.push(groupedData[date].confirmed);
         shippingOrderData.push(groupedData[date].shipping);
         cancelledOrderData.push(groupedData[date].cancelled);
         completedOrderData.push(groupedData[date].completed);
@@ -121,8 +126,15 @@ const Dashboard = () => {
         labels,
         datasets: [
           {
-            label: 'Đơn hàng đã duyệt',
+            label: 'Đơn hàng đã đặt',
             data: placedOrderData,
+            borderColor: 'rgba(255, 159, 64, 1)',
+            backgroundColor: 'rgba(255, 159, 64, 0.2)',
+            yAxisID: 'y1',
+          },
+          {
+            label: 'Đơn hàng đã duyệt',
+            data: confirmedOrderData,
             borderColor: 'rgba(54, 162, 235, 1)',
             backgroundColor: 'rgba(54, 162, 235, 0.2)',
             yAxisID: 'y1',
@@ -169,6 +181,7 @@ const Dashboard = () => {
       setStats({
         totalOrders,
         placedOrders,
+        confirmedOrders,
         shippingOrders,
         cancelledOrders,
         completedOrders,
@@ -245,7 +258,8 @@ const Dashboard = () => {
       <div className="stats-container">
         <h3>Thống kê tháng {selectedMonth}/{selectedYear}</h3>
         <p><strong>Tổng số đơn hàng:</strong> {stats.totalOrders}</p>
-        <p><strong>Đơn hàng đã duyệt:</strong> {stats.placedOrders}</p>
+        <p><strong>Đơn hàng đang chờ:</strong> {stats.placedOrders}</p>        
+        <p><strong>Đơn hàng đã duyệt:</strong> {stats.confirmedOrders}</p>
         <p><strong>Đơn hàng đang giao:</strong> {stats.shippingOrders}</p>
         <p><strong>Đơn hàng đã hủy:</strong> {stats.cancelledOrders}</p>
         <p><strong>Đơn hàng đã giao thành công:</strong> {stats.completedOrders}</p>

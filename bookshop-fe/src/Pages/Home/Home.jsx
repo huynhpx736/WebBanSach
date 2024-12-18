@@ -25,8 +25,9 @@ const Home = () => {
     fetchNewestProducts()
       .then(data => {
         // setNewBooks(data);
-        setNewBooks(data.slice(0, 4)); // Initialize new books for the first page
-        setBestSellerBooks(data.slice(4, 8)); // Initialize best seller books for the first page
+        setNewBooks(data.slice(0, 4)); 
+
+        // setBestSellerBooks(data.slice(4, 8)); 
         setLoading(false);
       })
       .catch(err => {
@@ -38,7 +39,9 @@ const Home = () => {
     fetchAllProducts()
       .then(data => {
         setAllBooks(data);
-        setBooks(data.slice(0, booksPerPage)); // Initialize books for the first page
+        setBooks(data.slice(0, booksPerPage)); 
+                //best seller là danh sách theo rating cao nhất
+        setBestSellerBooks(data.sort((a, b) => b.starRating - a.starRating).slice(0,8));
         setLoading(false);
       })
       .catch(err => {
@@ -81,7 +84,7 @@ const Home = () => {
           </div>
 
           <div className='best-seller'>
-            <h2>Sản phẩm bán chạy</h2>
+            <h2>Sản phẩm gợi í</h2>
             <div className="books-grid">
               {books.length > 0 ? bestSellerBooks.map(book => (
                 <BookCard key={book.id} book={book} />
@@ -89,13 +92,13 @@ const Home = () => {
             </div>
           </div>
 
-          <h2>Tất cả sản phẩm</h2>
-          <div className="books-grid">
+          {/* <h2>Tất cả sản phẩm</h2> */}
+          {/* <div className="books-grid">
             {books.length > 0 ? books.map(book => (
               <BookCard key={book.id} book={book} />
             )) : <p>Hiện không có sản phẩm nào</p>}
-          </div>
-          {allBooks.length > 0 && (
+          </div> */}
+          {/* {allBooks.length > 0 && (
             <ReactPaginate
               previousLabel={'Trước'}
               nextLabel={'Sau'}
@@ -113,7 +116,7 @@ const Home = () => {
               disabledClassName={'disabled'}
               breakClassName={'break'}
             />
-          )}
+          )} */}
         </div>
       </div>
       <Footer />

@@ -17,7 +17,7 @@ const criteriaList = [
   { id: 'rating', label: 'Đánh giá' },
   { id: 'price', label: 'Giá' },
   { id: 'sold', label: 'Số lượng đã bán' }, 
-  { id: 'content', label: 'Mục lục' }, 
+  { id: 'content-key', label: 'Mục lục' }, 
   { id: 'all', label: 'Chọn tất cả' },
 ];
 
@@ -398,7 +398,7 @@ const Search = () => {
   </div>
 )}
 
-{selectedCriteria.includes('content') && (
+{selectedCriteria.includes('content-key') && (
   <div className="criteria-line">
     <label htmlFor="content">Từ khóa mục lục:</label>
     <input

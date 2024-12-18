@@ -24,6 +24,8 @@ const ManageCategory = () => {
   const fetchCategories = async () => {
     try {
       const categories = await fetchAllCategories();
+      //săp xếp theo tên id giảm dần
+      categories.sort((a, b) => b.id - a.id);
       setCategories(categories);
       setLoading(false);
     } catch (err) {
