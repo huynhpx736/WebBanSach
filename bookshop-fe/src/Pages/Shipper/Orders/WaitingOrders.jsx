@@ -36,6 +36,9 @@ const WaitingOrders = () => {
   }, [fetchOrders]);
 
   const handleAcceptOrder = async (orderId) => {
+    if (!window.confirm('Bạn có chắc chắn muốn nhận đơn hàng này?')) {
+      return;
+    }
     try {
       await acceptOrder(orderId, shipperId);
       setFilteredOrders((prev) => prev.filter((order) => order.id !== orderId));
@@ -43,6 +46,7 @@ const WaitingOrders = () => {
     } catch (error) {
       console.error('Failed to accept order:', error);
     }
+
   };
 
   const handleSearch = () => {

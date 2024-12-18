@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getOrderItemsByOrderId, getAllReviews, createReview, markProductAsReviewed } from '../../../api'; // Import API để đánh dấu sản phẩm đã được đánh giá
+import { getOrderItemsByOrderId, getAllReviews, createReview, markItemAsReviewed } from '../../../api'; // Import API để đánh dấu sản phẩm đã được đánh giá
 import './ReviewPage.css';
 import Header from '../../../Components/Header/Header';
 import Footer from '../../../Components/Footer/Footer';
@@ -11,8 +11,8 @@ const ReviewPage = () => {
     const navigate = useNavigate();
     const UserId = localStorage.getItem('userId');
     const [orderItems, setOrderItems] = useState([]);
-    const [reviews, setReviews] = useState([]);
-    const [selectedProduct, setSelectedProduct] = useState(null);
+    // const [reviews, setReviews] = useState([]);
+    const [selectedItem, setSelectedItem] = useState(null);
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState('');
     const [showPopup, setShowPopup] = useState(false);
@@ -26,34 +26,36 @@ const ReviewPage = () => {
             try {
                 const orderItemsData = await getOrderItemsByOrderId(orderId);
                 setOrderItems(orderItemsData);
+                console.log(orderItemsData);
             } catch (error) {
                 console.error('Failed to fetch order items:', error);
             }
         };
 
-        const fetchReviews = async () => {
-            try {
-                const reviewsData = await getAllReviews();
-                setReviews(reviewsData);
-            } catch (error) {
-                console.error('Failed to fetch reviews:', error);
-            }
-        };
+        // const fetchReviews = async () => {
+        //     try {
+        //         const reviewsData = await getAllReviews();
+        //         setReviews(reviewsData);
+        //     } catch (error) {
+        //         console.error('Failed to fetch reviews:', error);
+        //     }
+        // };
 
         fetchOrderItems();
-        fetchReviews();
+        // fetchReviews();
     }, [orderId]);
 
     const handleReviewSubmit = async () => {
         try {
             const reviewDTO = {
-                productId: selectedProduct.productId,
+                productId: selectedItem.productId,
                 userId: UserId, 
                 rating,
                 comment,
             };
             await createReview(reviewDTO);
-            await markProductAsReviewed(selectedProduct.id); // Đánh dấu sản phẩm đã được đánh giá
+            // Đánh dấu item đã được đánh giá
+            await markItemAsReviewed(selectedItem.id);
             alert('Đánh giá thành công!');
             setShowPopup(false);
             setRating(0);
@@ -61,9 +63,9 @@ const ReviewPage = () => {
 
             // Cập nhật lại danh sách sản phẩm và đánh giá sau khi đánh giá thành công
             setOrderItems(orderItems.map(item => 
-                item.id === selectedProduct.id ? { ...item, hasReview: 1 } : item
+                item.id === selectedItem.id ? { ...item, hasReview: 1 } : item
             ));
-            setReviews([...reviews, reviewDTO]);
+            // setReviews([...reviews, reviewDTO]);
         } catch (error) {
             console.error('Failed to submit review:', error);
             alert('Đánh giá thất bại, vui lòng thử lại.');
@@ -71,13 +73,13 @@ const ReviewPage = () => {
     };
 
     const handleOpenPopup = (product) => {
-        setSelectedProduct(product);
+        setSelectedItem(product);
         setShowPopup(true);
     };
 
-    const hasReviewed = (productId) => {
-        return reviews.some(review => review.productId === productId);
-    };
+    // const hasReviewed = (productId) => {
+    //     return reviews.some(review => review.productId === productId);
+    // };
 
     return (
         <div>
@@ -96,7 +98,8 @@ const ReviewPage = () => {
                                 <div className="product-info">
                                     <h3>{item.productName}</h3>
                                     <p>Giá: {formatter.format(item.price)}</p>
-                                    {item.hasReview || hasReviewed(item.productId) ? (
+                                    {/* {item.hasReview || hasReviewed(item.productId) ? ( */}
+                                    {(item.hasReview ==1)? (
                                         <button disabled className="disabled-button">Đã đánh giá</button>
                                     ) : (
                                         <button onClick={() => handleOpenPopup(item)}>Đánh giá</button>
@@ -111,7 +114,7 @@ const ReviewPage = () => {
             {showPopup && (
                 <div className="popup">
                     <div className="popup-content">
-                        <h3>Đánh giá sản phẩm: {selectedProduct.productName}</h3>
+                        <h3>Đánh giá sản phẩm: {selectedItem.productName}</h3>
                         <div className="rating">
                             <p>Chọn số sao:</p>
                             {[...Array(5)].map((_, index) => (

@@ -13,15 +13,15 @@ import { fetchCartItems, fetchUserById, placeOrder } from '../../../api';
 
 const CreateOrder = () => {
   // const DistricIDFrom = 1542;
-  const DistricIDFrom = 1451;
-  const WardCodeFrom = '20911';
-  const shopId = 5228359;
-  const token = '18aae827-4dcd-11ef-b635-eeb7b370243f';
+  // const DistricIDFrom = 1451;
+  // const WardCodeFrom = '20911';
+  // const shopId = 5228359;
+  // const token = '18aae827-4dcd-11ef-b635-eeb7b370243f';
 
-  // const DistricIDFrom = process.env.REACT_APP_DISTRICT_ID_FROM;
-  // const WardCodeFrom = process.env.REACT_APP_WARD_CODE_FROM;
-  //  const token = process.env.REACT_APP_TOKEN;
-  //  const shopId = process.env.REACT_APP_SHOP_ID;
+  const DistricIDFrom = process.env.REACT_APP_DISTRICT_ID_FROM;
+  const WardCodeFrom = process.env.REACT_APP_WARD_CODE_FROM;
+   const token = process.env.REACT_APP_TOKEN_GHN;
+   const shopId = process.env.REACT_APP_SHOP_ID;
   const [orderItems, setOrderItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const UserId = localStorage.getItem('userId');
@@ -209,6 +209,17 @@ const CreateOrder = () => {
           <p>Khách hàng loại <strong>thân thiết</strong> sẽ được giảm giá 10% phí vận chuyển và giảm giá 2% tổng giá trị đơn hàng nếu đơn hàng có tổng giá trị trên 2 triệu đồng.</p>
           <p>Khách hàng loại <strong>VIP</strong> sẽ được giảm giá 30% phí vận chuyển và giảm giá 3% tổng giá trị đơn hàng nếu đơn hàng có tổng giá trị trên 2 triệu đồng.</p>
         </div>
+        <div className="shipping-policy">
+          <p><strong>Chính sách giao hàng</strong> xem tại <a href="/about" target="_blank">đây</a>.</p>
+        </div>
+        
+        {/* <div className="shipping-policy">
+          <h3>Chính sách giao hàng:</h3>
+          <p>Chúng tôi chỉ giao hàng trong phạm vi nội thành thành trực thuộc Việt Nam.</p>
+          <p>Phí vận chuyển sẽ được tính dựa trên trọng lượng đơn hàng và địa chỉ nhận hàng của bạn.</p>
+          <p>Đơn hàng sẽ được giao trong vòng 2-3 ngày làm việc kể từ ngày đặt hàng.</p>
+          <p>Không giao hàng ở các khu vực hẻo lánh hoặc không an toàn, khu vực đang có thiên tai, dịch bệnh hoặc các khu vực khác mà công ty vận chuyển không thể đảm bảo an toàn cho hàng hóa, khu vực đang có chiến tranh, xung đột, bạo loạn, khủng bố hoặc các yếu tố khác ảnh hưởng đến việc vận chuyển hàng hóa.</p>
+        </div> */}
         <h2>Đơn hàng</h2>
         {orderItems.length === 0 ? (
           <p>Trống.</p>

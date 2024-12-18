@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchOrdersByShipperAndStatus } from '../../../api';
+import { fetchOrdersByShipperAndStatus, updateNoteShipper } from '../../../api';
 import { Link } from 'react-router-dom';
 import './FailedOrdersShipper.css';
 import './ShipperOrders.css';
@@ -13,6 +13,8 @@ const FailedOrderShipper = () => {
   const [searchCustomer, setSearchCustomer] = useState('');
   const itemsPerPage = 10;
   const shipperId = localStorage.getItem('userId') || 30;
+  const [selectedOrderId, setSelectedOrderId] = useState(null);
+  const [shipperNote, setShipperNote] = useState('');
 
   useEffect(() => {
     const fetchFailedOrders = async () => {
@@ -30,6 +32,25 @@ const FailedOrderShipper = () => {
     fetchFailedOrders();
   }, [shipperId]);
 
+  const handleClickButtonUpdateNote = (orderId) => {
+      setShipperNote(failedOrders.find(order => order.id === orderId).shipperNote || '');
+      setSelectedOrderId(orderId);
+  };
+
+
+  const handleUpdateNote = async () => {
+    try {
+      await updateNoteShipper(selectedOrderId, shipperNote);
+      const updatedOrders = failedOrders.map(order =>
+        order.id === selectedOrderId ? { ...order, shipperNote } : order
+      );
+      setFailedOrders(updatedOrders);
+      setFilteredOrders(updatedOrders);
+      setSelectedOrderId(null);
+    } catch (error) {
+      console.error('Failed to update note:', error);
+    }
+  };
   // Hàm lọc đơn hàng
   const handleSearch = () => {
     let results = failedOrders;
@@ -129,7 +150,8 @@ const FailedOrderShipper = () => {
                   <td>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(order.total)}</td>
                   <td>{order.user.fullname}</td>
                   <td>{order.failureReason || 'Không có lý do'}</td>
-                  <td>{order.note || 'Không có ghi chú'}</td>
+                  {/* //nếu có ghi chú thì hiển thị ghi chú, không có thì hiển thị "Không có ghi chú", có nút sửa ghi chú có giao diện Fa, nếu vượt quá 50 ký tự thì hiển thị ... */}
+                  <td>{order.shipperNote ? (order.shipperNote.length > 50 ? order.shipperNote.slice(0, 20) + '...' : order.shipperNote ): 'Không có'} <span className="edit-note" onClick={() => handleClickButtonUpdateNote(order.id)}><i className="fa fa-edit"></i></span></td>
                 </tr>
               ))}
             </tbody>
@@ -149,8 +171,24 @@ const FailedOrderShipper = () => {
           </div>
         </>
       )}
+      {selectedOrderId && (
+  <div className="failed-orders-popup">
+    <div className="failed-orders-popup-content">
+      <span className="failed-orders-popup-close" onClick={() => setSelectedOrderId(null)}>&times;</span>
+      {/* <span className="failed-orders-popup-close" >&times;</span> */}
+      <h3 className="failed-orders-popup-title">Sửa ghi chú</h3>
+      <textarea
+        className="failed-orders-popup-textarea"
+        value={shipperNote}
+        onChange={(e) => setShipperNote(e.target.value)}
+        placeholder="Nhập ghi chú..."
+      />
+      <button className="failed-orders-popup-save-btn" onClick={handleUpdateNote}>Lưu</button>
+    </div>
+  </div>
+)}
+
     </div>
   );
 };
-
 export default FailedOrderShipper;

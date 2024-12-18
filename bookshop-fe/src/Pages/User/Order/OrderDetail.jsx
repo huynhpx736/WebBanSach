@@ -93,7 +93,7 @@ const OrderDetail = () => {
           <p><strong>Tên người nhận:</strong> {receiverName}</p>
           <p><strong>Ngày đặt hàng:</strong> {new Date(orderDate).toLocaleString()}</p>
           {/* <p><strong>Trạng thái:</strong> {status === 'PLACED' ? 'Đã đặt hàng' : status === 'SHIPPING' ? 'Đang giao' : status === 'COMPLETED' ? 'Đã nhận' : 'Đã hủy'}</p> */}
-          <p><strong>Trạng thái:</strong> {status === 'PLACED' ? 'Đã đặt hàng' :status==='CONFIRMED'?'Đang chuẩn bị đơn hàng': status === 'SHIPPING' ? 'Đang giao' : status === 'COMPLETED' ? 'Đã nhận hàng' : status === 'FAILED' ? 'Đang giao' : 'Đã hủy'}</p>
+          <p><strong>Trạng thái:</strong> {status === 'PLACED' ? 'Đã đặt hàng' :status==='CONFIRMED'?'Đã duyệt, đang chuẩn bị đơn hàng': status === 'SHIPPING' ? 'Đang giao' : status === 'COMPLETED' ? 'Đã nhận hàng' : status === 'FAILED' ? 'Đang giao' : 'Đã hủy'}</p>
           {/* //nếu đơn hàng có trạng thái "CANCEL" và có cancelledReason thì hiển thị lý do hủy */}
           {status === 'CANCELLED' && order.cancelReason && (
             <p><strong>Lý do hủy:</strong> {order.cancelReason}</p>
@@ -136,11 +136,11 @@ const OrderDetail = () => {
           <button onClick={handleCancelOrder}>Hủy đơn hàng</button>
         </div>
       )}
-      {status === 'SHIPPING' && (
+      {/* {status === 'SHIPPING' && (
         <div className="complete-order">
           <button onClick={handleCompleteOrder}>Đã nhận hàng</button>
         </div>
-      )}
+      )} */}
       {/* //nếu đơn hàng có trạng thái "COMPLETED" thì hiển thị nút "Đánh giá" */}
       {status === 'COMPLETED' && (
         <div className="complete-order">
