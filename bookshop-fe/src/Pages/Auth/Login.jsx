@@ -20,15 +20,18 @@ const Login = () => {
      if (response.desc === 'User is inactive') {
       setMessage("Tài khoản đã bị khóa");
       return;
-    } else if (response.desc === 'Login successful') {
+    } else if (response.desc === 'Login successfully') {
       setMessage("Đăng nhập thành công");
     } else {
       setMessage("Đăng nhập thất bại");
       return;
     }
-      login(response.data.id); // Pass the user ID to the login function
+      // login(response.data.id); // Pass the user ID to the login function
+      login(response.data); // Pass the user ID to the login function
       // localStorage.setUser(response.data.data);
       localStorage.setItem('user', JSON.stringify(response.data));
+      // localStorage.setItem('token', response.token);
+      // localStorage.setItem('roleUser', response.data.role);
       if (response.data.role === 2) {
         navigate('/admin/dashboard');
       } else if (response.data.role === 1) {
@@ -36,7 +39,7 @@ const Login = () => {
       } else {
         navigate('/shipper/dashboard');
       }
-      
+     
     } catch (error) {
       console.error('Failed to login:', error);
       // setMessage("Đăng nhập thất bại");

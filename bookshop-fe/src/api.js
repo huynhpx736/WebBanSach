@@ -850,7 +850,7 @@ export const deleteReview = async (id) => {
 };
 
 //hàm đánh dấu sản phẩm đã được đánh giá
-export const markProductAsReviewed = async (itemId) => {
+export const markItemAsReviewed = async (itemId) => {
   try {
     const response = await axios.put(`api/orderdetails/mark-item-has-review/${itemId}`);
     return response.data.data;
@@ -923,5 +923,54 @@ export const reportFailedDelivery = async (orderId, reason, note) => {
     return response.data.data;
   } catch (error) {
     throw new Error('Failed to report failed delivery.');
+  }
+};
+
+//APIs Admin
+//send-mail-spring-boot
+export const sendMailSpring = async (orderId, subject) => {
+  try {
+    const response = await axios.post('/api/admin/send-email-to-customer', null, {
+      params: {
+        orderId,
+        subject
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Failed to send mail:', error);
+    throw new Error('Failed to send mail.');
+  }
+};
+
+//sửa ghi chú shipper của đơn hàng
+export const updateNoteShipper = async (orderId, shipperNote) => {
+  try {
+    const response = await axios.put(`/api/shipper/orders/update-shipperNote`, null, {
+      params: {
+        orderId,
+        shipperNote
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw new Error('Failed to update note for the shipper.');
+  }
+};
+
+
+//sửa ghi chú admin của đơn hàng
+export const updateAdminNoteOrder = async (orderId, note) => {
+  try {
+    const response = await axios.put(`/api/admin/orders/update-adminNote`,  null,{
+      params: { 
+      orderId,
+      note
+       }
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error('Failed to update note for the shipper.');
   }
 };
