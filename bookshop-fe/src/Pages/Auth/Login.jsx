@@ -75,6 +75,7 @@ const Login = () => {
           </div>
           <button className ="auth-button" type="submit">Đăng nhập</button>
         </form>
+        <a className ="auth-link-forgotpass" href="/forgot-password">Quên mật khẩu?</a>
         {/* <div > */}
           <a className ="auth-link" href="/register">Chưa có tài khoản? Đăng kí</a>
         {/* </div> */}

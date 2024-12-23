@@ -1,0 +1,41 @@
+.head-import-report {
+    margin-bottom: 20px;
+    margin-left: 40%;
+    font-size: 30px;
+    font-family: system-ui;
+    margin-bottom: 50px;
+}
+.create-import-report {
+    padding: 20px;
+}
+
+.search-bar-import {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.product-list-import,
+.import-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product-item,
+.import-item {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    width: 300px;
+}
+
+.product-item img,
+.import-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+}

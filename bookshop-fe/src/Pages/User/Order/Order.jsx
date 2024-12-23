@@ -22,6 +22,8 @@ const Order = () => {
     const fetchOrders = async (status, setOrderState) => {
       try {
         const orders = await getOrderByUserAndStatus(userId, status);
+        //sắp xếp đơn hàng mới nhất lên trước
+        orders.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate));
         setOrderState(orders);
       } catch (error) {
         console.error(`Failed to fetch ${status} orders:`, error.message);

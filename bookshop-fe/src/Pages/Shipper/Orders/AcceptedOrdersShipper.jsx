@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchOrdersByShipperAndStatus, updateOrderStatus, reportFailedDelivery, getOrderItemsByOrderId } from '../../../api';
+import { fetchOrdersByShipperAndStatus, updateOrderStatus, reportFailedDelivery, getOrderItemsByOrderId, sendMailSpring } from '../../../api';
 import { Link } from 'react-router-dom';
 import { MdCheckCircle, MdCancel } from 'react-icons/md'; 
 const AcceptedOrdersShipper = () => {
@@ -21,7 +21,7 @@ const AcceptedOrdersShipper = () => {
     'Không liên lạc được',
     'Không nhận hàng',
     'Hoãn',
-    'Hàng hỏng cần đổi'
+    'Hàng hỏng'
   ];
 
   useEffect(() => {
@@ -93,6 +93,7 @@ const AcceptedOrdersShipper = () => {
       setOrders(orders.filter(order => order.id !== orderId));
       setFilteredOrders(filteredOrders.filter(order => order.id !== orderId));
       alert('Giao hàng thành công!');
+      await sendMailSpring(orderId, 'COMPLETED');
     } catch (error) {
       console.error('Failed to complete order:', error);
     }

@@ -115,7 +115,7 @@ const ManageShipper = () => {
 
   return (
     <div className="manage-shipper">
-      <h2>Quản lý Shipper</h2>
+      <h2>QUẢN LÝ SHIPPER</h2>
       <div className="search-bar">
         <input
           type="text"
@@ -129,9 +129,9 @@ const ManageShipper = () => {
       <table className="shipper-table">
         <thead>
           <tr>
-            <th>Tên đăng nhập</th>
-            <th>Email</th>
             <th>Họ và tên</th>
+            <th>Email</th>
+            <th>Tên đăng nhập</th>
             <th>Số điện thoại</th>
             <th className='action-manage-shipper-col'>Hành động</th>
           </tr>
@@ -139,9 +139,9 @@ const ManageShipper = () => {
         <tbody>
           {currentShippers.map((item) => (
             <tr key={item.id}>
-              <td>{item.username}</td>
-              <td>{item.email}</td>
               <td>{item.fullname}</td>
+              <td>{item.email}</td>
+              <td>{item.username}</td>
               <td>{item.phone}</td>
               <td className='action-manage-shipper-col'>
                 <button onClick={() => handleActive(item.id)}>

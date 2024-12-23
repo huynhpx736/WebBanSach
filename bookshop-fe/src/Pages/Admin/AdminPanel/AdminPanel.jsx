@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { FaTachometerAlt, FaClipboardList, FaBox, FaTags, FaUserEdit, FaBuilding, FaTag, FaSignOutAlt, FaUsers, FaChevronDown, FaShoppingCart, FaShippingFast, FaCheckCircle, FaBan, FaPersonBooth, FaMotorcycle, FaPeopleCarry, FaPeopleArrows } from 'react-icons/fa';
+import { FaTachometerAlt, FaClipboardList, FaBox, FaTags, FaUserEdit, FaBuilding, FaTag, FaSignOutAlt, FaUsers, FaChevronDown, FaShoppingCart, FaShippingFast, FaCheckCircle, FaBan, FaPersonBooth, FaMotorcycle, FaPeopleCarry, FaPeopleArrows, FaWarehouse, FaCheck, FaXRay } from 'react-icons/fa';
 import './AdminPanel.css';
 import { useContext } from 'react';
 import AuthContext from '../../Auth/AuthContext';
+import { Fax } from '@mui/icons-material';
 const AdminPanel = () => {
   const { isLoggedIn, logout } = useContext(AuthContext);
   const handleLogout = () => {
@@ -38,10 +39,10 @@ const AdminPanel = () => {
           {showOrderSubmenu && (
             <ul className="submenu">
               <li><NavLink to="/admin/orders/ordered"><FaShoppingCart className="icon" />Đơn hàng đang chờ</NavLink></li>
-              <li><NavLink to="/admin/orders/confirmed"><FaShoppingCart className="icon" />Đơn hàng đã duyệt</NavLink></li>
+              <li><NavLink to="/admin/orders/confirmed"><FaCheck className="icon" />Đơn hàng đã duyệt</NavLink></li>
               <li><NavLink to="/admin/orders/shipping"><FaShippingFast className="icon" />Đơn hàng đang giao</NavLink></li>
               <li><NavLink to="/admin/orders/completed"><FaCheckCircle className="icon" />Đơn hàng thành công</NavLink></li>
-              <li><NavLink to="/admin/orders/failed"><FaCheckCircle className="icon" />Đơn hàng thất bại</NavLink></li>
+              <li><NavLink to="/admin/orders/failed"><FaXRay className="icon" />Đơn hàng thất bại</NavLink></li>
               <li><NavLink to="/admin/orders/cancelled"><FaBan className="icon" />Đơn hàng đã hủy</NavLink></li>
             </ul>
           )}
@@ -52,6 +53,9 @@ const AdminPanel = () => {
           </div>
           {showProductSubmenu && (
             <ul className="submenu">
+            
+              <li><NavLink to="/admin/import-report-history"><FaWarehouse className="icon" />Lịch sử nhập hàng</NavLink></li>
+
               <li><NavLink to="/admin/products"><FaBox className="icon" />Quản lý sách</NavLink></li>
               <li><NavLink to="/admin/categories"><FaTags className="icon" />Quản lý thể loại</NavLink></li>
               <li><NavLink to="/admin/authors"><FaUserEdit className="icon" />Quản lý tác giả</NavLink></li>
@@ -60,6 +64,7 @@ const AdminPanel = () => {
             </ul>
           )}
         </li>
+
         {/* <li>
           <div onClick={toggleShipperSubmenu} className="submenu-toggle">
             <FaMotorcycle className="icon" />Quản lý shipper <FaChevronDown className="dropdown-icon" />
@@ -72,6 +77,8 @@ const AdminPanel = () => {
           )}
         </li>        */}
         <li><NavLink to="/admin/manage-shipper"><FaMotorcycle className="icon" />Quản lý shipper</NavLink></li>
+        <li><NavLink to="/admin/profile"><FaPersonBooth className="icon" />Thông tin cá nhân</NavLink></li>
+
         <li className='li-logout' onClick={handleLogout}><FaSignOutAlt className="icon" />&ensp;Đăng xuất</li>
        
 

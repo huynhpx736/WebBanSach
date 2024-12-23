@@ -81,6 +81,12 @@ const Cart = () => {
       alert('Không thể tạo đơn hàng trống, hãy cập nhật số lượng sản phẩm hoặc xóa sản phẩm khỏi giỏ hàng');
       return;
     }
+    //nếu sản phẩm đã ngưng kinh doanh thì không cho tạo đơn hàng và thông báo
+    const items2 = cartItems.filter(item => item.status === 0);
+    // if (items2.length > 0) {
+    //   alert('Không thể tạo đơn hàng với sản phẩm đã ngưng kinh doanh, hãy xóa sản phẩm khỏi giỏ hàng');
+    //   return;
+    // }
 
     window.location.href = '/createOrder';
 

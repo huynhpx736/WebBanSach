@@ -22,7 +22,7 @@ const DashboardShipper = () => {
     totalOrders: 0,
     // placedOrders: 0,
     shippingOrders: 0,
-    // cancelledOrders: 0,
+    cancelledOrders: 0,
     completedOrders: 0,
     failedOrders: 0,
     totalRevenue: 0,
@@ -43,7 +43,7 @@ const DashboardShipper = () => {
       let totalOrders = 0;
       // let placedOrders = 0;
       let shippingOrders = 0;
-      // let cancelledOrders = 0;
+      let cancelledOrders = 0;
       let completedOrders = 0;
       let failedOrders = 0;
       let totalRevenue = 0;
@@ -62,7 +62,7 @@ const DashboardShipper = () => {
             groupedData[date] = {
               placed: 0,
               shipping: 0,
-              // cancelled: 0,
+              cancelled: 0,
               completed: 0,
               failed: 0,
               revenue: 0,
@@ -78,10 +78,10 @@ const DashboardShipper = () => {
               shippingOrders += 1;
               groupedData[date].shipping += 1;
               break;
-            // case 'CANCELLED':
-            //   cancelledOrders += 1;
-            //   groupedData[date].cancelled += 1;
-            //   break;
+            case 'CANCELLED':
+              failedOrders += 1;
+              groupedData[date].failed += 1;
+              break;
             case 'COMPLETED':
               completedOrders += 1;
               groupedData[date].completed += 1;

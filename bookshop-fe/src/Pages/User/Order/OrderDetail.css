@@ -79,6 +79,13 @@
     background-color: #288fd4;
   }
   
+  .fail-note-for-customer {
+    color: #ff4d4f;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: cursive;
+    text-decoration: dashed;
+  }
   /* OrderItem.css */
   /* .order-item {
     display: flex;

@@ -1,0 +1,95 @@
+.import-report-detail {
+    padding: 20px;
+    max-width: 1500px;
+    margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9;
+}
+
+.report-info {
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.report-title {
+    margin-bottom: 40px;
+    font-weight: 600;
+    color: #202071;
+    text-align: center;
+}
+
+.report-detail {
+    margin: 8px 0;
+    font-size: 16px;
+    color: #555555;
+}
+
+.divider {
+    margin: 15px 0;
+    background-color: #e0e0e0;
+}
+
+.report-details-table {
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.MuiTableHead-root {
+    background-color: #1976d2;
+}
+
+.MuiTableCell-head {
+    color: #ffffff;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.MuiTableBody-root .MuiTableRow-root {
+    transition: background-color 0.2s ease-in-out;
+}
+
+.MuiTableBody-root .MuiTableRow-root:hover {
+    background-color: #f5f5f5;
+}
+
+.import-report-detail .product-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+}
+
+.MuiTableCell-body {
+    font-size: 14px;
+    color: #333333;
+    text-align: center;
+}
+
+.MuiTableCell-body img {
+    margin: auto;
+}
+
+@media (max-width: 768px) {
+    .import-report-detail {
+        padding: 10px;
+    }
+
+    .report-title {
+        font-size: 20px;
+    }
+
+    .report-detail {
+        font-size: 14px;
+    }
+
+    .product-image {
+        width: 50px;
+        height: 50px;
+    }
+}

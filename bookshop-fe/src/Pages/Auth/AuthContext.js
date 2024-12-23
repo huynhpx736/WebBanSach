@@ -73,7 +73,7 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
     setUserId(null);
     localStorage.removeItem('user');
-    // localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('userId');
     // localStorage.removeItem('roleUser');
   };

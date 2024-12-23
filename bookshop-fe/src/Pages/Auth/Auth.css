@@ -50,7 +50,7 @@
 .auth-link {
   display: block;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 12px;
   color: #FFC107;
 }
 
@@ -104,4 +104,16 @@
   text-align: center;
   color: #e74c3c;
   font-weight: bold;
+}
+
+.auth-link-forgotpass{
+  text-align: center;
+  text-decoration: none;
+  color: blueviolet;
+  font-size: 15px;
+  margin-left: 60%;
+}
+
+.OTP-button{
+  background: #ff2900
 }

@@ -33,6 +33,36 @@ export const login = async (username, password) => {
   }
 };
 
+//hàm gửi mail xác nhận đăng ký trả về mã OTP
+export const sendMailVerifyAndGetOTP = async (email) => {
+  try {
+    const response = await axios.post('/api/auth/verify-otp-register', null, {
+      params: {
+        email
+      }
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error('Failed to send mail verify.');
+  }
+};
+
+//hàm gửi mail xác nhận quên mật khẩu trả về mã OTP
+export const sendMailForgotPasswordAndGetOTP = async (email) => {
+  try {
+    const response = await axios.post('/api/auth/verify-otp-forgot-password', null, {
+      params: {
+        email
+      }
+    });
+    return response.data;
+  }
+  catch (error) {
+    throw new Error('Failed to send mail forgot password.');
+  }
+};
+
+
 // User APIs
 export const updateActive = async (id, activeStatus) => {
   try {
@@ -132,6 +162,19 @@ export const changePassword = async (userId, oldPassword, newPassword) => {
   }
 };
 
+export const changePasswordByEmail = async (email, newPassword) => {
+  try {
+    const response = await axios.put(`/api/users/change-password-by-email`, null, {
+      params: {
+        email,
+        newPassword
+      }
+    });
+    return response.data.message;
+  } catch (error) {
+    throw new Error('Failed to change password.');
+  }
+};
 // Cart APIs
 export const fetchCartItemById = async (orderDetailId) => {
   try {
@@ -961,12 +1004,12 @@ export const updateNoteShipper = async (orderId, shipperNote) => {
 
 
 //sửa ghi chú admin của đơn hàng
-export const updateAdminNoteOrder = async (orderId, note) => {
+export const updateAdminNoteOrder = async (orderId, adminNote) => {
   try {
     const response = await axios.put(`/api/admin/orders/update-adminNote`,  null,{
       params: { 
       orderId,
-      note
+      adminNote
        }
     });
     return response.data;
@@ -974,3 +1017,132 @@ export const updateAdminNoteOrder = async (orderId, note) => {
     throw new Error('Failed to update note for the shipper.');
   }
 };
+
+
+// Import Report APIs
+export const fetchAllImportReports = async () => {
+  try {
+    const response = await axios.get('/api/import-reports/get-all');
+    return response.data.data; // Assuming 'data' holds the list of import reports
+  } catch (error) {
+    throw new Error('Failed to fetch all import reports.');
+  }
+};
+
+export const fetchImportReportById = async (id) => {
+  try {
+    const response = await axios.get(`/api/import-reports/${id}`);
+    return response.data.data; // Assuming 'data' holds the specific import report
+  } catch (error) {
+    throw new Error(`Failed to fetch import report with ID ${id}.`);
+  }
+};
+
+export const createImportReports = async (importReportDTO) => {
+  try {
+    const response = await axios.post('/api/import-reports/create', importReportDTO);
+    return response.data.data; // Assuming 'data' holds the newly created import report
+  } catch (error) {
+    throw new Error('Failed to create a new import report.');
+  }
+};
+
+export const updateImportReport = async (id, importReportDTO) => {
+  try {
+    const response = await axios.put(`/api/import-reports/update/${id}`, importReportDTO);
+    return response.data.data; // Assuming 'data' holds the updated import report
+  } catch (error) {
+    throw new Error(`Failed to update import report with ID ${id}.`);
+  }
+};
+
+export const deleteImportReport = async (id) => {
+  try {
+    await axios.delete(`/api/import-reports/delete/${id}`);
+  } catch (error) {
+    throw new Error(`Failed to delete import report with ID ${id}.`);
+  }
+};
+
+//lay danh sach chi tiet phieu nhap
+export const getImportReportDetailByImportReportId = async (importReportId) => {
+  try {
+    const response = await axios.get(`/api/import-reports/get-detail/${importReportId}`);
+    return response.data.data;
+  } catch (error) {
+    throw new Error('Failed to fetch list details of import report by ID.');
+  }
+};
+
+// Import Report Detail APIs
+//lay danh sach chi tiet phieu nhap theo id san pham
+export const getImportReportDetailByProductId = async (productId) => {
+  try {
+    const response = await axios.get(`/api/import-report-details/get-by-product-id/${productId}`);
+    return response.data.data;
+  } catch (error) {
+    throw new Error('Failed to fetch list details of import report by product ID.');
+  }
+}
+
+export const fetchAllImportReportDetails = async () => {
+  try {
+    const response = await axios.get('/api/import-report-details/get-all');
+    return response.data.data; // Assuming 'data' holds the list of import report details
+  } catch (error) {
+    throw new Error('Failed to fetch all import report details.');
+  }
+};
+
+export const fetchImportReportDetailById = async (id) => {
+  try {
+    const response = await axios.get(`/api/import-report-details/${id}`);
+    return response.data.data; // Assuming 'data' holds the specific import report detail
+  } catch (error) {
+    throw new Error(`Failed to fetch import report detail with ID ${id}.`);
+  }
+};
+
+export const createImportReportDetail = async (importReportDetailDTO) => {
+  try {
+    const response = await axios.post('/api/import-report-details/create', importReportDetailDTO);
+    return response.data.data; // Assuming 'data' holds the newly created import report detail
+  } catch (error) {
+    throw new Error('Failed to create a new import report detail.');
+  }
+};
+
+export const updateImportReportDetail = async (id, importReportDetailDTO) => {
+  try {
+    const response = await axios.put(`/api/import-report-details/update/${id}`, importReportDetailDTO);
+    return response.data.data; // Assuming 'data' holds the updated import report detail
+  } catch (error) {
+    throw new Error(`Failed to update import report detail with ID ${id}.`);
+  }
+};
+
+export const deleteImportReportDetail = async (id) => {
+  try {
+    await axios.delete(`/api/import-report-details/delete/${id}`);
+  } catch (error) {
+    throw new Error(`Failed to delete import report detail with ID ${id}.`);
+  }
+};
+
+export const addItemToImportReport = async (importReportId, productId, quantity, price) => {
+  try {
+    const response = await axios.post('/api/import-reports/add-item', null, {
+      params: {
+        importReportId,
+        productId,
+        quantity,
+        price
+      }
+    });
+    return response.data.data;
+  } catch (error) {
+    throw new Error('Failed to add item to import report.');
+  }
+};
+
+

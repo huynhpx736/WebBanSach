@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getOrderByStatus, updateOrderStatus, cancelOrderByAdmin } from '../../../api';
+import { getOrderByStatus, updateOrderStatus, cancelOrderByAdmin, sendMailSpring } from '../../../api';
 
 import { Link } from 'react-router-dom';
 import { MdCheckCircle, MdCancel } from 'react-icons/md'; 
@@ -105,18 +105,19 @@ const ConfirmedOrders = () => {
     const reasonToSend = cancelledReason === 'Khác' ? customReason : cancelledReason;
 
     try {
-      // await reportFailedDelivery(selectedOrderId, reasonToSend, note || null);
       await cancelOrderByAdmin(selectedOrderId, reasonToSend, note);
+      await sendMailSpring(selectedOrderId,"CANCELLED");
+          
+    } catch (error) {
+      console.error('Failed to cancel order:', error);
+    }
       setOrders(orders.filter(order => order.id !== selectedOrderId));
       setFilteredOrders(filteredOrders.filter(order => order.id !== selectedOrderId));
-      alert('Đã huỷ đơn hàng!');
+      alert('Đã huỷ đơn hàng và gửi email thông báo cho khách hàng!');
       setSelectedOrderId(null);
       setCancelledReason('');
       setCustomReason('');
       setNote('');
-    } catch (error) {
-      console.error('Failed to cancel order:', error);
-    }
   };
 
   return (

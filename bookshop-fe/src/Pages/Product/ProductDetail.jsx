@@ -95,7 +95,10 @@ const ProductDetail = () => {
                     {product.salesVolume > 0 ? (
                       <div>
                       <strong>Đã bán:</strong> {product.quantity_sold}
-                    <strong><br/>Còn lại: </strong>{product.salesVolume}
+                      {/* chỉ hiện số lượng còn lại bằng một nửa số lượng tồn kho tvà làm tròn xuống */}
+                      {/* <strong><br/>Có sẵn:</strong> {Math.floor(product.salesVolume/2)} */}
+                      <strong><br/>Còn lại: </strong>{product.salesVolume}
+
                     </div>
 
                   ) : (
@@ -145,7 +148,7 @@ const ProductDetail = () => {
                 </div>
               )}
                 {product.content&&(<div>
-                  <h3>Mục lục</h3>
+                  <h3>Mục lục có chứa</h3>
                   <div className="table-of-contents">                
                   {product.content.split('\n').map((item, key) => {
                     return <span key={key}>{item}<br/></span>
@@ -166,7 +169,8 @@ const ProductDetail = () => {
                 </div>
               </div>
               {/* //nếu product.status = 1 thì hiển thị nút thêm vào giỏ hàng và số lượng còn không thì hiển thị sản phẩm không còn bán */}
-              {(product.status === 1&&product.salesVolume!==0) ? (
+              {/* {(product.status === 1&&product.salesVolume>0) ? ( */}
+              {(product.status === 1&&product.salesVolume>0) ? (
                 <>
                   <div className="quantity-input">
                     <label htmlFor="quantity">Số lượng:</label>

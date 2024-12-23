@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { getOrderByStatus, acceptOrder } from '../../../api';
+import { getOrderByStatus, acceptOrder, sendMailSpring, fetchOrdersByShipperAndStatus } from '../../../api';
 import { Link } from 'react-router-dom';
 import { FaShippingFast, FaSearch, FaRedo, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import './ShipperOrders.css';
@@ -15,7 +15,7 @@ const WaitingOrders = () => {
   const [loading, setLoading] = useState(false);
   const itemsPerPage = 10;
   const shipperId = localStorage.getItem('userId') || 30;
-
+  const [numberOrderIsShipping, setNumberOrderIsShipping] = useState(0);
   const fetchOrders = useCallback(async () => {
     setLoading(true);
     try {
@@ -31,18 +31,35 @@ const WaitingOrders = () => {
     }
   }, []);
 
+ 
   useEffect(() => {
+    const getNumberOrderIsShipping = async () => {
+      try {
+        const data = await fetchOrdersByShipperAndStatus(shipperId, 'SHIPPING');
+        setNumberOrderIsShipping(data.length);
+      } catch (error) {
+        console.error('Failed to fetch number of orders is shipping:', error);
+      }
+    };
+    getNumberOrderIsShipping(); 
     fetchOrders();
-  }, [fetchOrders]);
+  }, [fetchOrders, shipperId]);
 
   const handleAcceptOrder = async (orderId) => {
     if (!window.confirm('Bạn có chắc chắn muốn nhận đơn hàng này?')) {
       return;
     }
     try {
+      //kiểm tra nếu shipper có số đơn hàng khác đang giao >=10 thì không cho nhận đơn hàng mới
+      if (numberOrderIsShipping >= 10) {
+        alert('Bạn không thể nhận đơn hàng mới vì đang giao 10 đơn hàng khác');
+        return;
+      }
+      
       await acceptOrder(orderId, shipperId);
       setFilteredOrders((prev) => prev.filter((order) => order.id !== orderId));
       alert('Đã nhận đơn hàng!');
+      await sendMailSpring(orderId, 'SHIPPING');
     } catch (error) {
       console.error('Failed to accept order:', error);
     }

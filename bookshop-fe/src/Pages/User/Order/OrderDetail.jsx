@@ -92,12 +92,19 @@ const OrderDetail = () => {
           <p><strong>Địa chỉ người nhận:</strong> {receiverAddress}</p>
           <p><strong>Tên người nhận:</strong> {receiverName}</p>
           <p><strong>Ngày đặt hàng:</strong> {new Date(orderDate).toLocaleString()}</p>
-          {/* <p><strong>Trạng thái:</strong> {status === 'PLACED' ? 'Đã đặt hàng' : status === 'SHIPPING' ? 'Đang giao' : status === 'COMPLETED' ? 'Đã nhận' : 'Đã hủy'}</p> */}
-          <p><strong>Trạng thái:</strong> {status === 'PLACED' ? 'Đã đặt hàng' :status==='CONFIRMED'?'Đã duyệt, đang chuẩn bị đơn hàng': status === 'SHIPPING' ? 'Đang giao' : status === 'COMPLETED' ? 'Đã nhận hàng' : status === 'FAILED' ? 'Đang giao' : 'Đã hủy'}</p>
+          <p><strong>Trạng thái:</strong> {status === 'PLACED' ? 'Đã đặt hàng' :status==='CONFIRMED'?'Đã duyệt, đang chuẩn bị đơn hàng': status === 'SHIPPING' ? 'Đang giao' : status === 'COMPLETED' ? 'Đã nhận hàng' : status === 'FAILED' ? 'Giao hàng thất bại' : 'Đã hủy'}</p>
           {/* //nếu đơn hàng có trạng thái "CANCEL" và có cancelledReason thì hiển thị lý do hủy */}
           {status === 'CANCELLED' && order.cancelReason && (
             <p><strong>Lý do hủy:</strong> {order.cancelReason}</p>
           )}
+          {/* nếu đơn hàng có trạng thái "FAILED" và có failedReason thì hiển thị lý do giao hàng thất bại và thông tin liên lạc
+           */}
+          {status === 'FAILED'&& (
+            <p className='fail-note-for-customer'>Đơn hàng giao hàng thất bại. Vui lòng kiểm tra email và liên hệ với chúng tôi để giải quyết đơn hàng,<br/> nếu không đơn hàng sẽ bị hủy sau 4 ngày kể từ lúc nhận được thông báo.</p>
+          )}
+            {/* <p><strong>Lý do giao hàng thất bại:</strong> {order.failedReason}</p> */}
+          {/* )} */}
+
         </div>
 
         <div className="cart">

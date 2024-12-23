@@ -93,7 +93,7 @@ const ManageTag = () => {
 
   return (
     <div className="manage-tag">
-      <h1>Quản lý tag</h1>
+      {/* <h1>Quản lý tag</h1> */}
       <button className="add-button" onClick={() => openModal('create')}>
         <FaPlus /> Thêm tag
       </button>

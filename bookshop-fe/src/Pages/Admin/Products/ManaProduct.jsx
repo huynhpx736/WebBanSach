@@ -4,6 +4,11 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './ManaProduct.css';
 import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import { useNavigate } from 'react-router-dom';
+
+// import { Navigate } from 'react-router-dom';
 // import { CKEditor } from '@ckeditor/ckeditor5-react';
 
 const ManageProduct = () => {
@@ -249,9 +254,22 @@ const ManageProduct = () => {
     setShowModal(false);
   };
 
+  const navigate = useNavigate();
+  const handleCreateImport = () => {
+    navigate('/admin/create-import-report');
+  };
+
   return (
     <div className="manage-product">
       <h1>Quản lý sản phẩm</h1>
+      {/* <Button
+                    variant="contained"
+                    startIcon={<AddIcon />}
+                    onClick={handleCreateImport}
+                    style={{ backgroundColor: '#1976d2', color: '#fff' }}
+                >
+                    Tạo phiếu nhập
+                </Button> */}
       <div className="search-bar">
         <input
           type="text"
@@ -347,17 +365,21 @@ const ManageProduct = () => {
                   required
                 />
               </div>
-              <div className="form-group">
-                <label htmlFor="salesVolume">Số lượng:</label>
+             <div className="form-group">
+                <label htmlFor="salesVolume">Còn lại</label>
                 <input
                   type="number"
                   id="salesVolume"
                   name="salesVolume"
-                  value={productForm.salesVolume}
+              // Số lượng khi tạo sản phẩm là 0 và không thể thay đổi, nếu khi sửa sản phẩm cũng không thể thay đổi số lượng
+                  value={editingProduct ? productForm.salesVolume : 0}
                   onChange={handleInputChange}
+                  disabled
                   required
                 />
               </div>
+                 
+
              
               <div className="form-group">
                 <label htmlFor="publicationYear">Năm xuất bản:</label>

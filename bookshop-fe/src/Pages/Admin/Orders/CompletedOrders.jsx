@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getOrderByStatus, updateOrderStatus, reportFailedDelivery } from '../../../api';
 import { Link } from 'react-router-dom';
 import './OrderManagement.css';
-const CancelledOrders = () => {
+const CompletedOrders = () => {
   const [orders, setOrders] = useState([]);
   const [filteredOrders, setFilteredOrders] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -153,4 +153,4 @@ const CancelledOrders = () => {
   );
 };
 
-export default CancelledOrders;
+export default CompletedOrders;

@@ -146,7 +146,12 @@ const Search = () => {
         {/* Phần form tìm kiếm */}
         {showSearchForm && (
           <form id="searchForm" onSubmit={handleSearch}>
+          <div>
+              <h4 className='note-priority-booleann'>Điểm ưu tiên từ 1-100</h4>
+              <br />
+            </div>
             <div className="form-group-booleanSearch">
+            
               {selectedCriteria.includes('title') && (
                 <div className="criteria-line">
                   <label htmlFor="title">Tên sách:&emsp;&emsp;&emsp;</label>
@@ -157,7 +162,7 @@ const Search = () => {
                     value={formData.title}
                     onChange={handleChange}
                   />
-                  <label htmlFor="titleWeight">&emsp;&emsp;&emsp;&emsp;&emsp;Độ ưu tiên:</label>
+                  <label htmlFor="titleWeight">&emsp;&emsp;&emsp;&emsp;&emsp;Điểm ưu tiên:</label>
                   <input
                     type="number"
                     id="titleWeight"
@@ -181,7 +186,7 @@ const Search = () => {
                     value={formData.author}
                     onChange={handleChange}
                   />
-                  <label htmlFor="authorWeight">&emsp;&emsp;&emsp;&emsp;&emsp;Độ ưu tiên:</label>
+                  <label htmlFor="authorWeight">&emsp;&emsp;&emsp;&emsp;&emsp;Điểm ưu tiên:</label>
                   <input
                     type="number"
                     id="authorWeight"
@@ -204,7 +209,7 @@ const Search = () => {
                     value={formData.category}
                     onChange={handleChange}
                   />
-                  <label htmlFor="categoryWeight">&emsp;&emsp;&emsp;&emsp;&emsp;Độ ưu tiên:</label>
+                  <label htmlFor="categoryWeight">&emsp;&emsp;&emsp;&emsp;&emsp;Điểm ưu tiên:</label>
                   <input
                     type="number"
                     id="categoryWeight"
@@ -227,7 +232,7 @@ const Search = () => {
                     value={formData.topic}
                     onChange={handleChange}
                   />
-                  <label htmlFor="topicWeight">&emsp;&emsp;&emsp;&emsp;&emsp;Độ ưu tiên:</label>
+                  <label htmlFor="topicWeight">&emsp;&emsp;&emsp;&emsp;&emsp;Điểm ưu tiên:</label>
                   <input
                     type="number"
                     id="topicWeight"
@@ -250,7 +255,7 @@ const Search = () => {
                     value={formData.publisher}
                     onChange={handleChange}
                   />
-                  <label htmlFor="publisherWeight">&emsp;&emsp;&emsp;&emsp;&emsp;Độ ưu tiên:</label>
+                  <label htmlFor="publisherWeight">&emsp;&emsp;&emsp;&emsp;&emsp;Điểm ưu tiên:</label>
                   <input
                     type="number"
                     id="publisherWeight"
@@ -273,7 +278,7 @@ const Search = () => {
                     value={formData.publicationYear}
                     onChange={handleChange}
                   />
-                  <label htmlFor="yearWeight">&emsp;&emsp;&emsp;&emsp;&emsp;Độ ưu tiên:</label>
+                  <label htmlFor="yearWeight">&emsp;&emsp;&emsp;&emsp;&emsp;Điểm ưu tiên:</label>
                   <input
                     type="number"
                     id="yearWeight"
@@ -296,7 +301,7 @@ const Search = () => {
                     value={formData.tag}
                     onChange={handleChange}
                   />
-                  <label htmlFor="tagWeight">&emsp;&emsp;&emsp;&emsp;&emsp;Độ ưu tiên:</label>
+                  <label htmlFor="tagWeight">&emsp;&emsp;&emsp;&emsp;&emsp;Điểm ưu tiên:</label>
                   <input
                     type="number"
                     id="tagWeight"
@@ -329,7 +334,7 @@ const Search = () => {
                     value={formData.maxRating}
                     onChange={handleChange}
                   />
-                  <label htmlFor="ratingWeight">Độ ưu tiên:</label>
+                  <label htmlFor="ratingWeight">Điểm ưu tiên:</label>
                   <input
                     type="number"
                     id="ratingWeight"
@@ -360,7 +365,7 @@ const Search = () => {
                     value={formData.maxPrice}
                     onChange={handleChange}
                   />
-                  <label htmlFor="priceWeight">Độ ưu tiên:</label>
+                  <label htmlFor="priceWeight">Điểm ưu tiên:</label>
                   <input
                     type="number"
                     id="priceWeight"
@@ -384,7 +389,7 @@ const Search = () => {
       onChange={handleChange}
     />
  
-    <label htmlFor="quantitySoldWeight">Độ ưu tiên:</label>
+    <label htmlFor="quantitySoldWeight">Điểm ưu tiên:</label>
     <input
       type="number"
       id="quantitySoldWeight"
@@ -408,7 +413,7 @@ const Search = () => {
       value={formData.content}
       onChange={handleChange}
     />
-    <label htmlFor="contentWeight">Độ ưu tiên:</label>
+    <label htmlFor="contentWeight">Điểm ưu tiên:</label>
     <input
       type="number"
       id="contentWeight"
@@ -463,8 +468,7 @@ const Search = () => {
                     Mục lục: {book.content.slice(0, 50)}...
                   </div>
                 )}
-                
-        
+                       
               </div>
             </li>
           ))}

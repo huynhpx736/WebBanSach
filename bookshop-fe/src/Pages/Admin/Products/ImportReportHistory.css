@@ -1,0 +1,193 @@
+.importReports-page {
+    padding: 20px;
+  }
+
+  #btn-create-import{
+    margin-left: -300px;
+  }
+  
+  .importReports-page h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #009688;
+    background-color: bisque;
+  }
+  
+  .importReports-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .importReports-table th, .importReports-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  .importReports-table th {
+    background-color: #ff5722;
+    font-weight: bold;
+  }
+  
+  .importReports-table td {
+    background-color: #fff;
+  }
+  
+  .importReports-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .no-importReports {
+    text-align: center;
+    color: #777;
+    margin-top: 20px;
+    font-size: 18px;
+  }
+  
+  .action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .action-buttons button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .action-buttons button:hover {
+    opacity: 0.8;
+  }
+  
+  .button-processing {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .button-cancel {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  
+  .button-completed {
+    background-color: #28a745;
+    color: #fff;
+  }
+
+  .importReports-table a{
+   text-decoration: none;
+  }
+  
+  .email-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    width: 400px;
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  .email-modal h3 {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    text-align: center;
+  }
+  
+  .email-modal p {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .email-modal label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  .email-modal input[type="text"],
+  .email-modal textarea {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .email-modal textarea {
+    resize: vertical;
+    height: 120px;
+  }
+  
+  .email-modal button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .email-modal button:hover {
+    background-color: #45a049;
+  }
+  
+  .email-modal .cancel-button {
+    background-color: #f44336;
+  }
+  
+  .email-modal .cancel-button:hover {
+    background-color: #e53935;
+  }
+  
+  .email-modal .actions {
+    text-align: right;
+  }
+  
+  .email-modal .actions button {
+    margin-top: 10px;
+  }
+ .btn-email {
+    background-color: #f9fef9;
+    color: black;
+    padding: 8px 20px;
+    border: inherit;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-email:hover {
+    background-color: #45a049;
+  }
+  
+  .btn-cancel {
+    background-color: #f44336;
+  }
+  
+  .btn-cancel:hover {
+    background-color: #e53935;
+  }
+  
+  .email-modal .actions {
+    text-align: right;
+  }
+  
+  .email-modal .actions button {
+    margin-top: 10px;
+  }
