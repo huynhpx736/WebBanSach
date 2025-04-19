@@ -71,14 +71,6 @@ This project simulates a real-world online bookstore with role-based access and 
 - Maven
 - (Optional) Mail server (e.g., Mailtrap for dev)
 
-# Clone the project
-git clone https://github.com/yourusername/bookshop-webapp.git
-
-
-# Configure DB connection in application.properties
-
-# Run the Spring Boot application
-mvn spring-boot:run
 # Link to backend
 https://github.com/huynhpx736/BEWebBanSach-TTTN-SpringBoot
 
